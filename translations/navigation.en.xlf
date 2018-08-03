@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <group id="group.menu">
+                <note>Messages of navbar</note>
+                <trans-unit id="menu.homepage">
+                    <source>menu.homepage</source>
+                    <target>Home</target>
+                </trans-unit>
+                <trans-unit id="menu.products">
+                    <source>menu.products</source>
+                    <target>Products</target>
+                </trans-unit>
+                <trans-unit id="menu.recipes">
+                    <source>menu.recipes</source>
+                    <target>Our Recipes ideas</target>
+                </trans-unit>
+                <trans-unit id="menu.purchase">
+                    <source>menu.purchase</source>
+                    <target>Purchase</target>
+                </trans-unit>
+                <trans-unit id="menu.enterprise">
+                    <source>menu.enterprise</source>
+                    <target>Enterprise</target>
+                </trans-unit>
+                <trans-unit id="menu.contact_us">
+                    <source>menu.contact_us</source>
+                    <target>Contact us</target>
+                </trans-unit>
+            </group>
+            <group id="group.menu.auth">
+                <note>Navigation bar for the authentication</note>
+                <trans-unit id="menu.admin">
+                    <source>menu.admin</source>
+                    <target>Administration</target>
+                </trans-unit>
+                <trans-unit id="menu.account">
+                    <source>menu.account</source>
+                    <target>Account</target>
+                </trans-unit>
+                <trans-unit id="menu.logout">
+                    <source>menu.logout</source>
+                    <target>Logout</target>
+                </trans-unit>
+                <trans-unit id="menu.sign_in">
+                    <source>menu.sign_in</source>
+                    <target>Sign in</target>
+                </trans-unit>
+            </group>
+        </body>
+    </file>
+</xliff>

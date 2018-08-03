@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id '_index' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/css/breadcrumbs.css') }}">
+{% endblock %}
+
+{% block body_title %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{ 'title.account'|trans }}</h1>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block main %}
+
+    {% include 'user/_breadcrumb.html.twig' with {'currentAction': currentAction} only %}
+
+    <h2>{{ 'title.account.purchase'|trans }}</h2>
+
+    <article class="box article-large">
+
+        <div class="paragraph">
+            {% include 'purchase/_purchase_summary.html.twig' with {'purchase': purchase, 'total': total} only %}
+        </div>
+
+        <h3>{{ 'label.remark'|trans }}</h3>
+
+        <div class="paragraph">
+            <p>{{ purchase.comment }}</p>
+        </div>
+
+    </article>
+
+{% endblock %}
+
+{% block sidebar %}
+
+    {{ parent() }}
+
+{% endblock %}

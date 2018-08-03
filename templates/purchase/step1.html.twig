@@ -1,0 +1,211 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id '_index' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <script src="{{ asset('build/js/purchase.js') }}"></script>
+    <link rel="stylesheet" href="{{ asset('build/css/breadcrumbs.css') }}"/>
+{% endblock %}
+
+{% block body_title %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{ 'title.purchase'|trans }}</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block main %}
+
+    {% if categories is defined %}
+        <div class="box article-large">
+
+            {% include 'purchase/_breadcrumb.html.twig' with {'currentStep': currentStep} only %}
+
+            <h2>{{ 'title.purchase.step1'|trans }}</h2>
+
+            <h3>{{ 'title.purchase.step1.products'|trans }}</h3>
+
+            <form method="post" action="{{ path('purchase_step2') }}">
+                <table>
+                    {% set filter = app.session.get('purchase') %}
+                    {% set total = 0 %}
+
+                    {% for category in categories %}
+
+                        {% if category.products | length > 0 %}
+
+                            <tr class="product_category">
+                                <td colspan="5"><img src="{{ category_prefix ~"/"~ category.image }}" width="24"
+                                                     height="24" alt="{{ category.name }}"/>{{ category.name }}
+                                    ({{ category.products | length }})
+                                </td>
+                            </tr>
+                            <tr class="header">
+                                <th>&nbsp;</th>
+                                <th>&nbsp;</th>
+                                <th>{{ 'label.price'|trans }}</th>
+                                <th>{{ 'label.quantity'|trans }}</th>
+                                <th>{{ 'label.sum'|trans }}</th>
+                            </tr>
+
+                            {% if category.subcategories | length > 0 %}
+
+                                {% for subcategory in category.subcategories | sort %}
+                                    {% if subcategory.products | length > 0 %}
+                                        <tr class="product_subcategory">
+                                            <td colspan="5">{{ subcategory.name }} ({{ subcategory.products | length }}
+                                                )
+                                            </td>
+                                        </tr>
+                                        {% for product in subcategory.products %}
+                                            {% set purchaseName = 'qte_' ~ product.id %}
+                                            {% if purchaseName in filter|keys %}
+                                                {% set purchaseQte = filter[purchaseName] %}
+                                                {% set purchaseTotal = purchaseQte * product.price %}
+                                                {% set classTr = "purchase-list selected" %}
+                                                {% set total = total + purchaseTotal %}
+                                            {% else %}
+                                                {% set purchaseQte = "" %}
+                                                {% set purchaseTotal = "" %}
+                                                {% set classTr = "purchase-list" %}
+                                            {% endif %}
+
+                                            <tr class="{{ classTr }}">
+                                                <td>
+                                                    {% if product.image %}
+                                                        <img class="photo"
+                                                             src="{{ product_prefix ~"/"~ product.image }}"
+                                                             alt="{{ product.name }}" height="42" width="42"/>
+                                                    {% else %}
+                                                        <img class="photo"
+                                                             src="{{ product_prefix ~"/empty-product.png" }}"
+                                                             alt="{{ 'label.product.without_image'|trans }}" height="42" width="42"/>
+                                                    {% endif %}
+                                                </td>
+
+                                                {% if product.isPurchase %}
+                                                    <td>{{ product.name }} ({{ product.packaging }})</td>
+                                                    <td class="center"><span
+                                                                id="pu_{{ product.id }}">{{ product.price }}</span> €
+                                                    </td>
+                                                    <td class="center"><input id="qte_{{ product.id }}"
+                                                                              name="qte_{{ product.id }}"
+                                                                              class="form-control" type="number" min="0"
+                                                                              max="50" value="{{ purchaseQte }}"/></td>
+                                                    <td class="center"><span id="total_{{ product.id }}"
+                                                                             name="total">{{ purchaseTotal }}</span>{% if purchaseTotal %} € {% endif %}
+                                                    </td>
+                                                {% else %}
+                                                    <td>{{ product.name }} ({{ product.packaging }})</td>
+                                                    <td colspan="3">{{ 'label.purchase.not_purchased'|trans }}</td>
+                                                {% endif %}
+                                            </tr>
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            {% else %}
+                                {% for product in category.products %}
+
+                                    {% set purchaseName = 'qte_' ~ product.id %}
+                                    {% if purchaseName in filter|keys %}
+                                        {% set purchaseQte = filter[purchaseName] %}
+                                        {% set purchaseTotal = purchaseQte * product.price %}
+                                        {% set classTr = "purchase-list selected" %}
+                                        {% set total = total +purchaseTotal %}
+                                    {% else %}
+                                        {% set purchaseQte = "" %}
+                                        {% set purchaseTotal = "" %}
+                                        {% set classTr = "purchase-list" %}
+                                    {% endif %}
+
+                                    <tr class="{{ classTr }}">
+                                        <td>
+                                            {% if product.image %}
+                                                <img class="photo" src="{{ product_prefix ~"/"~ product.image }}"
+                                                     alt="{{ product.name }}" height="42" width="42"/>
+                                            {% else %}
+                                                <img class="photo" src="{{ product_prefix ~"/empty-product.png" }}"
+                                                     alt="{{ 'label.product.without_image'|trans }}" height="42" width="42"/>
+                                            {% endif %}
+                                        </td>
+
+                                        {% if product.isPurchase %}
+                                            <td>{{ product.name }} ({{ product.packaging }})</td>
+                                            <td class="center"><span id="pu_{{ product.id }}">{{ product.price }}</span>
+                                                €
+                                            </td>
+                                            <td class="center"><input id="qte_{{ product.id }}"
+                                                                      name="qte_{{ product.id }}" class="form-control"
+                                                                      type="number" min="0" max="50"
+                                                                      value="{{ purchaseQte }}"/></td>
+                                            <td class="center"><span id="total_{{ product.id }}"
+                                                                     name="total">{{ purchaseTotal }}</span>{% if purchaseTotal %} € {% endif %}
+                                            </td>
+                                        {% else %}
+                                            <td>{{ product.name }} ({{ product.packaging }})</td>
+                                            <td colspan="3">{{ 'label.purchase.not_purchased'|trans }}</td>
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+
+                        {% endif %}
+                    {% endfor %}
+                    <tr id="tr-total">
+                        <td colspan="3">&nbsp;</td>
+                        <td class="center"><b>Total</b></td>
+                        <td class="center" id="td-total"><span
+                                    id="total-final">{{ total }}</span>{% if total %} € {% endif %}</td>
+                    </tr>
+                </table>
+
+                <div class="separator">
+                    <p>{{ 'label.and'|trans }}</p>
+                </div>
+
+                <h3>{{ 'title.purchase.step1.date'|trans }}</h3>
+
+                <div class="paragraph">
+                    <select name="delivery_date">
+                        {% for key, dateForDelivrery in datesForDelivrery %}
+                            <option value="{{ key }}">{{ dateForDelivrery }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="separator">
+                    <p>{{ 'label.finalize'|trans }}</p>
+                </div>
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-sign-in"></i> {{ 'action.continue'|trans }}
+                </button>
+            </form>
+
+
+        </div>
+    {% endif %}
+
+    <div>
+        <article class="box article-large">
+            <h2>{{ 'label.purchase.not_found.title'|trans }}</h2>
+            <div>
+                <div class="flex flex-center">
+                    <div>{{ 'label.purchase.not_found.description'|trans }}</div>
+                    <div><img class="center" src="{{ asset('build/images/svg/011-barricade.svg') }}" width="128"
+                              height="128" alt="Travaux"/></div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+{% endblock %}
+
+{% block sidebar %}
+
+
+    {{ parent() }}
+
+{% endblock %}

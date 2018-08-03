@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id '_index' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/css/breadcrumbs.css') }}">
+{% endblock %}
+
+{% block body_title %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{ 'title.account'|trans }}</h1>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block main %}
+
+    <article class="box article-large">
+
+        {% include 'user/_breadcrumb.html.twig' with {'currentAction': currentAction} only %}
+
+        {% if purchases|length > 0 %}
+
+            <div class="paragraph">
+                <table>
+                    <tr class="header">
+                        <th>N° de commande</th>
+                        <th>Date de création</th>
+                        <th>Date de réception</th>
+                        <th>Nb de produits</th>
+                        <th>Commentaire</th>
+                    </tr>
+
+                    {% for purchase in purchases %}
+
+                        <tr class="purchase-list">
+                            <td class="center"><a
+                                        href="{{ path('user_purchase_show', {'id': purchase.id }) }}">{{ purchase.id }}</a>
+                            </td>
+                            <td class="center">{{ purchase.createdAt|date('d/m/Y') }}</td>
+                            <td class="center">{{ purchase.deliveryDate|date('d/m/Y') }}</td>
+                            <td class="center">{{ purchase.items|length }}</td>
+                            <td class="center">{{ purchase.comment }}</td>
+                        </tr>
+
+                    {% endfor %}
+
+                </table>
+            </div>
+
+
+        {% else %}
+            <div>
+                <div class="flex flex-center">
+                    <div>{{ 'label.account.not_purchase'|trans }}</div>
+                    <div><img class="center" src="{{ asset('build/images/svg/009-notes.svg') }}" width="128"
+                              height="128" alt="Note"/></div>
+                </div>
+            </div>
+
+        {% endif %}
+
+    </article>
+
+
+{% endblock %}
+
+{% block sidebar %}
+
+    {{ parent() }}
+
+{% endblock %}

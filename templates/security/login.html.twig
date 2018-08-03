@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'login' %}
+
+{% block main %}
+	<div class="box article-large">
+    	{% include 'common/_login_form.html.twig' %}
+    </div>
+
+	<div class="separator">
+		<p>{{ 'label.or'|trans }}</p>
+	</div>
+	
+	<div class="box article-large">
+		{% include 'common/_signin_form.html.twig' %}
+	</div>
+{% endblock %}
+
+{% block sidebar %}
+
+{% endblock %}

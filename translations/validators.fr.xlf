@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <group id="group.user">
+                <note>Translation for CRUD User</note>
+                <trans-unit  id="user.email.not_blank">
+                    <source>user.email.not_blank</source>
+                    <target>L'email doit être saisi</target>
+                </trans-unit>
+                <trans-unit id="user.email.not_email">
+                    <source>user.email.not_email</source>
+                    <target>L'email n'est pas valide</target>
+                </trans-unit>
+                <trans-unit id="user.email.exist">
+                    <source>user.email.exist</source>
+                    <target>L'email existe déjà</target>
+                </trans-unit>
+                <trans-unit id="user.password.not_blank">
+                    <source>user.password.not_blank</source>
+                    <target>Le mot de passe doit être saisi</target>
+                </trans-unit>
+                <trans-unit id="user.firstname.not_blank">
+                    <source>user.firstname.not_blank</source>
+                    <target>Le prénom doit être saisi</target>
+                </trans-unit>
+                <trans-unit id="user.lastname.not_blank">
+                    <source>user.lastname.not_blank</source>
+                    <target>Le nom doit être saisi</target>
+                </trans-unit>
+                <trans-unit id="user.cellphone.not_blank">
+                    <source>user.cellphone.not_blank</source>
+                    <target>Le numéro de téléphone doit être saisi</target>
+                </trans-unit>
+                <trans-unit id="This value is not valid.">
+                    <source>This value is not valid.</source>
+                    <target>Le mot de passe n'est pas identique</target>
+                </trans-unit>
+            </group>
+        </body>
+    </file>
+</xliff>

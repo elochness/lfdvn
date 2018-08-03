@@ -1,0 +1,483 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <group id="group.http_error">
+                <note>List of http errors</note>
+                <trans-unit id="http_error.name">
+                    <source>http_error.name</source>
+                    <target>Erreur %status_code%</target>
+                </trans-unit>
+                <trans-unit id="http_error.description">
+                    <source>http_error.description</source>
+                    <target>Il y a eu une erreur inconnue (HTTP %status_code%) qui a empêché l'aboutissement de votre requête.</target>
+                </trans-unit>
+                <trans-unit id="http_error.suggestion">
+                    <source>http_error.suggestion</source>
+                    <target><![CDATA[Essayez de recharger cette page dans quelques minutes ou <a href="%url%">retournez sur la page principale</a>.]]></target>
+                </trans-unit>
+                <trans-unit id="http_error_403.description">
+                    <source>http_error_403.description</source>
+                    <target>Vous n'avez pas les droits pour accéder à cette ressource.</target>
+                </trans-unit>
+                <trans-unit id="http_error_403.suggestion">
+                    <source>http_error_403.suggestion</source>
+                    <target>Demandez à votre manager ou à votre administrateur système de vous donner les droits pour accéder à cette ressource.</target>
+                </trans-unit>
+                <trans-unit id="http_error_404.description">
+                    <source>http_error_404.description</source>
+                    <target>Nous n'avons pas pu trouver la page demandée.</target>
+                </trans-unit>
+                <trans-unit id="http_error_404.suggestion">
+                    <source>http_error_404.suggestion</source>
+                    <target><![CDATA[Vérifiez si l'URL ne comporte pas d'erreurs ou <a href="%url%">retournez sur la page principale</a>.]]></target>
+                </trans-unit>
+                <trans-unit id="http_error_500.description">
+                    <source>http_error_500.description</source>
+                    <target>Il y a eu une erreur interne du serveur.</target>
+                </trans-unit>
+                <trans-unit id="http_error_500.suggestion">
+                    <source>http_error_500.suggestion</source>
+                    <target><![CDATA[Essayez de recharger cette page dans quelques minutes ou <a href="%url%">retournez sur la page principale</a>.]]></target>
+                </trans-unit>
+            </group>
+
+            <group id="group.title">
+                <note>List of titles</note>
+                <trans-unit id="title.homepage">
+                    <source>title.homepage</source>
+                    <target>L'actualité de l'entreprise</target>
+                </trans-unit>
+                <trans-unit id="title.product">
+                    <source>title.product</source>
+                    <target>Liste des produits</target>
+                </trans-unit>
+                <trans-unit id="title.product.category.long">
+                    <source>title.product.category.long</source>
+                    <target>Liste des produits %category%</target>
+                </trans-unit>
+                <trans-unit id="title.product.category.short">
+                    <source>title.product.category.short</source>
+                    <target>Liste des %category%</target>
+                </trans-unit>
+                <trans-unit id="title.schedule">
+                    <source>title.schedule</source>
+                    <target>Horaires</target>
+                </trans-unit>
+                <trans-unit id="title.recipe">
+                    <source>title.recipe</source>
+                    <target>Nos idées recettes</target>
+                </trans-unit>
+                <trans-unit id="title.purchase">
+                    <source>title.purchase</source>
+                    <target>Commander</target>
+                </trans-unit>
+                <trans-unit id="title.enterprise">
+                    <source>title.enterprise</source>
+                    <target>Qui sommes-nous?</target>
+                </trans-unit>
+                <trans-unit id="title.login">
+                    <source>title.login</source>
+                    <target>Authentification</target>
+                </trans-unit>
+                <trans-unit id="title.user_create">
+                    <source>title.user_create</source>
+                    <target>Création d'un compte utilisateur</target>
+                </trans-unit>
+                <trans-unit id="title.account">
+                    <source>title.account</source>
+                    <target>Information sur le compte utilisateur</target>
+                </trans-unit>
+                <trans-unit id="title.account.user">
+                    <source>title.account.user</source>
+                    <target>Données de l'utilisateur</target>
+                </trans-unit>
+                <trans-unit id="title.account.purchase">
+                    <source>title.account.purchase</source>
+                    <target>Liste des commandes</target>
+                </trans-unit>
+                <trans-unit id="title.purchase.summary">
+                    <source>title.purchase.summary</source>
+                    <target>Récapitulatif de la commande n°</target>
+                </trans-unit>
+                <trans-unit id="title.purchase.delivery_date">
+                    <source>title.purchase.delivery_date</source>
+                    <target>Date de la livraison</target>
+                </trans-unit>
+                <trans-unit id="title.purchase.products_list">
+                    <source>title.purchase.products_list</source>
+                    <target>Liste des produits commandés</target>
+                </trans-unit>
+            </group>
+
+            <group id="group.label.common">
+                <note>common label</note>
+                <trans-unit id="label.and">
+                    <source>label.and</source>
+                    <target>ET</target>
+                </trans-unit>
+                <trans-unit id="label.or">
+                    <source>label.or</source>
+                    <target>OU</target>
+                </trans-unit>
+                <trans-unit id="label.finalize">
+                    <source>label.finalize</source>
+                    <target>FINALISER ...</target>
+                </trans-unit>
+                <trans-unit id="label.validate">
+                    <source>label.validate</source>
+                    <target>VALIDER ...</target>
+                </trans-unit>
+            </group>
+
+            <group id="group.label.schedule">
+                <note>Label of schedules</note>
+                <trans-unit id="Monday">
+                    <source>Monday</source>
+                    <target>Lundi</target>
+                </trans-unit>
+                <trans-unit id="Tuesday">
+                    <source>Tuesday</source>
+                    <target>Mardi</target>
+                </trans-unit>
+                <trans-unit id="Wednesday">
+                    <source>Wednesday</source>
+                    <target>Mercredi</target>
+                </trans-unit>
+                <trans-unit id="Thursday">
+                    <source>Thursday</source>
+                    <target>Jeudi</target>
+                </trans-unit>
+                <trans-unit id="Friday">
+                    <source>Friday</source>
+                    <target>Vendredi</target>
+                </trans-unit>
+                <trans-unit id="Saturday">
+                    <source>Saturday</source>
+                    <target>Samedi</target>
+                </trans-unit>
+                <trans-unit id="Sunday">
+                    <source>Sunday</source>
+                    <target>Dimanche</target>
+                </trans-unit>
+                <trans-unit id="january">
+                    <source>january</source>
+                    <target>janvier</target>
+                </trans-unit>
+                <trans-unit id="february">
+                    <source>february</source>
+                    <target>février</target>
+                </trans-unit>
+                <trans-unit id="march">
+                    <source>march</source>
+                    <target>mars</target>
+                </trans-unit>
+                <trans-unit id="april">
+                    <source>april</source>
+                    <target>avril</target>
+                </trans-unit>
+                <trans-unit id="may">
+                    <source>may</source>
+                    <target>mai</target>
+                </trans-unit>
+                <trans-unit id="june">
+                    <source>june</source>
+                    <target>juin</target>
+                </trans-unit>
+                <trans-unit id="july">
+                    <source>july</source>
+                    <target>juillet</target>
+                </trans-unit>
+                <trans-unit id="august">
+                    <source>august</source>
+                    <target>aout</target>
+                </trans-unit>
+                <trans-unit id="september">
+                    <source>september</source>
+                    <target>septembre</target>
+                </trans-unit>
+                <trans-unit id="october">
+                    <source>october</source>
+                    <target>octobre</target>
+                </trans-unit>
+                <trans-unit id="november">
+                    <source>november</source>
+                    <target>novembre</target>
+                </trans-unit>
+                <trans-unit id="december">
+                    <source>december</source>
+                    <target>décembre</target>
+                </trans-unit>
+                <trans-unit id="label.schedule.not_found">
+                    <source>label.schedule.not_found</source>
+                    <target>Pas d'horaires</target>
+                </trans-unit>
+                <trans-unit id="label.not_defined">
+                    <source>label.not_defined</source>
+                    <target>Non renseigné</target>
+                </trans-unit>
+            </group>
+
+            <group id="group.label.external">
+                <note>Label of external website</note>
+                <trans-unit id="label.facebook.link">
+                    <source>label.facebook.link</source>
+                    <target>https://www.facebook.com/lafromagerieduvignoblenantais/</target>
+                </trans-unit>
+            </group>
+
+            <group id="group.label.product">
+                <note>Label of product</note>
+                <trans-unit id="label.category">
+                    <source>label.category</source>
+                    <target>Catégorie</target>
+                </trans-unit>
+                <trans-unit id="label.packaging">
+                    <source>label.packaging</source>
+                    <target>Conditionnement</target>
+                </trans-unit>
+                <trans-unit id="label.price">
+                    <source>label.price</source>
+                    <target>Prix</target>
+                </trans-unit>
+                <trans-unit id="label.refundable">
+                    <source>label.refundable</source>
+                    <target>Consigne</target>
+                </trans-unit>
+                <trans-unit id="label.product.without_image">
+                    <source>label.product.without_image</source>
+                    <target>Produit sans image</target>
+                </trans-unit>
+                <trans-unit id="label.product.not_found">
+                    <source>label.product.not_found</source>
+                    <target>Pas de produit disponible</target>
+                </trans-unit>
+            </group>
+
+            <group id="group.label.recipe">
+                <note>Labels of recipe</note>
+                <trans-unit id="label.recipe.not_found.title">
+                    <source>label.recipe.not_found.title</source>
+                    <target>Pas de recette.</target>
+                </trans-unit>
+                <trans-unit id="label.recipe.not_found.description">
+                    <source>label.recipe.not_found.description</source>
+                    <target>Pas de recette pour l'instant. N'hésitez pas à nous transmettre vos recettes afin de les faire découvrir au plus grand nombre.</target>
+                </trans-unit>
+            </group>
+            
+            <group id="group.label.purchase">
+                <note> List of purchase</note>
+                <!-- title step 1 -->
+                <trans-unit id="title.purchase.step1">
+                    <source>title.purchase.step1</source>
+                    <target>Sélectionner les produits et la date de livraison</target>
+                </trans-unit>
+                <trans-unit id="title.purchase.step1.products">
+                    <source>title.purchase.step1.products</source>
+                    <target>Sélectionner les produits à commander</target>
+                </trans-unit>
+                <trans-unit id="title.purchase.step1.date">
+                    <source>title.purchase.step1.date</source>
+                    <target>Sélectionner la date de livraison</target>
+                </trans-unit>
+                <!-- title step 2 -->
+                <trans-unit id="title.purchase.step2">
+                    <source>title.purchase.step2</source>
+                    <target>Veuillez vous connecter</target>
+                </trans-unit>
+                <!-- breadcrumb -->
+                <trans-unit id="label.purchase.breadcrumb.step1">
+                    <source>label.breadcrumb.step1</source>
+                    <target>Produits</target>
+                </trans-unit>
+                <trans-unit id="label.purchase.breadcrumb.step2">
+                    <source>label.breadcrumb.step2</source>
+                    <target>Compte</target>
+                </trans-unit>
+                <trans-unit id="label.purchase.breadcrumb.step3">
+                    <source>label.breadcrumb.step3</source>
+                    <target>Récapitulatif</target>
+                </trans-unit>
+                <trans-unit id="label.purchase.breadcrumb.step4">
+                    <source>label.breadcrumb.step4</source>
+                    <target>Commandé</target>
+                </trans-unit>
+                <!-- Label -->
+                <trans-unit id="label.quantity">
+                    <source>label.quantity</source>
+                    <target>Quantité</target>
+                </trans-unit>
+                <trans-unit id="label.sum">
+                    <source>label.sum</source>
+                    <target>Montant</target>
+                </trans-unit>
+                <trans-unit id="label.total">
+                    <source>label.total</source>
+                    <target>Total</target>
+                </trans-unit>
+                <trans-unit id="label.buyer">
+                    <source>label.buyer</source>
+                    <target>Acheteur</target>
+                </trans-unit>
+                <trans-unit id="label.purchase.not_purchased">
+                    <source>label.purchase.not_purchased</source>
+                    <target>Ce produit ne peut pas être commandé à partir du site web</target>
+                </trans-unit>
+                <trans-unit id="label.remark">
+                    <source>label.remark</source>
+                    <target>Remarque</target>
+                </trans-unit>
+                <trans-unit id="label.signature">
+                    <source>label.signature</source>
+                    <target>L'équipe de la fromagerie du vignoble nantais</target>
+                </trans-unit>
+                <trans-unit id="label.purchase.date_selected">
+                    <source>label.purchase.date_selected</source>
+                    <target>La date de livraison est prévu le</target>
+                </trans-unit>
+                <trans-unit id="label.purchase.remark_add">
+                    <source>label.purchase.remark_add</source>
+                    <target>Ajouter un commentaire à la commande (heure de passage, ...)</target>
+                </trans-unit>
+                <trans-unit id="label.purchase.summary_information">
+                    <source>label.purchase.summary_information</source>
+                    <target>Vous allez recevoir un email récapitulant les informations de votre commande (produits, date de réception et commentaire). Si vous voulez modifier votre commande, veuillez nous contacter.</target>
+                </trans-unit>
+                <!-- Feature not implemented -->
+                <trans-unit id="label.purchase.not_found.title">
+                    <source>label.purchase.not_found.title</source>
+                    <target>Page en construction.</target>
+                </trans-unit>
+                <trans-unit id="label.purchase.not_found.description">
+                    <source>label.purchase.not_found.description</source>
+                    <target>La partie "Commander" est en cours de construction. Elle vous permettra de choisir une liste de produits à réserver qui seront récupérer le jour de votre choix à la fromagerie.</target>
+                </trans-unit>
+            </group>
+
+            <group id="group.label.email_enterprise">
+                <note>labels of email enterprise</note>
+                <trans-unit id="title.email.purchase_new">
+                    <source>title.email.purchase_new</source>
+                    <target>Nouvelle commande n°</target>
+                </trans-unit>
+            </group>
+
+            <group id="group.label.email_customer">
+                <note>labels of email customer</note>
+                <trans-unit id="label.purchase.thanks">
+                    <source>label.purchase.thanks</source>
+                    <target>Merci d'avoir commandé!</target>
+                </trans-unit>
+            </group>
+
+            <group id="group.label.enterprise">
+                <note>Labels of enterprise</note>
+                <trans-unit id="label.enterprise.not_found.title">
+                    <source>label.enterprise.not_found.title</source>
+                    <target>Pas d'information.</target>
+                </trans-unit>
+                <trans-unit id="label.enterprise.not_found.description">
+                    <source>label.enterprise.not_found.description</source>
+                    <target>Pas d'information sur la fromagerie pour l'instant. Ce n'est qu'une question de temps avant de vous faire découvrir la passion des créateurs de la fromagerie.</target>
+                </trans-unit>
+            </group>
+
+            <group id="group.label.article">
+                <note>Labels of article</note>
+                <trans-unit id="label.article.not_found.title">
+                    <source>label.article.not_found.title</source>
+                    <target>Pas d'information.</target>
+                </trans-unit>
+                <trans-unit id="label.article.not_found.description">
+                    <source>label.article.not_found.description</source>
+                    <target>Pas de nouvelles informations sur la Fromagerie du Vignoble Nantais.</target>
+                </trans-unit>
+            </group>
+
+            <group id="group.label.user">
+                <note> labels of user</note>
+                <trans-unit id="label.lastname">
+                    <source>label.lastname</source>
+                    <target>Nom</target>
+                </trans-unit>
+                <trans-unit id="label.firstname">
+                    <source>label.firstname</source>
+                    <target>Prénom</target>
+                </trans-unit>
+                <trans-unit id="label.telephone">
+                    <source>label.telephone</source>
+                    <target>Téléphone</target>
+                </trans-unit>
+                <trans-unit id="label.email">
+                    <source>label.email</source>
+                    <target>Email</target>
+                </trans-unit>
+                <trans-unit id="label.password">
+                    <source>label.password</source>
+                    <target>Mot de passe</target>
+                </trans-unit>
+                <trans-unit id="label.password_repeat">
+                    <source>label.password_repeat</source>
+                    <target>Répéter le mot de passe</target>
+                </trans-unit>
+            </group>
+            
+            <group id="group.label.enterprise_details">
+                <note>Labels of contact us</note>
+                <trans-unit id="label.contact">
+                    <source>label.contact</source>
+                    <target>Contact</target>
+                </trans-unit>
+                <trans-unit id="label.geographical_position">
+                    <source>label.geographical_position</source>
+                    <target>Position géographique</target>
+                </trans-unit>
+                <trans-unit id="label.address">
+                    <source>label.address</source>
+                    <target>Adresse</target>
+                </trans-unit>
+                <trans-unit id="label.enterprise.details.not_found.title">
+                    <source>label.enterprise.details.not_found.title</source>
+                    <target>Pas d'information.</target>
+                </trans-unit>
+                <trans-unit id="label.enterprise.details.not_found.description">
+                    <source>label.enterprise.details.not_found.description</source>
+                    <target>L'entreprise ne possède pas de détails</target>
+                </trans-unit>
+            </group>
+
+            <group id="group.account">
+                <note>Labels of account</note>
+                <trans-unit id="label.account.not_purchase">
+                    <source>label.account.not_purchase</source>
+                    <target>Pas de commande réalisée.</target>
+                </trans-unit>
+            </group>
+
+            <group id="group.action">
+                <note>List of action</note>
+                <trans-unit id="action.continue">
+                    <source>action.continue</source>
+                    <target>Continuer</target>
+                </trans-unit>
+                <trans-unit id="action.create">
+                    <source>action.create</source>
+                    <target>Créer</target>
+                </trans-unit>
+                <trans-unit id="action.purchase">
+                    <source>action.purchase</source>
+                    <target>Commander</target>
+                </trans-unit>
+                <trans-unit id="action.sign_in">
+                    <source>action.sign_in</source>
+                    <target>Se connecter</target>
+                </trans-unit>
+                <trans-unit id="action.change_password">
+                    <source>action.change_password</source>
+                    <target>Changer de mot de passe</target>
+                </trans-unit>
+            </group>
+        </body>
+    </file>
+</xliff>

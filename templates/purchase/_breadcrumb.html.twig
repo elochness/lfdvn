@@ -1,0 +1,35 @@
+<nav>
+    <ol class="cd-breadcrumb triangle custom-icons">
+
+        {% if currentStep == 1 %}
+
+            <li class="current"><em>{{ 'label.breadcrumb.step1'|trans }}</em></li>
+            <li><em>{{ 'label.breadcrumb.step2'|trans }}</em></li>
+            <li><em>{{ 'label.breadcrumb.step3'|trans }}</em></li>
+            <li><em>{{ 'label.breadcrumb.step4'|trans }}</em></li>
+
+        {% elseif currentStep == 2 %}
+
+            <li><a href="{{ path('purchase_step1') }}">{{ 'label.breadcrumb.step1'|trans }}</a></li>
+            <li class="current"><em>{{ 'label.breadcrumb.step2'|trans }}</em></li>
+            <li><em>{{ 'label.breadcrumb.step3'|trans }}</em></li>
+            <li><em>{{ 'label.breadcrumb.step4'|trans }}</em></li>
+
+        {% elseif currentStep == 3 %}
+
+            <li><a href="{{ path('purchase_step1') }}">{{ 'label.breadcrumb.step1'|trans }}</a></li>
+            <li><a href="{{ path('purchase_step2') }}">{{ 'label.breadcrumb.step2'|trans }}</a></li>
+            <li class="current"><em>{{ 'label.breadcrumb.step3'|trans }}</em></li>
+            <li><em>{{ 'label.breadcrumb.step4'|trans }}</em></li>
+
+        {% else %}
+
+            <li><a href="{{ path('purchase_step1') }}">{{ 'label.breadcrumb.step1'|trans }}</a></li>
+            <li><a href="{{ path('purchase_step2') }}">{{ 'label.breadcrumb.step2'|trans }}</a></li>
+            <li><a href="{{ path('purchase_step3') }}">{{ 'label.breadcrumb.step3'|trans }}</a></li>
+            <li class="current"><em>{{ 'label.breadcrumb.step4'|trans }}</em></li>
+
+        {% endif %}
+
+    </ol>
+</nav>

@@ -1,0 +1,9 @@
+twig:
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    globals:
+        product_prefix: "%app.path.product_images%"
+        category_prefix: "%app.path.category_images%"
+    form_themes:
+        - 'form/layout.html.twig'
+        - 'form/fields.html.twig'

@@ -1,0 +1,16 @@
+#category-list {
+  margin-top: 10px;
+}
+
+/* Delete dot and marging left */
+.category-name {
+  list-style: none;
+  margin-left: -20px;
+  font-size: (17/$factor_font_size) + em;
+}
+
+/* Delete dot and marging left */
+.category-subname {
+  margin-left: -10px;
+  font-size: (15/$factor_font_size) + em;
+}

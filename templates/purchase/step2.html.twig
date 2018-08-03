@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id '_index' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/css/breadcrumbs.css') }}"/>
+{% endblock %}
+
+{% block body_title %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{ 'title.purchase'|trans }}</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block main %}
+
+    <div class="box article-large">
+
+        {% include 'purchase/_breadcrumb.html.twig' with {'currentStep': currentStep} only %}
+
+        <h2>{{ 'title.purchase.step2'|trans }}</h2>
+
+        <div class="paragraph">
+            {% include 'common/_login_form.html.twig' %}
+        </div>
+
+        <div class="separator">
+            <p>{{ 'label.or'|trans }}</p>
+        </div>
+
+        <div class="paragraph">
+            {% include 'common/_signin_form.html.twig' %}
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block sidebar %}
+
+
+    {{ parent() }}
+
+{% endblock %}

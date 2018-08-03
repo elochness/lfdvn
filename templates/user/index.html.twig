@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id '_index' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/css/breadcrumbs.css') }}">
+{% endblock %}
+
+{% block body_title %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{ 'title.account'|trans }}</h1>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block main %}
+
+    <article class="box article-large">
+
+        {% include 'user/_breadcrumb.html.twig' with {'currentAction': currentAction} only %}
+
+        <p>{{ 'label.lastname'|trans }} : {{ user.lastname }}</p>
+        <p>{{ 'label.firstname'|trans }} : {{ user.firstname }}</p>
+        <p>{{ 'label.telephone'|trans }} : {{ user.cellphone }}</p>
+        <p>{{ 'label.email'|trans }} : {{ user.username }}</p>
+
+        <button type="submit" class="btn btn-primary">
+            <i class="fa fa-sign-in"></i> {{ 'action.change_password'|trans }}
+        </button>
+    </article>
+
+{% endblock %}
+
+{% block sidebar %}
+
+    {{ parent() }}
+
+{% endblock %}

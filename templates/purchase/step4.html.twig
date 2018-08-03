@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id '_index' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/css/breadcrumbs.css') }}"/>
+{% endblock %}
+
+{% block body_title %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{ 'title.purchase'|trans }}</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block main %}
+
+    <div>
+        <article class="box article-large">
+
+            {% include 'purchase/_breadcrumb.html.twig' with {'currentStep': currentStep} only %}
+
+            <h2>{{ 'label.purchase.thanks'|trans }}</h2>
+            <div>
+                <div class="flex flex-center">
+                    <div>{{ 'label.purchase.summary_information'|trans }}
+                        <br/><br/> {{ 'label.signature'|trans }}</div>
+                    <div><img class="center" src="{{ asset('build/images/svg/012-cart.svg') }}" width="128" height="128"
+                              alt="Caddie"/></div>
+                </div>
+            </div>
+        </article>
+    </div>
+
+{% endblock %}
+
+{% block sidebar %}
+
+    {{ parent() }}
+
+{% endblock %}

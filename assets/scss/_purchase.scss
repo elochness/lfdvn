@@ -1,0 +1,30 @@
+
+.purchase-list {
+  border-top: 1px solid #96c03d;
+  line-height: 50px;
+
+  &.selected {
+    background-color: #edeff0;
+  }
+}
+
+table {
+  width: 100%;
+
+  .center {
+    text-align: center;
+  }
+
+  .right {
+    text-align: right;
+  }
+}
+
+#tr-total {
+  line-height: 25px;
+}
+
+#td-total {
+  border: black 2px solid;
+  font-weight: bold;
+}
