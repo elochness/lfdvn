@@ -18,21 +18,26 @@
 
 {% block main %}
 
-    {% include 'user/_breadcrumb.html.twig' with {'currentAction': currentAction} only %}
-
-    <h2>{{ 'title.account.purchase'|trans }}</h2>
-
     <article class="box article-large">
 
-        <div class="paragraph">
+        {% include 'user/_breadcrumb.html.twig' with {'currentAction': currentAction} only %}
+
+
+        <fieldset>
+            <legend><i class="fa fa-lock"></i>{{ 'title.purchase.show'|trans({'%purchase_id%': purchase.id}) }}</legend>
             {% include 'purchase/_purchase_summary.html.twig' with {'purchase': purchase, 'total': total} only %}
-        </div>
+        </fieldset>
 
-        <h3>{{ 'label.remark'|trans }}</h3>
-
-        <div class="paragraph">
+        <fieldset>
+            <legend><i class="fa fa-lock"></i>{{ 'label.remark'|trans }}</legend>
             <p>{{ purchase.comment }}</p>
-        </div>
+        </fieldset>
+
+        <br/>
+
+        <a class="btn btn-primary" href="{{ path('user_purchase') }}">
+            <i class="fa fa-sign-in"></i> {{ 'action.return'|trans }}
+        </a>
 
     </article>
 

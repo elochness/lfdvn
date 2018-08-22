@@ -72,6 +72,10 @@
                     <source>title.purchase</source>
                     <target>Commander</target>
                 </trans-unit>
+                <trans-unit id="title.purchase.show">
+                    <source>title.purchase.show</source>
+                    <target>Commande n°%purchase_id%</target>
+                </trans-unit>
                 <trans-unit id="title.enterprise">
                     <source>title.enterprise</source>
                     <target>Qui sommes-nous?</target>
@@ -476,6 +480,22 @@
                 <trans-unit id="action.change_password">
                     <source>action.change_password</source>
                     <target>Changer de mot de passe</target>
+                </trans-unit>
+                <trans-unit id="action.return">
+                    <source>action.return</source>
+                    <target>Retour</target>
+                </trans-unit>
+                <trans-unit id="action.show">
+                    <source>action.show</source>
+                    <target>Voir</target>
+                </trans-unit>
+                <trans-unit id="action.user.modify">
+                    <source>action.user.modify</source>
+                    <target>Mofifier le compte utilisateur</target>
+                </trans-unit>
+                <trans-unit id="action.user.delete">
+                    <source>action.user.delete</source>
+                    <target>Supprimer le compte utilisateur</target>
                 </trans-unit>
             </group>
         </body>
