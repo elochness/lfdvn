@@ -31,19 +31,20 @@
                         <th>Date de création</th>
                         <th>Date de réception</th>
                         <th>Nb de produits</th>
-                        <th>Commentaire</th>
+                        <th>Consulter</th>
                     </tr>
 
                     {% for purchase in purchases %}
 
                         <tr class="purchase-list">
-                            <td class="center"><a
-                                        href="{{ path('user_purchase_show', {'id': purchase.id }) }}">{{ purchase.id }}</a>
-                            </td>
+                            <td class="center">{{ purchase.id }}</td>
                             <td class="center">{{ purchase.createdAt|date('d/m/Y') }}</td>
                             <td class="center">{{ purchase.deliveryDate|date('d/m/Y') }}</td>
                             <td class="center">{{ purchase.items|length }}</td>
-                            <td class="center">{{ purchase.comment }}</td>
+                            <td class="center">
+                                <a class="btn btn-primary"
+                                   href="{{ path('user_purchase_show', {'id': purchase.id }) }}">{{ 'action.show'|trans }}</a>
+                            </td>
                         </tr>
 
                     {% endfor %}

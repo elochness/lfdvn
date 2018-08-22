@@ -22,14 +22,49 @@
 
         {% include 'user/_breadcrumb.html.twig' with {'currentAction': currentAction} only %}
 
-        <p>{{ 'label.lastname'|trans }} : {{ user.lastname }}</p>
-        <p>{{ 'label.firstname'|trans }} : {{ user.firstname }}</p>
-        <p>{{ 'label.telephone'|trans }} : {{ user.cellphone }}</p>
-        <p>{{ 'label.email'|trans }} : {{ user.username }}</p>
 
-        <button type="submit" class="btn btn-primary">
-            <i class="fa fa-sign-in"></i> {{ 'action.change_password'|trans }}
-        </button>
+        <fieldset>
+            <legend><i class="fa fa-lock"></i>Informations</legend>
+            <div class="form-group">
+                <label for="username">{{ 'label.email'|trans }}</label>
+                <input type="text" id="username" name="_username" value="" class="form-control"
+                       placeholder="{{ user.username }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="firstname">{{ 'label.firstname'|trans }}</label>
+                <input type="text" id="firstname" name="_firstname" value="" class="form-control"
+                       placeholder="{{ user.firstname }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="cellphone">{{ 'label.telephone'|trans }}</label>
+                <input type="text" id="cellphone" name="_cellphone" value="" class="form-control"
+                       placeholder="{{ user.cellphone }}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="lastname">{{ 'label.lastname'|trans }}</label>
+                <input type="text" id="lastname" name="_lastname" value="" class="form-control"
+                       placeholder="{{ user.lastname }}" readonly>
+            </div>
+        </fieldset>
+
+        <br/>
+
+        <fieldset>
+            <legend><i class="fa fa-lock"></i>Actions</legend>
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-sign-in"></i> {{ 'action.change_password'|trans }}
+            </button>
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-sign-in"></i> {{ 'action.user.modify'|trans }}
+            </button>
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-sign-in"></i> {{ 'action.user.delete'|trans }}
+            </button>
+        </fieldset>
+
     </article>
 
 {% endblock %}

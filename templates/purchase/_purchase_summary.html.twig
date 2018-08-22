@@ -9,7 +9,7 @@
     {% for purchaseItem in purchase.items %}
         <tr class="purchase-list">
             <td>
-                {% if purchaseItem.product.image %}
+                {% if file_exists(product_prefix ~"/"~ purchaseItem.product.image) %}
                     <img class="photo" src="{{ product_prefix ~"/"~ purchaseItem.product.image }}"
                          alt="{{ purchaseItem.product.name }}" height="42" width="42"/>
                 {% else %}
