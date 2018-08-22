@@ -242,6 +242,7 @@ class PurchaseController extends AbstractController
                 $purchaseItem->setProduct($product);
                 $purchaseItem->setPrice($value * $product->getPrice());
                 $purchaseItem->setTaxRate($product->getTaxRate()->getRate());
+                $purchaseItem->setPurchase($purchase);
                 // Add item to list
                 $purchase->addItem($purchaseItem);
             }
