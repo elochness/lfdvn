@@ -39,12 +39,15 @@
                 {{ form_errors(form.plainPassword.second) }}
                 {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control'} }) }}
             </div>
+
+            {{ form_end(form) }}
+
             <button type="submit" class="btn btn-primary">
                 <i class="fa fa-sign-in"></i> {{ 'action.create'|trans }}
             </button>
         </fieldset>
 
-        {{ form_end(form) }}
+
     </div>
 
 {% endblock %}

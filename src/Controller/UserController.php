@@ -144,6 +144,60 @@ class UserController extends AbstractController
     }
 
     /**
+     * Modification of password
+     * @Route({
+     *     "fr": "/changer-motdepasse",
+     *     "en": "/change-password"
+     * }, methods={"GET", "POST"}, name="password_update")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param UserInterface|null $user
+     * @param AuthorizationCheckerInterface $authChecker
+     * @return Response
+     */
+    public function changePassword(Request $request, UserPasswordEncoderInterface $passwordEncoder, UserInterface $user = null, AuthorizationCheckerInterface $authChecker): Response
+    {
+        // Check if user is connected
+        if (!$authChecker->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
+        $form = $this->createForm(UserType::class, $user);
+        $form->remove("username");
+        $form->remove("lastname");
+        $form->remove("firstname");
+        $form->remove("cellphone");
+
+        if ($request->isMethod('POST')) {
+            // false parameter can update only changed fields of user
+            $form->submit($request->request->get($form->getName()), false);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+                $user->setPassword($password);
+
+                // 4) save the User!
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($user);
+                $entityManager->flush();
+                $em->persist($user);
+                $em->flush();
+
+                $this->addFlash('success', 'password.updated_successfully');
+                return $this->redirectToRoute('user_account');
+            }
+        }
+
+
+        return $this->render('user/change_password.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
      * @Route("/purchase", methods={"GET"}, name="user_purchase")
      * @param UserInterface $user
      * @param AuthorizationCheckerInterface $authChecker

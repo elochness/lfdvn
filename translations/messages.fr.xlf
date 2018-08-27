@@ -92,6 +92,10 @@
                     <source>title.user_update</source>
                     <target>Modification du compte utilisateur</target>
                 </trans-unit>
+                <trans-unit id="title.password_update">
+                    <source>title.password_update</source>
+                    <target>Modification du mot de passe</target>
+                </trans-unit>
                 <trans-unit id="title.account">
                     <source>title.account</source>
                     <target>Information sur le compte utilisateur</target>
@@ -472,6 +476,10 @@
                 <trans-unit id="account.updated_successfully">
                     <source>account.updated_successfully</source>
                     <target>Compte utilisateur modifié avec succès</target>
+                </trans-unit>
+                <trans-unit id="password.updated_successfully">
+                    <source>password.updated_successfully</source>
+                    <target>Mot de passe modifié avec succès</target>
                 </trans-unit>
             </group>
 
