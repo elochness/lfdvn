@@ -18,6 +18,8 @@ use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Length;
 
 class UserType extends AbstractType
 {
@@ -49,6 +51,8 @@ class UserType extends AbstractType
                 'type' => PasswordType::class,
                 'first_options'  => array('label' => 'label.password'),
                 'second_options' => array('label' => 'label.password_repeat'),
+                'constraints'    => array(new NotBlank(array("message" => "user.password.not_blank")),
+                                          new Length(array("max" => "4096")))
             ))
         ;
     }

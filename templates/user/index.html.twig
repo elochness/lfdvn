@@ -31,6 +31,11 @@
                        placeholder="{{ user.username }}" readonly>
             </div>
             <div class="form-group">
+                <label for="lastname">{{ 'label.lastname'|trans }}</label>
+                <input type="text" id="lastname" name="_lastname" value="" class="form-control"
+                       placeholder="{{ user.lastname }}" readonly>
+            </div>
+            <div class="form-group">
                 <label for="firstname">{{ 'label.firstname'|trans }}</label>
                 <input type="text" id="firstname" name="_firstname" value="" class="form-control"
                        placeholder="{{ user.firstname }}" readonly>
@@ -39,11 +44,6 @@
                 <label for="cellphone">{{ 'label.telephone'|trans }}</label>
                 <input type="text" id="cellphone" name="_cellphone" value="" class="form-control"
                        placeholder="{{ user.cellphone }}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="lastname">{{ 'label.lastname'|trans }}</label>
-                <input type="text" id="lastname" name="_lastname" value="" class="form-control"
-                       placeholder="{{ user.lastname }}" readonly>
             </div>
         </fieldset>
 
@@ -56,9 +56,9 @@
                 <i class="fa fa-sign-in"></i> {{ 'action.change_password'|trans }}
             </button>
 
-            <button type="submit" class="btn btn-primary">
-                <i class="fa fa-sign-in"></i> {{ 'action.user.modify'|trans }}
-            </button>
+            <a class="btn btn-primary" href="{{ path('user_update') }}">
+                <i class="fa fa-sign-in"></i> {{ 'action.user.update'|trans }}
+            </a>
 
             <button type="submit" class="btn btn-primary">
                 <i class="fa fa-sign-in"></i> {{ 'action.user.delete'|trans }}

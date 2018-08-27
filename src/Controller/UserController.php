@@ -61,43 +61,83 @@ class UserController extends AbstractController
      *     "en": "/new"
      * }, methods={"GET", "POST"}, name="user_new")
      * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
      * @return Response
      */
     public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
 
+        // 1) build the form
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
 
+        // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            // $form->getData() holds the submitted values
-            // but, the original `$task` variable has also been updated
-            // 3) Encode the password (you could also do this via Doctrine li
-            //stener)
+
+            // 3) Encode the password (you could also do this via Doctrine listener)
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
 
-            // ... perform some action, such as saving the task to the database
-            // for example, if Task is a Doctrine entity, save it!
-            // $em = $this->getDoctrine()->getManager();
-            // $em->persist($task);
-            // $em->flush();
+            // 4) save the User!
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
 
             // Flash messages are used to notify the user about the result of the
             // actions. They are deleted automatically from the session as soon
             // as they are accessed.
             // See https://symfony.com/doc/current/book/controller.html#flash-messages
-            $this->addFlash('success', 'post.created_successfully');
-
+            $this->addFlash('success', 'account.created_successfully');
             return $this->redirectToRoute('homepage');
         }
 
         return $this->render('user/new.html.twig', [
+            'form' => $form->createView()
+        ]);
+
+    }
+
+
+    /**
+     * Modification of user account
+     * @Route({
+     *     "fr": "/modifier",
+     *     "en": "/update"
+     * }, methods={"GET", "POST"}, name="user_update")
+     * @param Request $request
+     * @param UserInterface|null $user
+     * @param AuthorizationCheckerInterface $authChecker
+     * @return Response
+     */
+    public function update(Request $request, UserInterface $user = null, AuthorizationCheckerInterface $authChecker): Response
+    {
+        // Check if user is connected
+        if (!$authChecker->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
+
+        $em = $this->getDoctrine()->getManager();
+
+        $form = $this->createForm(UserType::class, $user);
+        $form->remove("username");
+        $form->remove("plainPassword");
+
+        if ($request->isMethod('POST')) {
+            // false parameter can update only changed fields of user
+            $form->submit($request->request->get($form->getName()), false);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $em->persist($user);
+                $em->flush();
+
+                $this->addFlash('success', 'account.updated_successfully');
+                return $this->redirectToRoute('user_account');
+            }
+        }
+
+
+        return $this->render('user/update.html.twig', [
             'form' => $form->createView()
         ]);
 
