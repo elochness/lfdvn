@@ -88,6 +88,10 @@
                     <source>title.user_create</source>
                     <target>Création d'un compte utilisateur</target>
                 </trans-unit>
+                <trans-unit id="title.user_update">
+                    <source>title.user_update</source>
+                    <target>Modification du compte utilisateur</target>
+                </trans-unit>
                 <trans-unit id="title.account">
                     <source>title.account</source>
                     <target>Information sur le compte utilisateur</target>
@@ -417,6 +421,10 @@
                     <source>label.email</source>
                     <target>Email</target>
                 </trans-unit>
+                <trans-unit id="help.email">
+                    <source>help.email</source>
+                    <target>L'email servira d'identifiant pour l'authentification</target>
+                </trans-unit>
                 <trans-unit id="label.password">
                     <source>label.password</source>
                     <target>Mot de passe</target>
@@ -457,6 +465,14 @@
                     <source>label.account.not_purchase</source>
                     <target>Pas de commande réalisée.</target>
                 </trans-unit>
+                <trans-unit id="account.created_successfully">
+                    <source>account.created_successfully</source>
+                    <target>Compte utilisateur créé avec succès</target>
+                </trans-unit>
+                <trans-unit id="account.updated_successfully">
+                    <source>account.updated_successfully</source>
+                    <target>Compte utilisateur modifié avec succès</target>
+                </trans-unit>
             </group>
 
             <group id="group.action">
@@ -468,6 +484,10 @@
                 <trans-unit id="action.create">
                     <source>action.create</source>
                     <target>Créer</target>
+                </trans-unit>
+                <trans-unit id="action.update">
+                    <source>action.update</source>
+                    <target>Modifier</target>
                 </trans-unit>
                 <trans-unit id="action.purchase">
                     <source>action.purchase</source>
@@ -489,8 +509,8 @@
                     <source>action.show</source>
                     <target>Voir</target>
                 </trans-unit>
-                <trans-unit id="action.user.modify">
-                    <source>action.user.modify</source>
+                <trans-unit id="action.user.update">
+                    <source>action.user.update</source>
                     <target>Mofifier le compte utilisateur</target>
                 </trans-unit>
                 <trans-unit id="action.user.delete">

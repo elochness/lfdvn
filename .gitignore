@@ -43,3 +43,8 @@ yarn-error.log
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-pack ###
+
+###> jetbrains/phpstorm ###
+.idea/**/workspace.xml
+.idea/**/tasks.xml
+###< jetbrains/phpstorm ###
