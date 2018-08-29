@@ -24,19 +24,19 @@
 
 
         <fieldset>
-            <legend><i class="fa fa-lock"></i>{{ 'title.purchase.show'|trans({'%purchase_id%': purchase.id}) }}</legend>
+            <legend><i class="fas fa-shopping-cart" aria-hidden="true"></i> {{ 'title.purchase.show'|trans({'%purchase_id%': purchase.id}) }}</legend>
             {% include 'purchase/_purchase_summary.html.twig' with {'purchase': purchase, 'total': total} only %}
         </fieldset>
 
         <fieldset>
-            <legend><i class="fa fa-lock"></i>{{ 'label.remark'|trans }}</legend>
+            <legend><i class="fas fa-comment-dots" aria-hidden="true"></i> {{ 'label.remark'|trans }}</legend>
             <p>{{ purchase.comment }}</p>
         </fieldset>
 
         <br/>
 
-        <a class="btn btn-primary" href="{{ path('user_purchase') }}">
-            <i class="fa fa-sign-in"></i> {{ 'action.return'|trans }}
+        <a class="btn btn-a btn-primary" href="{{ path('user_purchase') }}">
+            <i class="fas fa-undo" aria-hidden="true"></i> {{ 'action.return'|trans }}
         </a>
 
     </article>

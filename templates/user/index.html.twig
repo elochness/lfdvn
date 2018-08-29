@@ -24,7 +24,7 @@
 
 
         <fieldset>
-            <legend><i class="fa fa-lock"></i>Informations</legend>
+            <legend><i class="fas fa-user-circle" aria-hidden="true"></i> Informations</legend>
             <div class="form-group">
                 <label for="username">{{ 'label.email'|trans }}</label>
                 <input type="text" id="username" name="_username" value="" class="form-control"
@@ -50,22 +50,24 @@
         <br/>
 
         <fieldset>
-            <legend><i class="fa fa-lock"></i>Actions</legend>
+            <legend><i class="fas fa-list" aria-hidden="true"></i> Actions</legend>
 
-            <button type="submit" class="btn btn-primary">
-                <i class="fa fa-sign-in"></i> {{ 'action.change_password'|trans }}
-            </button>
-            <a class="btn btn-primary" href="{{ path('password_update') }}">
-                <i class="fa fa-sign-in"></i> {{ 'action.change_password'|trans }}
-            </a>
+            <div class="flex">
 
-            <a class="btn btn-primary" href="{{ path('user_update') }}">
-                <i class="fa fa-sign-in"></i> {{ 'action.user.update'|trans }}
-            </a>
+                <a class="btn btn-a btn-primary" href="{{ path('password_update') }}">
+                    <i class="fas fa-key" aria-hidden="true"></i> {{ 'action.change_password'|trans }}
+                </a>
+                &nbsp;
+                <a class="btn btn-a btn-primary" href="{{ path('user_update') }}">
+                    <i class="fas fa-user-alt" aria-hidden="true"></i> {{ 'action.user.update'|trans }}
+                </a>
+                &nbsp;
+                <a class="btn btn-a btn-primary" href="#">
+                    <i class="fas fa-user-alt-slash" aria-hidden="true"></i> {{ 'action.user.delete'|trans }}
+                </a>
 
-            <button type="submit" class="btn btn-primary">
-                <i class="fa fa-sign-in"></i> {{ 'action.user.delete'|trans }}
-            </button>
+            </div>
+
         </fieldset>
 
     </article>
