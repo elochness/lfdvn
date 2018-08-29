@@ -7,7 +7,7 @@
         {{ form_start(form) }}
 
         <fieldset>
-            <legend><i class="fa fa-lock"></i> {{ 'title.user_update'|trans }}</legend>
+            <legend><i class="fas fa-user-circle" aria-hidden="true"></i> {{ 'title.user_update'|trans }}</legend>
             <div class="form-group">
                 {{ form_label(form.lastname) }}
                 {{ form_errors(form.lastname) }}
@@ -27,8 +27,12 @@
             {{ form_end(form) }}
 
             <button type="submit" class="btn btn-primary">
-                <i class="fa fa-sign-in"></i> {{ 'action.update'|trans }}
+                <i class="fas fa-edit" aria-hidden="true"></i> {{ 'action.update'|trans }}
             </button>
+
+            <a class="btn btn-a btn-primary" href="{{ path('user_account') }}">
+                <i class="fas fa-undo" aria-hidden="true"></i> {{ 'action.return'|trans }}
+            </a>
         </fieldset>
 
     </div>

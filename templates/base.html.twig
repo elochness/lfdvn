@@ -32,7 +32,8 @@
         {#  <link rel="stylesheet" href="{{ asset('css/app.css') }}"> #}
         <link rel="stylesheet" href="{{ asset('build/css/nav.css') }}">
         <link rel="stylesheet" href="{{ asset('build/css/fromagerie.css') }}">
-
+        <link rel="stylesheet" href="{{ asset('build/css/fontawesome.css') }}">
+        <link rel="stylesheet" href="{{ asset('build/css/solid.css') }}">
 
         {# uncomment the following lines to compile SCSS assets with Assetic {% stylesheets filter="scssphp" output="css/app.css" "%kernel.root_dir%/Resources/assets/scss/bootstrap-flatly.scss" "%kernel.root_dir%/Resources/assets/scss/font-awesome.scss"
         "%kernel.root_dir%/Resources/assets/css/*.css" "%kernel.root_dir%/Resources/assets/scss/main.scss" %} <link rel="stylesheet" href="{{ asset_url }}" /> {% endstylesheets %} #}
@@ -96,14 +97,14 @@
                                 {% if is_granted('ROLE_ADMIN') %}
                                     <li>
                                         <a href="/admin">
-                                            <i class="fa fa-lock"></i>
+                                            <i class="fas fa-lock" aria-hidden="true"></i>
                                             {{ 'menu.admin'|trans({}, 'navigation') }}
                                         </a>
                                     </li>
                                 {% else %}
                                     <li>
                                         <a href="{{ path('user_account') }}">
-                                            <i class="fa fa-lock"></i>
+                                            <i class="fas fa-id-card" aria-hidden="true"></i>
                                             {{ 'menu.account'|trans({}, 'navigation') }}
                                         </a>
                                     </li>
@@ -111,7 +112,7 @@
 
                                 <li>
                                     <a href="{{ path('security_logout') }}">
-                                        <i class="fa fa-sign-out"></i>
+                                        <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
                                         {{ 'menu.logout'|trans({}, 'navigation') }}
                                     </a>
                                 </li>
@@ -119,8 +120,8 @@
                             {% else %}
                                 <li>
                                     <a href="{{ path('security_login') }}">
-                                        <i class="fa fa-home"></i>
-                                        {{ 'menu.sign_in'|trans({}, 'navigation') }}
+                                        <i class="fas fa-id-card" aria-hidden="true"></i>
+                                        {{ 'menu.account'|trans({}, 'navigation') }}
                                     </a>
                                 </li>
                             {% endif %}

@@ -15,10 +15,11 @@ Encore
     //.createSharedEntry('js/common', ['jquery'])
     // will create public/build/app.js and public/build/app.css
     .addEntry('js/purchase', './assets/js/purchase.js')
-    .addEntry('js/jquery-3.3.1', './assets/js/jquery-3.3.1.js')
     .addStyleEntry('css/breadcrumbs', ['./assets/css/breadcrumbs.css'])
     .addStyleEntry('css/nav', ['./assets/css/nav.min.css'])
     .addStyleEntry('css/fromagerie', ['./assets/scss/fromagerie.scss'])
+    .addStyleEntry('css/fontawesome', './node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss')
+    .addStyleEntry('css/solid', './node_modules/@fortawesome/fontawesome-free/scss/solid.scss')
     .addPlugin(new CopyWebpackPlugin([
         // copies to {output}/static
         { from: './assets/images', to: 'images' },

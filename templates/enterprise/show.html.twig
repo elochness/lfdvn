@@ -25,7 +25,7 @@
 
             <ul class="fa-ul">
                 <li>
-                    <i class="fa-li fa fa-phone" aria-hidden="true"></i> {{ 'label.telephone' | trans }} :
+                    <i class="fas fa-phone" aria-hidden="true"></i> {{ 'label.telephone' | trans }} :
                     {% if enterpriseDetails.telephone %}
                         {{ enterpriseDetails.telephone }}
                     {% else %}
@@ -33,7 +33,7 @@
                     {% endif %}
                 </li>
                 <li>
-                    <i class="fa-li fa fa-at" aria-hidden="true"></i> {{ 'label.email' | trans }} :
+                    <i class="fas fa-at" aria-hidden="true"></i> {{ 'label.email' | trans }} :
                     {% if enterpriseDetails.email %}
                         {{ enterpriseDetails.email }}
                     {% else %}
@@ -41,7 +41,7 @@
                     {% endif %}
                 </li>
                 <li>
-                    <i class="fa-li fa fa-home" aria-hidden="true"></i> {{ 'label.address' | trans }} :
+                    <i class="fas fa-home" aria-hidden="true"></i> {{ 'label.address' | trans }} :
                     {{ enterpriseDetails.address }} - {{ enterpriseDetails.codePostal }} {{ enterpriseDetails.city }}
                 </li>
             </ul>
