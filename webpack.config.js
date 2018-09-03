@@ -15,6 +15,7 @@ Encore
     //.createSharedEntry('js/common', ['jquery'])
     // will create public/build/app.js and public/build/app.css
     .addEntry('js/purchase', './assets/js/purchase.js')
+    .addEntry('js/modal', './assets/js/modal.js')
     .addStyleEntry('css/breadcrumbs', ['./assets/css/breadcrumbs.css'])
     .addStyleEntry('css/nav', ['./assets/css/nav.min.css'])
     .addStyleEntry('css/fromagerie', ['./assets/scss/fromagerie.scss'])

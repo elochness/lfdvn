@@ -41,18 +41,18 @@
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('build/favicon.ico') }}"/>
 
-    <script type="text/javascript" src="{{ asset('build/js/jquery-3.3.1.js') }}" ></script>
+    {#<script type="text/javascript" src="{{ asset('build/js/jquery-3.3.1.js') }}" ></script>#}
 
-    <script type="text/javascript">
-        $(document).ready(function(){;
-            $(".close").click(function(){
-                $(".alert").fadeTo('slow', 0, function() {
-                    $(".alert").hide(1000);
-                });
-            });
-        });
+    {#<script type="text/javascript">#}
+        {#$(document).ready(function(){;#}
+            {#$(".close").click(function(){#}
+                {#$(".alert").fadeTo('slow', 0, function() {#}
+                    {#$(".alert").hide(1000);#}
+                {#});#}
+            {#});#}
+        {#});#}
 
-    </script>
+    {#</script>#}
 
 </head>
 <body id="{% block body_id %}{% endblock %}">

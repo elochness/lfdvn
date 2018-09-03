@@ -477,9 +477,21 @@
                     <source>account.updated_successfully</source>
                     <target>Compte utilisateur modifié avec succès</target>
                 </trans-unit>
+                <trans-unit id="account.removed_successfully">
+                    <source>account.removed_successfully</source>
+                    <target>Compte utilisateur supprimé avec succès</target>
+                </trans-unit>
                 <trans-unit id="password.updated_successfully">
                     <source>password.updated_successfully</source>
                     <target>Mot de passe modifié avec succès</target>
+                </trans-unit>
+                <trans-unit id="account.remove.description">
+                    <source>account.remove.description</source>
+                    <target>Voulez-vous supprimer votre compte utilisateur?</target>
+                </trans-unit>
+                <trans-unit id="account.remove.sub-description">
+                    <source>account.remove.sub-description</source>
+                    <target>Cette action est irréversible.</target>
                 </trans-unit>
             </group>
 
@@ -516,6 +528,10 @@
                 <trans-unit id="action.show">
                     <source>action.show</source>
                     <target>Voir</target>
+                </trans-unit>
+                <trans-unit id="action.validate">
+                    <source>action.validate</source>
+                    <target>Valider</target>
                 </trans-unit>
                 <trans-unit id="action.user.update">
                     <source>action.user.update</source>

@@ -1,0 +1,27 @@
+<div id="confirmationModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content flex">
+
+        <div class="flex flex-center modal-left">
+            <i class="fas fa-exclamation-circle fa-5x" aria-hidden="true"></i>
+        </div>
+        <div class="modal-right">
+            <span class="close">&times;</span>
+            <div>
+                <p class="modal-description">{{ 'account.remove.description'|trans }}</p>
+                <p class="modal-sub-description">{{ 'account.remove.sub-description'|trans }}</p>
+            </div>
+            <div class="flex modal-buttons">
+                <a class="btn btn-a btn-primary" href="{{ path('user_remove') }}">
+                    <i class="fas fa-check" aria-hidden="true"></i> {{ 'action.validate'|trans }}
+                </a>
+                &nbsp;
+                <a class="btn btn-a btn-primary" href="#" id="returnBtn">
+                    <i class="fas fa-undo" aria-hidden="true"></i> {{ 'action.return'|trans }}
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>

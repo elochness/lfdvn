@@ -5,6 +5,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('build/css/breadcrumbs.css') }}">
+
 {% endblock %}
 
 {% block body_title %}
@@ -62,15 +63,19 @@
                     <i class="fas fa-user-alt" aria-hidden="true"></i> {{ 'action.user.update'|trans }}
                 </a>
                 &nbsp;
-                <a class="btn btn-a btn-primary" href="#">
+                <!-- Trigger/Open The Modal -->
+                <button id="btnModalRemove" class="btn btn-primary">
                     <i class="fas fa-user-alt-slash" aria-hidden="true"></i> {{ 'action.user.delete'|trans }}
-                </a>
+                </button>
 
             </div>
 
         </fieldset>
 
     </article>
+
+    {% include 'user/_delete_user_confirmation.html.twig' %}
+    <script src="{{ asset('build/js/modal.js') }}"></script>
 
 {% endblock %}
 

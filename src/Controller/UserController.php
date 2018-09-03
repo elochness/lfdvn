@@ -15,6 +15,7 @@ use App\Repository\PurchaseRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -37,11 +38,11 @@ class UserController extends AbstractController
 
     /**
      * @Route(methods={"GET"}, name="user_account")
-     * @param UserInterface $user
      * @param AuthorizationCheckerInterface $authChecker
+     * @param UserInterface|null $user
      * @return Response
      */
-    public function index(UserInterface $user = null, AuthorizationCheckerInterface $authChecker): Response
+    public function index(AuthorizationCheckerInterface $authChecker, UserInterface $user = null): Response
     {
         // Check if user is connected
         if (!$authChecker->isGranted('ROLE_USER')) {
@@ -106,11 +107,11 @@ class UserController extends AbstractController
      *     "en": "/update"
      * }, methods={"GET", "POST"}, name="user_update")
      * @param Request $request
-     * @param UserInterface|null $user
      * @param AuthorizationCheckerInterface $authChecker
+     * @param UserInterface|null $user
      * @return Response
      */
-    public function update(Request $request, UserInterface $user = null, AuthorizationCheckerInterface $authChecker): Response
+    public function update(Request $request, AuthorizationCheckerInterface $authChecker, UserInterface $user = null): Response
     {
         // Check if user is connected
         if (!$authChecker->isGranted('ROLE_USER')) {
@@ -136,11 +137,9 @@ class UserController extends AbstractController
             }
         }
 
-
         return $this->render('user/update.html.twig', [
             'form' => $form->createView()
         ]);
-
     }
 
     /**
@@ -155,7 +154,7 @@ class UserController extends AbstractController
      * @param AuthorizationCheckerInterface $authChecker
      * @return Response
      */
-    public function changePassword(Request $request, UserPasswordEncoderInterface $passwordEncoder, UserInterface $user = null, AuthorizationCheckerInterface $authChecker): Response
+    public function changePassword(Request $request, UserPasswordEncoderInterface $passwordEncoder, AuthorizationCheckerInterface $authChecker, UserInterface $user = null): Response
     {
         // Check if user is connected
         if (!$authChecker->isGranted('ROLE_USER')) {
@@ -198,13 +197,41 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/purchase", methods={"GET"}, name="user_purchase")
-     * @param UserInterface $user
+     * Modification of user account
+     * @Route({
+     *     "fr": "/supprimer",
+     *     "en": "/rmove"
+     * }, methods={"GET", "POST"}, name="user_remove")
      * @param AuthorizationCheckerInterface $authChecker
-     * @param PurchaseRepository $purchaseRepository
+     * @param UserInterface|null $user
      * @return Response
      */
-    public function purchaseIndex(UserInterface $user = null, AuthorizationCheckerInterface $authChecker, PurchaseRepository $purchaseRepository)
+    public function remove(AuthorizationCheckerInterface $authChecker, UserInterface $user = null): Response
+    {
+        // Check if user is connected
+        if (!$authChecker->isGranted('ROLE_USER')) {
+            throw new AccessDeniedException();
+        }
+
+        $session = new Session();
+        $session->invalidate();
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($user);
+        $em->flush();
+
+        $session->getFlashBag()->add('success', 'account.removed_successfully');
+        return $this->redirectToRoute('article_index');
+    }
+
+    /**
+     * @Route("/purchase", methods={"GET"}, name="user_purchase")
+     * @param AuthorizationCheckerInterface $authChecker
+     * @param PurchaseRepository $purchaseRepository
+     * @param UserInterface $user
+     * @return Response
+     */
+    public function purchaseIndex(AuthorizationCheckerInterface $authChecker, PurchaseRepository $purchaseRepository, UserInterface $user = null)
     {
         // Check if user is connected
         if (!$authChecker->isGranted('ROLE_USER')) {
@@ -224,12 +251,12 @@ class UserController extends AbstractController
     /**
      * @Route("/purchase/{id}", methods={"GET"} , name="user_purchase_show", requirements={"id"="\d+"})
      * @param int $id
-     * @param UserInterface|null $user
      * @param AuthorizationCheckerInterface $authChecker
      * @param PurchaseRepository $purchaseRepository
+     * @param UserInterface|null $user
      * @return Response
      */
-    public function purchaseShow(int $id, UserInterface $user = null, AuthorizationCheckerInterface $authChecker, PurchaseRepository $purchaseRepository)
+    public function purchaseShow(int $id, AuthorizationCheckerInterface $authChecker, PurchaseRepository $purchaseRepository, UserInterface $user = null)
     {
         // Check if user is connected
         // Check if user is connected
