@@ -1,21 +1,15 @@
 {
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.3.0",
+    "@fortawesome/fontawesome-free": "^5.3.1",
     "@symfony/webpack-encore": "^0.9.1",
-    "bloodhound-js": "^1.2.1",
     "bootstrap-sass": "^3.3.7",
-    "bootstrap-tagsinput": "^0.7.1",
-    "bootswatch": "^3.3.7",
     "copy-webpack-plugin": "^4.5.2",
     "eonasdan-bootstrap-datetimepicker": "^4.17.47",
-    "font-awesome": "^4.7.0",
-    "highlight.js": "^9.12.0",
     "imports-loader": "^0.7.1",
     "jquery": "^3.2.1",
     "lato-font": "^3.0.0",
     "node-sass": "^4.9.2",
-    "sass-loader": "^6.0.5",
-    "typeahead.js": "^0.11.1"
+    "sass-loader": "^6.0.5"
   },
   "scripts": {
     "dev-server": "./node_modules/.bin/encore dev-server",
