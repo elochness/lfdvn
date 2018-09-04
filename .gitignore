@@ -48,3 +48,9 @@ yarn-error.log
 .idea/**/workspace.xml
 .idea/**/tasks.xml
 ###< jetbrains/phpstorm ###
+
+# User-specific stuff:
+.idea/lfdvn.iml
+.idea/php.xml
+.idea/vcs.xml
+.idea/modules.xml

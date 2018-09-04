@@ -1,0 +1,50 @@
+easy_admin:
+    entities:
+        Product:
+            label: menu.products
+            class: App\Entity\Product
+            show:
+                title: '%%entity_label%% (#%%entity_id%%)'
+            list:
+                title: product.list
+                fields:
+                  - 'id'
+                  - 'enabled'
+                  - 'name'
+                  - 'quantity'
+                  - 'description'
+                  - { property: 'image', type: 'image', base_path: '%app.path.product_images%' }
+                  - { property: 'createdAt', format: 'j/m/Y' }
+                  - 'price'
+                  - 'refundable'
+                  - 'category'
+                  - 'subcategory'
+                  - 'packaging'
+            new:
+                title: product.new
+                fields:
+                    - 'enabled'
+                    - 'name'
+                    - 'quantity'
+                    - 'price'
+                    - 'refundable'
+                    - 'taxRate'
+                    - { property: 'imageFile', type: 'vich_image', type_options: { required: true } }
+                    - 'category'
+                    - 'subcategory'
+                    - 'packaging'
+                    - { property: 'description', type: 'ckeditor' }
+            edit:
+                title: product.edit
+                fields:
+                    - 'enabled'
+                    - 'name'
+                    - 'quantity'
+                    - 'price'
+                    - 'refundable'
+                    - 'taxRate'
+                    - { property: 'imageFile', type: 'vich_image', type_options: { required: false } }
+                    - 'category'
+                    - 'subcategory'
+                    - 'packaging'
+                    - { property: 'description', type: 'ckeditor' }

@@ -1,0 +1,37 @@
+easy_admin:
+    entities:
+        Schedule:
+            disabled_actions: ['delete', 'new']
+            label: menu.schedule
+            class: App\Entity\Schedule
+            list:
+                title: schedule.list
+                fields:
+                  - 'id'
+                  - 'monday'
+                  - 'tuesday'
+                  - 'wednesday'
+                  - 'thursday'
+                  - 'friday'
+                  - 'saturday'
+                  - 'sunday'
+            show:
+                title: schedule.show
+                fields:
+                    - 'monday'
+                    - 'tuesday'
+                    - 'wednesday'
+                    - 'thursday'
+                    - 'friday'
+                    - 'saturday'
+                    - 'sunday'
+            edit:
+                title: schedule.edit
+                fields:
+                    - 'monday'
+                    - 'tuesday'
+                    - 'wednesday'
+                    - 'thursday'
+                    - 'friday'
+                    - 'saturday'
+                    - 'sunday'

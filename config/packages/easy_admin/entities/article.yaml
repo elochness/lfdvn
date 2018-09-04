@@ -1,0 +1,28 @@
+easy_admin:
+    entities:
+        Article:
+            label: menu.articles
+            class: App\Entity\Article
+            list:
+                title: article.list
+                fields:
+                  - 'id'
+                  - 'enabled'
+                  - 'articleCategory'
+                  - 'title'
+                  - 'updatedAt'
+                  - 'createdAt'
+            new:
+                title: article.new
+                fields:
+                    - 'enabled'
+                    - 'articleCategory'
+                    - 'title'
+                    - { property: 'contains', type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType' }
+            edit:
+                title: article.edit
+                fields:
+                    - 'enabled'
+                    - 'articleCategory'
+                    - 'title'
+                    - { property: 'contains', type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType' }

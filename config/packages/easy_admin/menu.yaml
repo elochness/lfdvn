@@ -1,0 +1,17 @@
+easy_admin:
+  design:
+    menu:
+    - { label: menu.gestion.products }
+    - { entity: 'Product', icon: 'barcode' }
+    - { entity: 'Category', icon: 'tag' }
+    - { entity: 'Subcategory', icon: 'tag' }
+    - { label: menu.gestion.purchases }
+#    - { entity: 'Purchase', icon: 'shopping-cart' }
+#    - { entity: 'PurchaseItem', icon: 'cart-plus' }
+    - { label: menu.gestion.entreprise }
+    - { entity: 'Article', icon: 'newspaper-o' }
+    - { entity: 'EnterpriseDetails', params: { action: 'show', id: 1 }, icon: 'sitemap' }
+    - { entity: 'Schedule', params: { action: 'show', id: 1 }, icon: 'calendar' }
+    - { label: menu.gestion.users }
+#    - { entity: 'User', icon: 'user' }
+    - { label: menu.homepage, route: 'homepage' }

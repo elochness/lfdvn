@@ -1,0 +1,35 @@
+easy_admin:
+    entities:
+        Category:
+            label: menu.categories
+            class: App\Entity\Category
+            list:
+                title: categories.list
+                fields: ['id', 'enabled', 'name']
+                sort: ['name', 'ASC']
+                actions: ['show', 'edit', 'delete']
+            new:
+                title: category.new
+                fields:
+                    - 'enabled'
+                    - 'name'
+                    - { property: 'imageFile', type: 'vich_image', type_options: { required: false } }
+                    - 'subcategories'
+                    - 'products'
+            edit:
+                title: category.edit
+                fields:
+                    - 'enabled'
+                    - 'name'
+                    - { property: 'imageFile', type: 'vich_image', type_options: { required: false } }
+                    - 'subcategories'
+                    - 'products'
+            show:
+                title: category.show
+                fields:
+                    - 'id'
+                    - 'enabled'
+                    - 'name'
+                    - { property: 'image', type: 'image', base_path: '%app.path.category_images%' }
+                    - 'subcategories'
+                    - 'products'
