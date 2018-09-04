@@ -1,0 +1,33 @@
+easy_admin:
+    entities:
+        Subcategory:
+            label: menu.subcategories
+            class: App\Entity\Subcategory
+            list:
+                title: subcategories.list
+                fields: ['id', 'enabled', 'name']
+                sort: ['name', 'ASC']
+                actions: ['show', 'edit', 'delete']
+            new:
+                title: subcategory.new
+                fields:
+                    - 'enabled'
+                    - 'name'
+                    - { property: 'category', type_options: { required: true } }
+                    - 'category'
+                    - 'products'
+            edit:
+                title: subcategory.edit
+                fields:
+                    - 'enabled'
+                    - 'name'
+                    - { property: 'category', type_options: { required: true } }
+                    - 'products'
+            show:
+                title: subcategory.show
+                fields:
+                    - 'id'
+                    - 'enabled'
+                    - 'name'
+                    - 'category'
+                    - 'products'
