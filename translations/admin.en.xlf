@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <group id="group.menu">
+                <note>menu of administration</note>
+                <trans-unit  id="menu.homepage">
+                    <source>menu.homepage</source>
+                    <target>Accueil</target>
+                </trans-unit>
+                <trans-unit id="menu.products">
+                    <source>menu.products</source>
+                    <target>Produits</target>
+                </trans-unit>
+                <trans-unit id="menu.category">
+                    <source>menu.categories</source>
+                    <target>Catégorie</target>
+                </trans-unit>
+                <trans-unit id="menu.sub_category">
+                    <source>menu.sub_categories</source>
+                    <target>Sous-catégories</target>
+                </trans-unit>
+                <trans-unit id="menu.articles">
+                    <source>menu.articles</source>
+                    <target>Articles</target>
+                </trans-unit>
+                <trans-unit id="menu.orders">
+                    <source>menu.orders</source>
+                    <target>Commandes</target>
+                </trans-unit>
+                <trans-unit id="menu.enterprise">
+                    <source>menu.enterprise</source>
+                    <target>Entreprise</target>
+                </trans-unit>
+                <trans-unit id="menu.schedules">
+                    <source>menu.schedules</source>
+                    <target>Horaires</target>
+                </trans-unit>
+            </group>
+            <group id="group.menu.header">
+                <note>header menu of administration</note>
+                <trans-unit id="menu.header.products">
+                    <source>menu.header.products</source>
+                    <target>Gestion des produits</target>
+                </trans-unit>
+                <trans-unit id="menu.header.orders">
+                    <source>menu.header.orders</source>
+                    <target>Gestion des commandes</target>
+                </trans-unit>
+                <trans-unit id="menu.header.enterprise">
+                    <source>menu.header.enterprise</source>
+                    <target>Gestion de l'entreprise</target>
+                </trans-unit>
+                <trans-unit id="menu.header.users">
+                    <source>menu.header.users</source>
+                    <target>Gestion des utilisateurs</target>
+                </trans-unit>
+            </group>
+        </body>
+    </file>
+</xliff>

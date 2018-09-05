@@ -1,28 +1,27 @@
 easy_admin:
-    entities:
-        Article:
-            label: menu.articles
-            class: App\Entity\Article
-            list:
-                title: article.list
-                fields:
-                  - 'id'
-                  - 'enabled'
-                  - 'articleCategory'
-                  - 'title'
-                  - 'updatedAt'
-                  - 'createdAt'
-            new:
-                title: article.new
-                fields:
-                    - 'enabled'
-                    - 'articleCategory'
-                    - 'title'
-                    - { property: 'contains', type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType' }
-            edit:
-                title: article.edit
-                fields:
-                    - 'enabled'
-                    - 'articleCategory'
-                    - 'title'
-                    - { property: 'contains', type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType' }
+  entities:
+    Article:
+      class: App\Entity\Article
+      list:
+        title: title.article.list
+        fields:
+        - { property: 'id',               label: label.id }
+        - { property: 'enabled',          label: label.enabled }
+        - { property: 'articleCategory',  label: label.article.type }
+        - { property: 'title',            label: label.title }
+        - { property: 'updatedAt',        label: label.updated_at }
+        - { property: 'createdAt',        label: label.created_at }
+      new:
+        title: title.article.new
+        fields:
+        - { property: 'enabled',        label: label.enabled }
+        - { property: 'articleCategory',label: label.article.type }
+        - { property: 'title',          label: label.title }
+        - { property: 'contains',       label: label.contains, type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType' }
+      edit:
+        title: title.article.edit
+        fields:
+        - { property: 'enabled',        label: label.enabled }
+        - { property: 'articleCategory',label: label.article.type }
+        - { property: 'title',          label: label.title }
+        - { property: 'contains',       label: label.contains, type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType' }

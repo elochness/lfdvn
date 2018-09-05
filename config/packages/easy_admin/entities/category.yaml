@@ -1,35 +1,37 @@
 easy_admin:
-    entities:
-        Category:
-            label: menu.categories
-            class: App\Entity\Category
-            list:
-                title: categories.list
-                fields: ['id', 'enabled', 'name']
-                sort: ['name', 'ASC']
-                actions: ['show', 'edit', 'delete']
-            new:
-                title: category.new
-                fields:
-                    - 'enabled'
-                    - 'name'
-                    - { property: 'imageFile', type: 'vich_image', type_options: { required: false } }
-                    - 'subcategories'
-                    - 'products'
-            edit:
-                title: category.edit
-                fields:
-                    - 'enabled'
-                    - 'name'
-                    - { property: 'imageFile', type: 'vich_image', type_options: { required: false } }
-                    - 'subcategories'
-                    - 'products'
-            show:
-                title: category.show
-                fields:
-                    - 'id'
-                    - 'enabled'
-                    - 'name'
-                    - { property: 'image', type: 'image', base_path: '%app.path.category_images%' }
-                    - 'subcategories'
-                    - 'products'
+  entities:
+    Category:
+      class: App\Entity\Category
+      list:
+        title: title.category.list
+        fields:
+        - { property: 'id',         label: label.id }
+        - { property: 'enabled',    label: label.enabled }
+        - { property: 'name',       label: label.name }
+        sort: ['name', 'ASC']
+        actions: ['show', 'edit', 'delete']
+      new:
+        title: title.category.new
+        fields:
+        - { property: 'enabled',        label: label.enabled }
+        - { property: 'name',           label: label.name }
+        - { property: 'imageFile',      label: label.image, type: 'vich_image', type_options: { required: false } }
+        - { property: 'subcategories',  label: label.sub_category }
+        - { property: 'products',       label: label.products }
+      edit:
+        title: title.category.edit
+        fields:
+        - { property: 'enabled',        label: label.enabled }
+        - { property: 'name',           label: label.name }
+        - { property: 'imageFile',      label: label.image, type: 'vich_image', type_options: { required: false } }
+        - { property: 'subcategories',  label: label.sub_category }
+        - { property: 'products',       label: label.products }
+      show:
+        title: title.category.show
+        fields:
+        - { property: 'id', label: label.id }
+        - { property: 'enabled',        label: label.enabled }
+        - { property: 'name',           label: label.name }
+        - { property: 'imageFile',      label: label.image, type: 'vich_image', type_options: { required: false } }
+        - { property: 'subcategories',  label: label.sub_category }
+        - { property: 'products',       label: label.products }

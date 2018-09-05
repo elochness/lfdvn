@@ -1,33 +1,34 @@
 easy_admin:
-    entities:
-        Subcategory:
-            label: menu.subcategories
-            class: App\Entity\Subcategory
-            list:
-                title: subcategories.list
-                fields: ['id', 'enabled', 'name']
-                sort: ['name', 'ASC']
-                actions: ['show', 'edit', 'delete']
-            new:
-                title: subcategory.new
-                fields:
-                    - 'enabled'
-                    - 'name'
-                    - { property: 'category', type_options: { required: true } }
-                    - 'category'
-                    - 'products'
-            edit:
-                title: subcategory.edit
-                fields:
-                    - 'enabled'
-                    - 'name'
-                    - { property: 'category', type_options: { required: true } }
-                    - 'products'
-            show:
-                title: subcategory.show
-                fields:
-                    - 'id'
-                    - 'enabled'
-                    - 'name'
-                    - 'category'
-                    - 'products'
+  entities:
+    Subcategory:
+      class: App\Entity\Subcategory
+      list:
+        title: title.sub_category.list
+        fields:
+        - { property: 'id',         label: label.id }
+        - { property: 'enabled',    label: label.enabled }
+        - { property: 'name',       label: label.name }
+        sort: ['name', 'ASC']
+        actions: ['show', 'edit', 'delete']
+      new:
+        title: title.sub_category.new
+        fields:
+        - { property: 'enabled',        label: label.enabled }
+        - { property: 'name',           label: label.name }
+        - { property: 'category',       label: label.category, type_options: { required: true } }
+        - { property: 'products',       label: label.products }
+      edit:
+        title: title.sub_category.edit
+        fields:
+        - { property: 'enabled',        label: label.enabled }
+        - { property: 'name',           label: label.name }
+        - { property: 'category',       label: label.category, type_options: { required: true } }
+        - { property: 'products',       label: label.products }
+      show:
+        title: title.sub_category.show
+        fields:
+        - { property: 'id',         label: label.id }
+        - { property: 'enabled',        label: label.enabled }
+        - { property: 'name',           label: label.name }
+        - { property: 'category',       label: label.category, type_options: { required: true } }
+        - { property: 'products',       label: label.products }

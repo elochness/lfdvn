@@ -1,33 +1,32 @@
 easy_admin:
-    entities:
-        EnterpriseDetails:
-            disabled_actions: ['delete', 'new']
-            label: menu.enterprise_details
-            class: App\Entity\EnterpriseDetails
-            list:
-                title: enterprise.list
-                fields:
-                  - 'name'
-                  - 'address'
-                  - 'codePostal'
-                  - 'city'
-                  - 'telephone'
-                  - 'username'
-            show:
-                title: enterprise_details.show
-                fields:
-                    - 'name'
-                    - 'address'
-                    - 'codePostal'
-                    - 'city'
-                    - 'telephone'
-                    - 'username'
-            edit:
-                title: enterprise_details.edit
-                fields:
-                    - 'name'
-                    - 'address'
-                    - 'codePostal'
-                    - 'city'
-                    - 'telephone'
-                    - 'username'
+  entities:
+    EnterpriseDetails:
+      disabled_actions: ['delete', 'new']
+      class: App\Entity\EnterpriseDetails
+      list:
+        title: title.enterprise.list
+        fields:
+        - { property: 'name'      , label: label.name }
+        - { property: 'address'   , label: label.address }
+        - { property: 'codePostal', label: label.code_postal }
+        - { property: 'city'      , label: label.city }
+        - { property: 'telephone' , label: label.cellphone }
+        - { property: 'email'  , label: label.email }
+      show:
+        title: title.enterprise.show
+        fields:
+        - { property: 'name'      , label: label.name }
+        - { property: 'address'   , label: label.address }
+        - { property: 'codePostal', label: label.code_postal }
+        - { property: 'city'      , label: label.city }
+        - { property: 'telephone' , label: label.cellphone }
+        - { property: 'email'  , label: label.email }
+      edit:
+        title: title.enterprise.edit
+        fields:
+        - { property: 'name'      , label: label.name }
+        - { property: 'address'   , label: label.address }
+        - { property: 'codePostal', label: label.code_postal }
+        - { property: 'city'      , label: label.city }
+        - { property: 'telephone' , label: label.cellphone }
+        - { property: 'email'  , label: label.email }
