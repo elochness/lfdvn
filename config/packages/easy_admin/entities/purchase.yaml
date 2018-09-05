@@ -1,0 +1,11 @@
+easy_admin:
+  entities:
+    Purchase:
+      class: App\Entity\Purchase
+      list:
+        title: title.order.list
+        fields:
+        - { property: 'id',           label: label.id }
+        - { property: 'deliveryDate', label: label.delivery_date }
+        - { property: 'buyer',        label: label.buyer }
+        - { property: 'createdAt',    label: label.created_at }

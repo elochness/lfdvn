@@ -1,37 +1,36 @@
 easy_admin:
-    entities:
-        Schedule:
-            disabled_actions: ['delete', 'new']
-            label: menu.schedule
-            class: App\Entity\Schedule
-            list:
-                title: schedule.list
-                fields:
-                  - 'id'
-                  - 'monday'
-                  - 'tuesday'
-                  - 'wednesday'
-                  - 'thursday'
-                  - 'friday'
-                  - 'saturday'
-                  - 'sunday'
-            show:
-                title: schedule.show
-                fields:
-                    - 'monday'
-                    - 'tuesday'
-                    - 'wednesday'
-                    - 'thursday'
-                    - 'friday'
-                    - 'saturday'
-                    - 'sunday'
-            edit:
-                title: schedule.edit
-                fields:
-                    - 'monday'
-                    - 'tuesday'
-                    - 'wednesday'
-                    - 'thursday'
-                    - 'friday'
-                    - 'saturday'
-                    - 'sunday'
+  entities:
+    Schedule:
+      disabled_actions: ['delete', 'new']
+      class: App\Entity\Schedule
+      list:
+        title: title.schedule.list
+        fields:
+        - { property: 'id'        , label: label.id }
+        - { property: 'monday'    , label: label.monday }
+        - { property: 'tuesday'   , label: label.tuesday }
+        - { property: 'wednesday' , label: label.wednesday }
+        - { property: 'thursday'  , label: label.thursday }
+        - { property: 'friday'    , label: label.friday }
+        - { property: 'saturday'  , label: label.saturday }
+        - { property: 'sunday'    , label: label.sunday }
+      show:
+        title: title.schedule.show
+        fields:
+        - { property: 'monday'    , label: label.monday }
+        - { property: 'tuesday'   , label: label.tuesday }
+        - { property: 'wednesday' , label: label.wednesday }
+        - { property: 'thursday'  , label: label.thursday }
+        - { property: 'friday'    , label: label.friday }
+        - { property: 'saturday'  , label: label.saturday }
+        - { property: 'sunday'    , label: label.sunday }
+      edit:
+        title: title.schedule.edit
+        fields:
+        - { property: 'monday'    , label: label.monday }
+        - { property: 'tuesday'   , label: label.tuesday }
+        - { property: 'wednesday' , label: label.wednesday }
+        - { property: 'thursday'  , label: label.thursday }
+        - { property: 'friday'    , label: label.friday }
+        - { property: 'saturday'  , label: label.saturday }
+        - { property: 'sunday'    , label: label.sunday }
