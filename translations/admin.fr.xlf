@@ -195,6 +195,17 @@
                     <target>Taux TVA</target>
                 </trans-unit>
             </group>
+            <group id="group.order">
+                <note>labels of order</note>
+                <trans-unit id="label.buyer">
+                    <source>label.buyer</source>
+                    <target>Acheteur</target>
+                </trans-unit>
+                <trans-unit id="label_delivery_date">
+                    <source>label_delivery_date</source>
+                    <target>Date de livraison</target>
+                </trans-unit>
+            </group>
             <group id="group.enterprise">
                 <note>labels of enterprise</note>
                 <trans-unit id="title.enterprise.show">
