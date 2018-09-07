@@ -6,13 +6,14 @@ easy_admin:
     - { label: menu.products,       entity: 'Product', icon: 'barcode' }
     - { label: menu.categories,     entity: 'Category', icon: 'tag' }
     - { label: menu.sub_categories, entity: 'Subcategory', icon: 'tag' }
+    - { label: menu.vat,            entity: 'TaxRate',  icon: 'percentage' }
     - { label: menu.header.orders }
-    - { label: menu.orders,          entity: 'Purchase', icon: 'shopping-cart' }
-#    - { entity: 'PurchaseItem', icon: 'cart-plus' }
+    - { label: menu.orders,         entity: 'Purchase', icon: 'shopping-cart' }
+    #    - { entity: 'PurchaseItem', icon: 'cart-plus' }
     - { label: menu.header.enterprise }
     - { label: menu.articles,       entity: 'Article', icon: 'newspaper-o' }
     - { label: menu.enterprise,     entity: 'EnterpriseDetails', params: { action: 'show', id: 1 }, icon: 'sitemap' }
     - { label: menu.schedules,      entity: 'Schedule', params: { action: 'show', id: 1 }, icon: 'calendar' }
     - { label: menu.header.users }
-#    - { entity: 'User', icon: 'user' }
+    #    - { entity: 'User', icon: 'user' }
     - { label: menu.homepage, route: 'homepage' }

@@ -1,0 +1,17 @@
+easy_admin:
+  entities:
+    TaxRate:
+      class: App\Entity\TaxRate
+      list:
+        title: title.vat.list
+        fields:
+        - { property: 'id',               label: label.id }
+        - { property: 'rate',             label: label.rate }
+      new:
+        title: title.vat.new
+        fields:
+        - { property: 'rate',             label: label.rate }
+      edit:
+        title: title.vat.edit
+        fields:
+        - { property: 'rate',             label: label.rate }

@@ -28,6 +28,10 @@
                     <source>menu.orders</source>
                     <target>Commandes</target>
                 </trans-unit>
+                <trans-unit id="menu.tax_rates">
+                    <source>menu.vat</source>
+                    <target>Taux de TVA</target>
+                </trans-unit>
                 <trans-unit id="menu.enterprise">
                     <source>menu.enterprise</source>
                     <target>Entreprise</target>
@@ -274,6 +278,25 @@
                 <trans-unit id="label.sunday">
                     <source>label.sunday</source>
                     <target>Dimanche</target>
+                </trans-unit>
+            </group>
+            <group id="group.vat">
+                <note>labels of vat</note>
+                <trans-unit id="title.vat.list">
+                    <source>title.vat.list</source>
+                    <target>Liste des taux de TVA</target>
+                </trans-unit>
+                <trans-unit id="title.vat.new">
+                    <source>title.vat.new</source>
+                    <target>Ajouter un taux de TVA</target>
+                </trans-unit>
+                <trans-unit id="vat.vat.edit">
+                    <source>title.vat.edit</source>
+                    <target>Modifier un taux de TVA</target>
+                </trans-unit>
+                <trans-unit id="label.rate">
+                    <source>label.rate</source>
+                    <target>Taux</target>
                 </trans-unit>
             </group>
             <group id="group.action">
