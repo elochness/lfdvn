@@ -1,0 +1,21 @@
+fos_ck_editor:
+  default_config:                     my_custom_config    # Utiliser par defaut la configuration my_custom_config
+  configs:
+    my_custom_config:
+      #skin:                      'monoo,bundles/ivoryckeditor/skins/monoo/'
+      filebrowserBrowseRoute: elfinder
+      filebrowserBrowseRouteParameters: []
+      language:                   "%locale%"
+      stylesSet:                  my_styles           # Chargement des styles personnalisables my_styles (voir plus bas)
+      uiColor:                    "#FCFCFC"           # Couleur de fond de l'interface
+      height:                     '400px'             # Hauteur par défaut
+      toolbar:                    [  [ 'Maximize', '-', 'Preview' ], [ 'Cut','Copy','Paste','PasteText','PasteFromWord','-','Undo','Redo', '-', 'Image', 'Video', 'Table','SpecialChar','-', 'Link','Unlink','Anchor', '-', 'Source', 'About' ], "/", [ 'Styles', 'Format'], [ 'Bold','Italic','Underline','Strike', 'Blockquote','-','Subscript','Superscript','-','RemoveFormat' ], [ 'TextColor','BGColor' ], [ 'NumberedList','BulletedList','-','JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock','-', 'Outdent','Indent'] ]
+      # Utiliser les styles css suivants dans le contenu de l'éditeur. Permet de voir le rendu en temps réel
+      contentsCss:                ['build/css/fromagerie.css']
+  styles:         # Configuration des styles personnalisables
+    my_styles:
+    - { name: "Alerte Success", element: "div",  attributes: { class: "alert alert-success", role: "alert" }}
+    - { name: "Alerte Info", element: "div",  attributes: { class: "alert alert-info", role: "alert" }}
+    - { name: "Alerte Warning", element: "div",  attributes: { class: "alert alert-warning", role: "alert" }}
+    - { name: "Alerte Danger", element: "div",  attributes: { class: "alert alert-danger", role: "alert" }}
+    - { name: "Badge", element: "span",  attributes: { class: "badge" }}
