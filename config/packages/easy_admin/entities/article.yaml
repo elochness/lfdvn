@@ -17,11 +17,11 @@ easy_admin:
         - { property: 'enabled',        label: label.enabled }
         - { property: 'articleCategory',label: label.article.type }
         - { property: 'title',          label: label.title }
-        - { property: 'contains',       label: label.contains, type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType' }
+        - { property: 'contains',       label: label.contains, type: 'FOS\CKEditorBundle\Form\Type\CKEditorType' }
       edit:
         title: title.article.edit
         fields:
         - { property: 'enabled',        label: label.enabled }
         - { property: 'articleCategory',label: label.article.type }
         - { property: 'title',          label: label.title }
-        - { property: 'contains',       label: label.contains, type: 'Ivory\CKEditorBundle\Form\Type\CKEditorType' }
+        - { property: 'contains',       label: label.contains, type: 'FOS\CKEditorBundle\Form\Type\CKEditorType' }
