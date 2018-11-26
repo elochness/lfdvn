@@ -66,7 +66,7 @@ class Article
      *
      * @ORM\ManyToOne(targetEntity="ArticleCategory")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="article_category_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="article_category_id", referencedColumnName="id", nullable=false)
      * })
      */
     private $articleCategory;

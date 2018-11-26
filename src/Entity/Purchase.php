@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Purchase
@@ -74,7 +75,7 @@ class Purchase
     {
         $this->createdAt = new \DateTime();
         $this->deliveryDate = new \DateTime();
-        $this->items = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->items = new ArrayCollection();
     }
 
     /**
