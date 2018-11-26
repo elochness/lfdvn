@@ -59,6 +59,20 @@ class ArticleCategory
     }
 
     /**
+     * Set id
+     *
+     * @param int $id
+     *
+     * @return ArticleCategory
+     */
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
      * Get name
      *
      * @return string
@@ -73,7 +87,7 @@ class ArticleCategory
      *
      * @param string $name
      *
-     * @return \ArticleCategory
+     * @return ArticleCategory
      */
     public function setName(string $name): self
     {

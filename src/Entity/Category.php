@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -77,8 +78,8 @@ class Category
      */
     public function __construct()
     {
-        $this->products = new \Doctrine\ORM\Persisters\Collection();
-        $this->subcategories = new \Doctrine\ORM\Persisters\Collection();
+        $this->products = new ArrayCollection();
+        $this->subcategories = new ArrayCollection();
     }
 
     /**
@@ -166,7 +167,7 @@ class Category
     /**
      * Get updatedAt
      *
-     * @return \DateTime
+     * @return \DateTimeInterface
      */
     public function getUpdatedAt(): ?\DateTimeInterface
     {
@@ -176,7 +177,7 @@ class Category
     /**
      * Set updatedAt
      *
-     * @param \DateTime $updatedAt
+     * @param \DateTimeInterface $updatedAt
      *
      * @return Category
      */
@@ -217,6 +218,7 @@ class Category
             // if 'updatedAt' is not defined in your entity, use another property
             $this->updatedAt = new \DateTime('now');
         }
+        return $this;
     }
     
     /**
