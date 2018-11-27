@@ -25,7 +25,6 @@
     "symfony/translation": "^4.1",
     "symfony/twig-bundle": "^4.1",
     "symfony/validator": "^4.1",
-    "symfony/yaml": "^4.1",
     "twig/extensions": "^1.5",
     "vich/uploader-bundle": "^1.8",
     "white-october/pagerfanta-bundle": "^1.1",
@@ -41,11 +40,11 @@
     "symfony/debug-bundle": "^4.1",
     "symfony/dotenv": "^4.1",
     "symfony/maker-bundle": "^1.5",
-    "symfony/phpunit-bridge": "^4.1",
     "symfony/stopwatch": "^4.1",
     "symfony/web-profiler-bundle": "^4.1",
     "symfony/web-server-bundle": "^4.1",
-    "symfony/webpack-encore-pack": "^1.0"
+    "symfony/webpack-encore-pack": "^1.0",
+    "symfony/phpunit-bridge": "^4.1"
   },
   "config": {
     "platform": {
@@ -76,6 +75,12 @@
   "extra": {
     "symfony": {
       "allow-contrib": "true"
+    }
+  },
+  "repositories": {
+    "phpunit-bridge": {
+      "type": "path",
+      "url": "C:\\Dev\\Workspace\\lfdvn\\vendor\\symfony\\phpunit-bridge"
     }
   }
 }

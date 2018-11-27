@@ -146,10 +146,11 @@ class PurchaseController extends AbstractController
      * @param Request $request
      * @param SessionInterface $session
      * @param TranslatorInterface $translator
-     * @param User|null $user
+     * @param \Swift_Mailer $mailer
+     * @param UserInterface|null $user
      * @return Response
      */
-    public function step4(Request $request, SessionInterface $session, TranslatorInterface $translator, UserInterface $user = null)
+    public function step4(Request $request, SessionInterface $session, TranslatorInterface $translator, \Swift_Mailer $mailer, UserInterface $user = null)
     {
         // Check if user is connected
         if ($user === null) {
@@ -177,8 +178,8 @@ class PurchaseController extends AbstractController
                 // delete data session
                 $session->clear();
 
-                //$this->sendCustomerMail($purchase, $total);
-                //$this->sendEnterpriseMail($purchase, $total);
+                $this->sendCustomerMail($purchase, $total, $mailer);
+                //$this->sendEnterpriseMail($purchase, $total, $mailer);
 
                 return $this->render('purchase/step4.html.twig', [
                     'currentStep' => 4
@@ -333,7 +334,7 @@ class PurchaseController extends AbstractController
      * @param Purchase $purchase
      * @param unknown $total
      */
-    private function sendCustomerMail($purchase, $total) {
+    private function sendCustomerMail($purchase, $total, \Swift_Mailer $mailer) {
         $message = (new \Swift_Message('Récapitulatif de la commande à la Fromagerie du Vignoble Nantais'))
             ->setFrom('test@lafromagerieduvignoblenantais.com')
             ->setTo($purchase->getBuyer()->getUsername())
@@ -356,7 +357,7 @@ class PurchaseController extends AbstractController
             */
         ;
 
-        $this->get('mailer')->send($message);
+        $mailer->send($message);
     }
 
     /**
@@ -364,7 +365,7 @@ class PurchaseController extends AbstractController
      * @param Purchase $purchase
      * @param unknown $total
      */
-    private function sendEnterpriseMail($purchase, $total) {
+    private function sendEnterpriseMail($purchase, $total, \Swift_Mailer $mailer) {
         $message = (new \Swift_Message('Nouvelle commande n° ' + $purchase->getId() + 'à la Fromagerie du Vignoble Nantais'))
             ->setFrom('test@lafromagerieduvignoblenantais.com')
             ->setTo($purchase->getBuyer()->getUsername())
@@ -387,7 +388,7 @@ class PurchaseController extends AbstractController
             */
         ;
 
-        $this->get('mailer')->send($message);
+        $mailer->send($message);
     }
 
 
