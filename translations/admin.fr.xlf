@@ -89,6 +89,10 @@
             </group>
             <group id="group.article">
                 <note>labels of article</note>
+                <trans-unit id="Article">
+                    <source>Article</source>
+                    <target>Article</target>
+                </trans-unit>
                 <trans-unit id="title.article.list">
                     <source>title.article.list</source>
                     <target>Liste des articles</target>
@@ -100,6 +104,14 @@
                 <trans-unit id="title.article.edit">
                     <source>title.article.edit</source>
                     <target>Modifier un article</target>
+                </trans-unit>
+                <trans-unit id="group.article.information">
+                    <source>group.article.information</source>
+                    <target>Information générale</target>
+                </trans-unit>
+                <trans-unit id="group.article.writing">
+                    <source>group.article.writing</source>
+                    <target>Rédaction de l'article</target>
                 </trans-unit>
                 <trans-unit id="label.title">
                     <source>label.title</source>
@@ -116,6 +128,10 @@
             </group>
             <group id="group.category">
                 <note>labels of category</note>
+                <trans-unit id="Category">
+                    <source>Category</source>
+                    <target>Category</target>
+                </trans-unit>
                 <trans-unit id="title.category.list">
                     <source>title.category.list</source>
                     <target>Liste des catégories</target>
@@ -135,6 +151,10 @@
             </group>
             <group id="group.sub-category">
                 <note>labels of sub category</note>
+                <trans-unit id="Subcategory">
+                    <source>Subcategory</source>
+                    <target>Subcategory</target>
+                </trans-unit>
                 <trans-unit id="title.sub_category.list">
                     <source>title.sub_category.list</source>
                     <target>Liste des sous-catégories</target>
@@ -158,6 +178,10 @@
             </group>
             <group id="group.product">
                 <note>labels of product</note>
+                <trans-unit id="Product">
+                    <source>Product</source>
+                    <target>Product</target>
+                </trans-unit>
                 <trans-unit id="title.product.list">
                     <source>title.product.list</source>
                     <target>Liste des produits</target>
@@ -212,6 +236,10 @@
             </group>
             <group id="group.enterprise">
                 <note>labels of enterprise</note>
+                <trans-unit id="EnterpriseDetails">
+                    <source>EnterpriseDetails</source>
+                    <target>EnterpriseDetails</target>
+                </trans-unit>
                 <trans-unit id="title.enterprise.show">
                     <source>title.enterprise.show</source>
                     <target>Informations sur l'entreprise</target>
@@ -243,6 +271,10 @@
             </group>
             <group id="group.label.schedule">
                 <note>Label of schedules</note>
+                <trans-unit id="Schedule">
+                    <source>Schedule</source>
+                    <target>Schedule</target>
+                </trans-unit>
                 <trans-unit id="title.schedule.edit">
                     <source>title.schedule.edit</source>
                     <target>Modifier les horaires</target>
@@ -282,6 +314,10 @@
             </group>
             <group id="group.vat">
                 <note>labels of vat</note>
+                <trans-unit id="TaxRate">
+                    <source>TaxRate</source>
+                    <target>TaxRate</target>
+                </trans-unit>
                 <trans-unit id="title.vat.list">
                     <source>title.vat.list</source>
                     <target>Liste des taux de TVA</target>

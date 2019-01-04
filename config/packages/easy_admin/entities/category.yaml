@@ -10,28 +10,21 @@ easy_admin:
         - { property: 'name',       label: label.name }
         sort: ['name', 'ASC']
         actions: ['show', 'edit', 'delete']
+      form:
+        fields:
+        - { type: 'group', label: group.article.information, icon: 'wrench' }
+        - { property: 'enabled',        label: label.enabled }
+        - { property: 'name',           label: label.name }
+        - { type: 'group', label: group.article.information, icon: 'wrench' }
+        - { property: 'imageFile',      label: label.image, type: 'vich_image', type_options: { required: false } }
+        - { type: 'group', label: group.article.information, icon: 'wrench' }
+        - { property: 'subcategories',  label: label.sub_category }
+        - { property: 'products',       label: label.products }
       new:
         title: title.category.new
-        fields:
-        - { property: 'enabled',        label: label.enabled }
-        - { property: 'name',           label: label.name }
-        - { property: 'imageFile',      label: label.image, type: 'vich_image', type_options: { required: false } }
-        - { property: 'subcategories',  label: label.sub_category }
-        - { property: 'products',       label: label.products }
       edit:
         title: title.category.edit
-        fields:
-        - { property: 'enabled',        label: label.enabled }
-        - { property: 'name',           label: label.name }
-        - { property: 'imageFile',      label: label.image, type: 'vich_image', type_options: { required: false } }
-        - { property: 'subcategories',  label: label.sub_category }
-        - { property: 'products',       label: label.products }
       show:
         title: title.category.show
         fields:
         - { property: 'id', label: label.id }
-        - { property: 'enabled',        label: label.enabled }
-        - { property: 'name',           label: label.name }
-        - { property: 'imageFile',      label: label.image, type: 'vich_image', type_options: { required: false } }
-        - { property: 'subcategories',  label: label.sub_category }
-        - { property: 'products',       label: label.products }

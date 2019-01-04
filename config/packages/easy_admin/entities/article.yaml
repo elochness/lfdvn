@@ -11,17 +11,15 @@ easy_admin:
         - { property: 'title',            label: label.title }
         - { property: 'updatedAt',        label: label.updated_at }
         - { property: 'createdAt',        label: label.created_at }
+      form:
+        fields:
+        - { type: 'group', label: group.article.information, icon: 'wrench' }
+        - { property: 'enabled',        label: label.enabled }
+        - { property: 'articleCategory',label: label.article.type }
+        - { type: 'group', label: group.article.writing, icon: 'pen' }
+        - { property: 'title',          label: label.title }
+        - { property: 'contains',       label: label.contains, type: 'FOS\CKEditorBundle\Form\Type\CKEditorType' }
       new:
         title: title.article.new
-        fields:
-        - { property: 'enabled',        label: label.enabled }
-        - { property: 'articleCategory',label: label.article.type }
-        - { property: 'title',          label: label.title }
-        - { property: 'contains',       label: label.contains, type: 'FOS\CKEditorBundle\Form\Type\CKEditorType' }
       edit:
         title: title.article.edit
-        fields:
-        - { property: 'enabled',        label: label.enabled }
-        - { property: 'articleCategory',label: label.article.type }
-        - { property: 'title',          label: label.title }
-        - { property: 'contains',       label: label.contains, type: 'FOS\CKEditorBundle\Form\Type\CKEditorType' }

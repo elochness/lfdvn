@@ -397,6 +397,10 @@
 
             <group id="group.label.article">
                 <note>Labels of article</note>
+                <trans-unit id="Article">
+                    <source>Article</source>
+                    <target>Article</target>
+                </trans-unit>
                 <trans-unit id="label.article.not_found.title">
                     <source>label.article.not_found.title</source>
                     <target>Pas d'information.</target>
