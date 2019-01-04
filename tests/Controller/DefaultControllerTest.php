@@ -53,15 +53,15 @@ class DefaultControllerTest extends WebTestCase
      * blog post fixtures are randomly generated and there's no guarantee that
      * a given blog post slug will be available.
      */
-    public function testPublicBlogPost()
-    {
-        $client = static::createClient();
-        // the service container is always available via the test client
-        $blogPost = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
-        $client->request('GET', sprintf('/en/blog/posts/%s', $blogPost->getSlug()));
-
-        $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
-    }
+//    public function testPublicBlogPost()
+//    {
+//        $client = static::createClient();
+//        // the service container is always available via the test client
+//        $blogPost = $client->getContainer()->get('doctrine')->getRepository(Post::class)->find(1);
+//        $client->request('GET', sprintf('/en/blog/posts/%s', $blogPost->getSlug()));
+//
+//        $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
+//    }
 
     /**
      * The application contains a lot of secure URLs which shouldn't be
@@ -78,7 +78,7 @@ class DefaultControllerTest extends WebTestCase
         $response = $client->getResponse();
         $this->assertSame(Response::HTTP_FOUND, $response->getStatusCode());
         $this->assertSame(
-            'http://localhost/en/login',
+            'http://localhost/fr/login',
             $response->getTargetUrl(),
             sprintf('The %s secure URL redirects to the login form.', $url)
         );
@@ -87,15 +87,18 @@ class DefaultControllerTest extends WebTestCase
     public function getPublicUrls()
     {
         yield ['/'];
-        yield ['/en/blog/'];
-        yield ['/en/login'];
+        yield ['/fr/produits/'];
+        yield ['/fr/recettes'];
+        yield ['/fr/commande/etape1'];
+        yield ['/fr/commande/etape2'];
+        yield ['/fr/entreprise'];
+        yield ['/fr/a-propos'];
+        yield ['/fr/login'];
     }
 
     public function getSecureUrls()
     {
-        yield ['/en/admin/post/'];
-        yield ['/en/admin/post/new'];
-        yield ['/en/admin/post/1'];
-        yield ['/en/admin/post/1/edit'];
+        yield ['/admin'];
+        yield ['/fr/compte'];
     }
 }
