@@ -50,7 +50,6 @@ yarn-error.log
 ###< jetbrains/phpstorm ###
 
 # User-specific stuff:
-.idea/lfdvn.iml
 .idea/php.xml
 .idea/vcs.xml
 .idea/modules.xml
