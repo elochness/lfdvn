@@ -11,7 +11,7 @@ easy_admin:
         - { property: 'codePostal', label: label.code_postal }
         - { property: 'city'      , label: label.city }
         - { property: 'telephone' , label: label.cellphone }
-        - { property: 'email'  , label: label.email }
+        - { property: 'email'  ,    label: label.email }
       show:
         title: title.enterprise.show
         fields:
@@ -20,7 +20,7 @@ easy_admin:
         - { property: 'codePostal', label: label.code_postal }
         - { property: 'city'      , label: label.city }
         - { property: 'telephone' , label: label.cellphone }
-        - { property: 'email'  , label: label.email }
+        - { property: 'email'  ,    label: label.email }
       edit:
         title: title.enterprise.edit
         fields:
@@ -29,4 +29,4 @@ easy_admin:
         - { property: 'codePostal', label: label.code_postal }
         - { property: 'city'      , label: label.city }
         - { property: 'telephone' , label: label.cellphone }
-        - { property: 'email'  , label: label.email }
+        - { property: 'email'  ,    label: label.email }

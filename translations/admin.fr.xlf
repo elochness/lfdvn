@@ -2,6 +2,32 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
         <body>
+            <group id="group.form">
+                <trans-unit id="group.common.information">
+                    <source>group.common.information</source>
+                    <target>Informations générales</target>
+                </trans-unit>
+                <trans-unit id="group.common.other">
+                    <source>group.common.other</source>
+                    <target>Autres informations</target>
+                </trans-unit>
+                <trans-unit id="group.common.image">
+                    <source>group.common.image</source>
+                    <target>Sélection de l'image</target>
+                </trans-unit>
+                <trans-unit id="group.common.relations">
+                    <source>group.common.relations</source>
+                    <target>Relations</target>
+                </trans-unit>
+                <trans-unit id="group.article.writing">
+                    <source>group.article.writing</source>
+                    <target>Rédaction de l'article</target>
+                </trans-unit>
+                <trans-unit id="group.product.order">
+                    <source>group.product.order</source>
+                    <target>Commande</target>
+                </trans-unit>
+            </group>
             <group id="group.menu">
                 <note>menu of administration</note>
                 <trans-unit id="menu.homepage">
@@ -86,6 +112,14 @@
                     <source>label.updated_at</source>
                     <target>Modifié le</target>
                 </trans-unit>
+                <trans-unit id="label.form.empty_value">
+                    <source>label.form.empty_value</source>
+                    <target>Non défini</target>
+                </trans-unit>
+                <trans-unit id="Supprimer ?">
+                    <source>Supprimer ?</source>
+                    <target>Supprimer ?</target>
+                </trans-unit>
             </group>
             <group id="group.article">
                 <note>labels of article</note>
@@ -97,6 +131,10 @@
                     <source>title.article.list</source>
                     <target>Liste des articles</target>
                 </trans-unit>
+                <trans-unit id="title.article.show">
+                    <source>title.article.show</source>
+                    <target>Visualiser un article</target>
+                </trans-unit>
                 <trans-unit id="title.article.new">
                     <source>title.article.new</source>
                     <target>Ajouter un article</target>
@@ -104,14 +142,6 @@
                 <trans-unit id="title.article.edit">
                     <source>title.article.edit</source>
                     <target>Modifier un article</target>
-                </trans-unit>
-                <trans-unit id="group.article.information">
-                    <source>group.article.information</source>
-                    <target>Information générale</target>
-                </trans-unit>
-                <trans-unit id="group.article.writing">
-                    <source>group.article.writing</source>
-                    <target>Rédaction de l'article</target>
                 </trans-unit>
                 <trans-unit id="label.title">
                     <source>label.title</source>
@@ -143,6 +173,10 @@
                 <trans-unit id="title.category.edit">
                     <source>title.category.edit</source>
                     <target>Modifier une catégorie</target>
+                </trans-unit>
+                <trans-unit id="title.category.show">
+                    <source>title.category.show</source>
+                    <target>Voir une catégorie</target>
                 </trans-unit>
                 <trans-unit id="label.category">
                     <source>label.category</source>
@@ -222,6 +256,10 @@
                     <source>label.tax_rate</source>
                     <target>Taux TVA</target>
                 </trans-unit>
+                <trans-unit id="label.is_purchase">
+                    <source>label.is_purchase</source>
+                    <target>Commandable</target>
+                </trans-unit>
             </group>
             <group id="group.order">
                 <note>labels of order</note>
@@ -246,7 +284,7 @@
                 </trans-unit>
                 <trans-unit id="title.enterprise.edit">
                     <source>title.enterprise.edit</source>
-                    <target>Modifier un produit</target>
+                    <target>Modifier les informations sur l'entreprise</target>
                 </trans-unit>
                 <trans-unit id="label.address">
                     <source>label.address</source>
@@ -281,7 +319,11 @@
                 </trans-unit>
                 <trans-unit id="title.schedule.show">
                     <source>title.schedule.show</source>
-                    <target>Voir les horaires horaire</target>
+                    <target>Voir les horaires</target>
+                </trans-unit>
+                <trans-unit id="title.schedule.list">
+                    <source>title.schedule.list</source>
+                    <target>Liste des horaires</target>
                 </trans-unit>
                 <trans-unit id="label.monday">
                     <source>label.monday</source>

@@ -9,8 +9,8 @@ easy_admin:
     - { label: menu.header.products }
     - { label: menu.products,       entity: 'Product', icon: 'barcode' }
     - { label: menu.categories,     entity: 'Category', icon: 'tag' }
-    - { label: menu.sub_categories, entity: 'Subcategory', icon: 'tag' }
-    - { label: menu.vat,            entity: 'TaxRate',  icon: 'percentage' }
+    - { label: menu.sub_categories, entity: 'Subcategory', icon: 'tags' }
+    - { label: menu.vat,            entity: 'TaxRate',  icon: 'percent' }
     - { label: menu.header.orders }
     - { label: menu.orders,         entity: 'Purchase', icon: 'shopping-cart' }
     #    - { entity: 'PurchaseItem', icon: 'cart-plus' }
