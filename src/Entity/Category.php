@@ -40,6 +40,12 @@ class Category
     private $image;
 
     /**
+     * @Vich\UploadableField(mapping="category_images", fileNameProperty="image")
+     * @var File
+     */
+    private $imageFile;
+
+    /**
      * @var bool
      *
      * @ORM\Column(name="enabled", type="boolean", nullable=false)
@@ -52,13 +58,7 @@ class Category
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
     private $updatedAt;
-    
-     /**
-     * @Vich\UploadableField(mapping="category_images", fileNameProperty="image")
-     * @var File
-     */
-    private $imageFile;
-    
+
     /**
      * 
      * @var Subcategory[]
@@ -141,6 +141,47 @@ class Category
     }
 
     /**
+     * Get imageFile
+     *
+     * @return string
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * Set imageFile
+     *
+     * @param string $image
+     *
+     * @return Category
+     */
+    public function setImageFile($image = null): self
+    {
+        // $this->imageFile = $this->getValidFilename($image);
+        $this->imageFile = $image;
+
+        // VERY IMPORTANT:
+        // It is required that at least one field changes if you are using Doctrine,
+        // otherwise the event listeners won't be called and the file is lost
+        if ($image) {
+            // if 'updatedAt' is not defined in your entity, use another property
+            $this->updatedAt = new \DateTime('now');
+        }
+        return $this;
+    }
+
+    /**
+     * Get all subcategories
+     * @return Subcategory[]
+     */
+    public function getSubcategories()
+    {
+        return $this->subcategories;
+    }
+
+    /**
      * Get enabled
      *
      * @return bool
@@ -197,47 +238,6 @@ class Category
     public function __toString()
     {
       return $this->getName();
-    }
-    
-    /**
-     * Set imageFile 
-     * 
-     * @param string $image
-     *
-     * @return Category
-     */
-    public function setImageFile($image = null): self
-    {
-        // $this->imageFile = $this->getValidFilename($image);
-        $this->imageFile = $image;
-
-        // VERY IMPORTANT:
-        // It is required that at least one field changes if you are using Doctrine,
-        // otherwise the event listeners won't be called and the file is lost
-        if ($image) {
-            // if 'updatedAt' is not defined in your entity, use another property
-            $this->updatedAt = new \DateTime('now');
-        }
-        return $this;
-    }
-    
-    /**
-     * Get imageFile
-     * 
-     * @return string
-     */
-    public function getImageFile()
-    {
-    	return $this->imageFile;
-    }
-
-    /**
-     * Get all subcategories
-     * @return Subcategory[]
-     */
-    public function getSubcategories()
-    {
-        return $this->subcategories;
     }
 
     /**

@@ -5,30 +5,28 @@ easy_admin:
       list:
         title: title.sub_category.list
         fields:
-        - { property: 'id',         label: label.id }
-        - { property: 'enabled',    label: label.enabled }
-        - { property: 'name',       label: label.name }
+        - { property: 'id',             label: label.id }
+        - { property: 'enabled',        label: label.enabled }
+        - { property: 'name',           label: label.name }
         sort: ['name', 'ASC']
         actions: ['show', 'edit', 'delete']
+      form:
+        fields:
+        - { type: 'group',              label: group.common.information,  icon: 'wrench' }
+        - { property: 'enabled',        label: label.enabled }
+        - { property: 'name',           label: label.name }
+        - { type: 'group',              label: group.common.relations,    icon: 'link' }
+        - { property: 'category',       label: label.category,            type_options: { required: true } }
+        - { property: 'products',       label: label.products }
       new:
         title: title.sub_category.new
-        fields:
-        - { property: 'enabled',        label: label.enabled }
-        - { property: 'name',           label: label.name }
-        - { property: 'category',       label: label.category, type_options: { required: true } }
-        - { property: 'products',       label: label.products }
       edit:
         title: title.sub_category.edit
-        fields:
-        - { property: 'enabled',        label: label.enabled }
-        - { property: 'name',           label: label.name }
-        - { property: 'category',       label: label.category, type_options: { required: true } }
-        - { property: 'products',       label: label.products }
       show:
         title: title.sub_category.show
         fields:
-        - { property: 'id',         label: label.id }
+        - { property: 'id',             label: label.id }
         - { property: 'enabled',        label: label.enabled }
         - { property: 'name',           label: label.name }
-        - { property: 'category',       label: label.category, type_options: { required: true } }
+        - { property: 'category',       label: label.category }
         - { property: 'products',       label: label.products }

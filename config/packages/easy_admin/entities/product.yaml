@@ -11,39 +11,32 @@ easy_admin:
         - { property: 'enabled',    label: label.enabled }
         - { property: 'name',       label: label.name }
         - { property: 'quantity',   label: label.quantity }
-        - { property: 'description',label: label.description }
-        - { property: 'image',      label: label.image, type: 'image', base_path: '%app.path.product_images%' }
-        - { property: 'createdAt',  label: label.created_at, format: 'j/m/Y' }
+        - { property: 'image',      label: label.image,             type: 'image', base_path: '%app.path.product_images%' }
         - { property: 'price',      label: label.price }
         - { property: 'refundable', label: label.refundable }
         - { property: 'category',   label: label.category }
         - { property: 'subcategory',label: label.sub_category }
         - { property: 'packaging',  label: label.packaging }
+      form:
+        fields:
+        - { type: 'group',          label: group.common.information,icon: 'wrench' }
+        - { property: 'enabled',    label: label.enabled }
+        - { property: 'name',       label: label.name }
+        - { property: 'price',      label: label.price }
+        - { property: 'taxRate',    label: label.tax_rate,          type_options: { required: true } }
+        - { property: 'description',label: label.description,       type: 'FOS\CKEditorBundle\Form\Type\CKEditorType'  }
+        - { type: 'group',          label: group.common.other,      icon: 'info' }
+        - { property: 'refundable', label: label.refundable }
+        - { property: 'packaging',  label: label.packaging }
+        - { property: 'quantity',   label: label.quantity }
+        - { type: 'group',          label: group.product.order,     icon: 'shopping-cart' }
+        - { property: 'isPurchase', label: label.is_purchase }
+        - { type: 'group',          label: group.common.image,      icon: 'image' }
+        - { property: 'imageFile',  label: label.image,             type: 'vich_image', type_options: { required: true } }
+        - { type: 'group',          label: group.common.relations,  icon: 'link' }
+        - { property: 'category',   label: label.category,          type_options: { required: true } }
+        - { property: 'subcategory',label: label.sub_category }
       new:
         title: title.product.new
-        fields:
-        - { property: 'enabled',    label: label.enabled }
-        - { property: 'name',       label: label.name }
-        - { property: 'quantity',   label: label.quantity }
-        - { property: 'price',      label: label.price }
-        - { property: 'refundable', label: label.refundable }
-        - { property: 'taxRate',    label: label.tax_rate }
-        - { property: 'imageFile',  label: label.image, type: 'vich_image', type_options: { required: true } }
-        - { property: 'category',   label: label.category }
-        - { property: 'subcategory',label: label.sub_category }
-        - { property: 'packaging',  label: label.packaging }
-        - { property: 'description',label: label.description, type: 'ckeditor' }
       edit:
         title: title.product.edit
-        fields:
-        - { property: 'enabled',    label: label.enabled }
-        - { property: 'name',       label: label.name }
-        - { property: 'quantity',   label: label.quantity }
-        - { property: 'price',      label: label.price }
-        - { property: 'refundable', label: label.refundable }
-        - { property: 'taxRate',    label: label.tax_rate }
-        - { property: 'imageFile',  label: label.image, type: 'vich_image', type_options: { required: true } }
-        - { property: 'category',   label: label.category }
-        - { property: 'subcategory',label: label.sub_category }
-        - { property: 'packaging',  label: label.packaging }
-        - { property: 'description',label: label.description, type: 'ckeditor' }

@@ -10,18 +10,27 @@ easy_admin:
         - { property: 'articleCategory',  label: label.article.type }
         - { property: 'title',            label: label.title }
         - { property: 'updatedAt',        label: label.updated_at }
-        - { property: 'createdAt',        label: label.created_at }
+        sort: ['updatedAt', 'DESC']
+        actions: ['show', 'edit', 'delete']
+      form:
+        fields:
+        - { type: 'group', label: group.common.information, icon: 'wrench' }
+        - { property: 'enabled',        label: label.enabled }
+        - { property: 'articleCategory',label: label.article.type }
+        - { type: 'group', label: group.article.writing, icon: 'pencil' }
+        - { property: 'title',          label: label.title }
+        - { property: 'contains',       label: label.contains, type: 'FOS\CKEditorBundle\Form\Type\CKEditorType' }
       new:
         title: title.article.new
-        fields:
-        - { property: 'enabled',        label: label.enabled }
-        - { property: 'articleCategory',label: label.article.type }
-        - { property: 'title',          label: label.title }
-        - { property: 'contains',       label: label.contains, type: 'FOS\CKEditorBundle\Form\Type\CKEditorType' }
       edit:
         title: title.article.edit
+      show:
+        title: title.article.show
         fields:
-        - { property: 'enabled',        label: label.enabled }
-        - { property: 'articleCategory',label: label.article.type }
-        - { property: 'title',          label: label.title }
-        - { property: 'contains',       label: label.contains, type: 'FOS\CKEditorBundle\Form\Type\CKEditorType' }
+        - { property: 'id',               label: label.id }
+        - { property: 'enabled',          label: label.enabled }
+        - { property: 'articleCategory',  label: label.article.type }
+        - { property: 'updatedAt',        label: label.updated_at }
+        - { property: 'createdAt',        label: label.created_at }
+        - { property: 'title',            label: label.title }
+        - { property: 'contains',       label: label.contains }

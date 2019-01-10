@@ -144,6 +144,10 @@
 
             <group id="group.label.schedule">
                 <note>Label of schedules</note>
+                <trans-unit id="Schedule">
+                    <source>Schedule</source>
+                    <target>Horaires</target>
+                </trans-unit>
                 <trans-unit id="Monday">
                     <source>Monday</source>
                     <target>Lundi</target>
@@ -240,6 +244,10 @@
 
             <group id="group.label.product">
                 <note>Label of product</note>
+                <trans-unit id="Product">
+                    <source>Product</source>
+                    <target>Product</target>
+                </trans-unit>
                 <trans-unit id="label.category">
                     <source>label.category</source>
                     <target>Catégorie</target>
@@ -263,6 +271,27 @@
                 <trans-unit id="label.product.not_found">
                     <source>label.product.not_found</source>
                     <target>Pas de produit disponible</target>
+                </trans-unit>
+            </group>
+
+            <group id="group.label.category">
+                <trans-unit id="Category">
+                    <source>Category</source>
+                    <target>Catégorie</target>
+                </trans-unit>
+            </group>
+
+            <group id="group.label.subcategory">
+                <trans-unit id="Subcategory">
+                    <source>Subcategory</source>
+                    <target>Sous catégorie</target>
+                </trans-unit>
+            </group>
+
+            <group id="group.label.vat">
+                <trans-unit id="TaxRate">
+                    <source>TaxRate</source>
+                    <target>TVA</target>
                 </trans-unit>
             </group>
 
@@ -397,6 +426,10 @@
 
             <group id="group.label.article">
                 <note>Labels of article</note>
+                <trans-unit id="Article">
+                    <source>Article</source>
+                    <target>Article</target>
+                </trans-unit>
                 <trans-unit id="label.article.not_found.title">
                     <source>label.article.not_found.title</source>
                     <target>Pas d'information.</target>
@@ -441,6 +474,10 @@
             
             <group id="group.label.enterprise_details">
                 <note>Labels of contact us</note>
+                <trans-unit id="EnterpriseDetails">
+                    <source>EnterpriseDetails</source>
+                    <target>Détails de l'entreprise</target>
+                </trans-unit>
                 <trans-unit id="label.contact">
                     <source>label.contact</source>
                     <target>Contact</target>

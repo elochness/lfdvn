@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
@@ -10,6 +11,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  *
  * @ORM\Table(name="product", indexes={@ORM\Index(name="tax_rate_id", columns={"tax_rate_id"}), @ORM\Index(name="subcategory_id", columns={"subcategory_id"}), @ORM\Index(name="IDX_D34A04AD12469DE2", columns={"category_id"})})
  * @ORM\Entity
+ * @Vich\Uploadable
  */
 class Product
 {
@@ -66,7 +68,7 @@ class Product
      *
      * @ORM\Column(name="is_purchase", type="boolean", nullable=false, options={"default"="1"})
      */
-    private $isPurchase = '1';
+    private $isPurchase;
 
     /**
      * @var bool
@@ -149,6 +151,7 @@ class Product
         $this->createdAt = new \DateTime();
         $this->updatedAt = new \DateTime();
         $this->enabled = true;
+        $this->isPurchase = true;
     }
 
     /**
@@ -225,7 +228,7 @@ class Product
 
     /**
      * Get image
-     * @return null|string
+     * @return string
      */
     public function getImage(): ?string
     {
@@ -234,7 +237,7 @@ class Product
 
     /**
      * Set image
-     * @param null|string $image
+     * @param string $image
      * @return Product
      */
     public function setImage(?string $image): self
@@ -247,19 +250,19 @@ class Product
 
     /**
      * Get imageFile
-     * @return null|string
+     * @return string
      */
-    public function getImageFile(): ?string
+    public function getImageFile()
     {
         return $this->imageFile;
     }
 
     /**
      * Set ImageFile
-     * @param null|string $image
+     * @param string $image
      * @return Product
      */
-    public function setImageFile(?string $image = null): self
+    public function setImageFile($image = null): self
     {
         // $this->imageFile = $this->getValidFilename($image);
         $this->imageFile = $image;

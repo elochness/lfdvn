@@ -7,11 +7,10 @@ easy_admin:
         fields:
         - { property: 'id',               label: label.id }
         - { property: 'rate',             label: label.rate }
+      form:
+        fields:
+        - { property: 'rate',             label: label.rate }
       new:
         title: title.vat.new
-        fields:
-        - { property: 'rate',             label: label.rate }
       edit:
         title: title.vat.edit
-        fields:
-        - { property: 'rate',             label: label.rate }
