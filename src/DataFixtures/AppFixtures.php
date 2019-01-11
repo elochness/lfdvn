@@ -12,6 +12,8 @@
 namespace App\DataFixtures;
 
 use App\Entity\Product;
+use App\Entity\Purchase;
+use App\Entity\PurchaseItem;
 use App\Entity\User;
 use App\Entity\Schedule;
 use App\Entity\ArticleCategory;
@@ -44,6 +46,7 @@ class AppFixtures extends Fixture
         $this->loadCategory($manager);
         $this->loadSubCategory($manager);
         $this->loadProducts($manager);
+        $this->loadOrders($manager);
         //$this->loadTags($manager);
         //$this->loadPosts($manager);
     }
@@ -216,8 +219,10 @@ class AppFixtures extends Fixture
      */
     private function loadProducts(ObjectManager $manager)
     {
+        $i = 0;
 
         foreach ($this->getProductData() as [$name, $quantity, $description, $image, $isPurchase, $enabled, $createdAt, $updatedAt, $category, $subcategory, $packaging, $price, $refundable, $taxRate]) {
+
             $product = new Product();
             $product->setName($name);
             $product->setQuantity($quantity);
@@ -233,10 +238,39 @@ class AppFixtures extends Fixture
             $product->setPrice($price);
             $product->setRefundable($refundable);
             $product->setTaxRate($taxRate);
+            $this->addReference('product-' . $i, $product);
 
             $manager->persist($product);
+            $i++;
         }
 
+        $manager->flush();
+    }
+
+    private function loadOrders(ObjectManager $manager)
+    {
+        // $orderData = [$deliveryDate, $comment, $createdAt, $buyer]
+        $orderItem = null;
+        foreach ($this->getOrderData() as [$deliveryDate, $comment, $createdAt, $buyer]) {
+            $order = new Purchase();
+            $order->setDeliveryDate($deliveryDate);
+            $order->setComment($comment);
+            $order->setCreatedAt($createdAt);
+            $order->setBuyer($buyer);
+
+            foreach ($this->getItemData() as [$quantity, $price, $taxRate, $product]) {
+                $orderItem = new PurchaseItem();
+                $orderItem->setQuantity($quantity);
+                $orderItem->setPrice($price);
+                /* @var TaxRate $taxRate */
+                $orderItem->setTaxRate($taxRate->getRate());
+                $orderItem->setProduct($product);
+                $orderItem->setPurchase($order);
+                $order->addItem($orderItem);
+            }
+
+            $manager->persist($order);
+        }
         $manager->flush();
     }
 
@@ -348,6 +382,9 @@ class AppFixtures extends Fixture
         ];
     }
 
+    /**
+     * @return array
+     */
     private function getProductData(): array
     {
         return [
@@ -372,6 +409,36 @@ class AppFixtures extends Fixture
             ['Bière de Noël', 10, 'Ma description', NULL, true, false, new \DateTime('2017-07-28 01:01:00'), new \DateTime('2017-07-28 01:01:00'), $this->getReference('category-Bière'), NULL, '75cl', 5.00, NULL, $this->getReference('tax-20')]
         ];
     }
+
+    private function getOrderData(): array
+    {
+        return
+            // $orderData = [$deliveryDate, $comment, $createdAt, $buyer]
+            [
+                [new \DateTime('2017-06-01 20:56:19'), 'Commande à recevoir en fin de journée', new \DateTime('2017-12-06 14:50:36'), $this->getReference('jane_admin@symfony.com')],
+                [new \DateTime('2017-06-02 21:56:19'), null, new \DateTime('2017-12-06 14:50:36'), $this->getReference('jane_admin@symfony.com')]
+            ];
+    }
+
+    private function getItemData(): array
+    {
+        $items = [];
+        $countProduct = count($this->getProductData()) - 1;
+        $nbItems = mt_rand (1, $countProduct);
+
+        for ($x = 0; $x <= $nbItems; $x++) {
+            // $itemData = [$quantity, $price, $taxRate, $product];
+            $items[] = [
+                mt_rand (0, 10),
+                $this->frand(1, 10, 2),
+                $this->getReference('tax-5.5'),
+                $this->getReference('product-'. mt_rand (0, $countProduct))
+            ];
+        }
+
+        return $items;
+    }
+
 
     private function getTagData(): array
     {
@@ -505,5 +572,11 @@ MARKDOWN;
         return array_map(function ($tagName) {
             return $this->getReference('tag-' . $tagName);
         }, $selectedTags);
+    }
+
+
+    private function frand($min, $max, $decimals = 0) {
+        $scale = pow(10, $decimals);
+        return mt_rand($min * $scale, $max * $scale) / $scale;
     }
 }

@@ -38,7 +38,7 @@ class SecurityController extends AbstractController
         // Check if user has admin role
         if ($user != null && in_array(User::ROLE_ADMIN, $user->getRoles()))
         {
-            return $this->redirectToRoute('admin');
+            return $this->redirectToRoute('easyadmin');
         }
         // Check if user has user role
         else if ($user != null && in_array(User::ROLE_USER, $user->getRoles()))

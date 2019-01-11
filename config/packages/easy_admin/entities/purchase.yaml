@@ -2,10 +2,22 @@ easy_admin:
   entities:
     Purchase:
       class: App\Entity\Purchase
+      disabled_actions: ['new','edit']
       list:
         title: title.order.list
+        actions: ['show', 'delete']
         fields:
         - { property: 'id',           label: label.id }
         - { property: 'deliveryDate', label: label.delivery_date }
         - { property: 'buyer',        label: label.buyer }
+        - { property: 'createdAt',    label: label.created_at }
+      show:
+        title: title.order.show
+        fields:
+        - { property: 'id',           label: label.id }
+        - { property: 'deliveryDate', label: label.delivery_date }
+        - { property: 'buyer',        label: label.buyer }
+        - { property: 'comment',      label: label.comment }
+        - { property: 'items',        label: label.items,     type_options: { block_name: 'custom_items' } }
+        - { property: 'total',        label: label.total,     type_options: { currency: 'EUR' } }
         - { property: 'createdAt',    label: label.created_at }

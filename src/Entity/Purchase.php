@@ -52,7 +52,7 @@ class Purchase
     private $createdAt;
 
     /**
-     * @var \User
+     * @var User
      *
      * @ORM\ManyToOne(targetEntity="User", inversedBy="purchases", cascade={"persist"})
      * @ORM\JoinColumns({
@@ -237,6 +237,19 @@ class Purchase
     public function __toString(): string
     {
         return $this->getId() . " - " . $this->getCreatedAt();
+    }
+
+
+    /**
+     * @return float
+     */
+    public function getTotal()
+    {
+        $total = 0.0;
+        foreach ($this->getItems() as $item) {
+            $total += $item->getTotalPrice();
+        }
+        return $total;
     }
 
 }

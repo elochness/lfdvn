@@ -263,13 +263,33 @@
             </group>
             <group id="group.order">
                 <note>labels of order</note>
+                <trans-unit id="Purchase">
+                    <source>Purchase</source>
+                    <target>Commande</target>
+                </trans-unit>
+                <trans-unit id="title.order.list">
+                    <source>title.order.list</source>
+                    <target>Liste des commandes</target>
+                </trans-unit>
+                <trans-unit id="title.order.show">
+                    <source>title.order.show</source>
+                    <target>Visualisation de la commande</target>
+                </trans-unit>
                 <trans-unit id="label.buyer">
                     <source>label.buyer</source>
                     <target>Acheteur</target>
                 </trans-unit>
-                <trans-unit id="label_delivery_date">
-                    <source>label_delivery_date</source>
+                <trans-unit id="label.comment">
+                    <source>label.comment</source>
+                    <target>Commentaire</target>
+                </trans-unit>
+                <trans-unit id="label.delivery_date">
+                    <source>label.delivery_date</source>
                     <target>Date de livraison</target>
+                </trans-unit>
+                <trans-unit id="label.items">
+                    <source>label.items</source>
+                    <target>Liste des produits</target>
                 </trans-unit>
             </group>
             <group id="group.enterprise">
