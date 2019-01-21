@@ -43,7 +43,7 @@ class PurchaseItem
     private $taxRate;
 
     /**
-     * @var \Product
+     * @var Product
      *
      * @ORM\ManyToOne(targetEntity="Product", cascade={"persist"})
      * @ORM\JoinColumns({
@@ -53,7 +53,7 @@ class PurchaseItem
     private $product;
 
     /**
-     * @var \Purchase
+     * @var Purchase
      *
      * @ORM\ManyToOne(targetEntity="Purchase", inversedBy="items", cascade={"persist"})
      * @ORM\JoinColumns({
@@ -63,9 +63,9 @@ class PurchaseItem
     private $purchase;
 
     /**
-     * Get String information of user
+     * Get String information of purchase item
      *
-     * @return string Name of user
+     * @return string purchase item
      */
     public function __toString()
     {
@@ -189,6 +189,16 @@ class PurchaseItem
         $this->purchase = $purchase;
 
         return $this;
+    }
+
+    /**
+     * Return the total price (tax included).
+     *
+     * @return float
+     */
+    public function getTotalPrice()
+    {
+        return $this->product->getPrice() * $this->quantity;
     }
 
 

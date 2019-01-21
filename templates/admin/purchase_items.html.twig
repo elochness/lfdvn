@@ -1,0 +1,16 @@
+<table style="width: 100%;">
+    <tr class="header">
+        <th>{{ 'Product'|trans }}</th>
+        <th>{{ 'label.price'|trans }}</th>
+        <th>{{ 'label.quantity'|trans }}</th>
+        <th>{{ 'label.sum'|trans }}</th>
+    </tr>
+    {% for purchaseItem in value %}
+        <tr class="purchase-list">
+            <td>{{ purchaseItem.product.name }} ({{ purchaseItem.product.packaging }})</td>
+            <td class="center">{{ purchaseItem.product.price }} €</td>
+            <td class="center">{{ purchaseItem.quantity }}</td>
+            <td class="center">{{ purchaseItem.price }} €</td>
+        </tr>
+    {% endfor %}
+</table>

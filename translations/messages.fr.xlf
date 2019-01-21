@@ -246,7 +246,7 @@
                 <note>Label of product</note>
                 <trans-unit id="Product">
                     <source>Product</source>
-                    <target>Product</target>
+                    <target>Produit</target>
                 </trans-unit>
                 <trans-unit id="label.category">
                     <source>label.category</source>
