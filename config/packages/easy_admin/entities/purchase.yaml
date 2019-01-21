@@ -18,6 +18,6 @@ easy_admin:
         - { property: 'deliveryDate', label: label.delivery_date }
         - { property: 'buyer',        label: label.buyer }
         - { property: 'comment',      label: label.comment }
-        - { property: 'items',        label: label.items,     type_options: { block_name: 'custom_items' } }
-        - { property: 'total',        label: label.total,     type_options: { currency: 'EUR' } }
+        - { property: 'items',        label: label.items, template: 'admin/purchase_items.html.twig' }
+        - { property: 'total',        label: label.total, template: 'admin/purchase_total.html.twig' }
         - { property: 'createdAt',    label: label.created_at }

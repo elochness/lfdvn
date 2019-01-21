@@ -1,6 +1,2 @@
 easy_admin:
   site_name: 'La FDVN.'
-  design:
-    form_theme:
-    - '@EasyAdmin/form/bootstrap_4.html.twig'
-    - 'admin/form.html.twig'

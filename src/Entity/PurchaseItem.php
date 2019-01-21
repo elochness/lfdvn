@@ -70,11 +70,7 @@ class PurchaseItem
     public function __toString()
     {
         if (isset($this->product)) {
-            if ($this->quantity > 0) {
-                return $this->product->getName() .' [x'.$this->getQuantity().']: '.$this->getTotalPrice();
-            } else {
-                return $this->product->getName();
-            }
+            return $this->product->getName();
         } else {
             // TODO change string in constant
             return "Non défini";

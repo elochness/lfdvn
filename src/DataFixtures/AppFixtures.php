@@ -258,10 +258,11 @@ class AppFixtures extends Fixture
             $order->setCreatedAt($createdAt);
             $order->setBuyer($buyer);
 
-            foreach ($this->getItemData() as [$quantity, $price, $taxRate, $product]) {
+            foreach ($this->getItemData() as [$quantity, $taxRate, $product]) {
                 $orderItem = new PurchaseItem();
                 $orderItem->setQuantity($quantity);
-                $orderItem->setPrice($price);
+                /* @var Product $product */
+                $orderItem->setPrice($product->getPrice() * $quantity);
                 /* @var TaxRate $taxRate */
                 $orderItem->setTaxRate($taxRate->getRate());
                 $orderItem->setProduct($product);
@@ -427,10 +428,9 @@ class AppFixtures extends Fixture
         $nbItems = mt_rand (1, $countProduct);
 
         for ($x = 0; $x <= $nbItems; $x++) {
-            // $itemData = [$quantity, $price, $taxRate, $product];
+            // $itemData = [$quantity, $taxRate, $product];
             $items[] = [
                 mt_rand (0, 10),
-                $this->frand(1, 10, 2),
                 $this->getReference('tax-5.5'),
                 $this->getReference('product-'. mt_rand (0, $countProduct))
             ];

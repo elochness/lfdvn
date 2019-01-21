@@ -214,7 +214,7 @@
                 <note>labels of product</note>
                 <trans-unit id="Product">
                     <source>Product</source>
-                    <target>Product</target>
+                    <target>Produit</target>
                 </trans-unit>
                 <trans-unit id="title.product.list">
                     <source>title.product.list</source>
@@ -290,6 +290,10 @@
                 <trans-unit id="label.items">
                     <source>label.items</source>
                     <target>Liste des produits</target>
+                </trans-unit>
+                <trans-unit id="label.total">
+                    <source>label.total</source>
+                    <target>Total</target>
                 </trans-unit>
             </group>
             <group id="group.enterprise">
