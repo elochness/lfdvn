@@ -1,13 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: INUFRAP
- * Date: 18/07/2018
- * Time: 16:36
+
+/*
+ * This file is part of the lfdvn package.
+ *
+ * (c) Pierre François
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace App\Controller;
-
 
 use App\Entity\User;
 use App\Form\UserType;
@@ -22,7 +24,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-
 /**
  * Controller used to manage user contents in the public part of the site.
  *
@@ -35,11 +36,12 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class UserController extends AbstractController
 {
-
     /**
      * @Route(methods={"GET"}, name="user_account")
+     *
      * @param AuthorizationCheckerInterface $authChecker
-     * @param UserInterface|null $user
+     * @param UserInterface|null            $user
+     *
      * @return Response
      */
     public function index(AuthorizationCheckerInterface $authChecker, UserInterface $user = null): Response
@@ -49,11 +51,10 @@ class UserController extends AbstractController
             throw new AccessDeniedException();
         }
 
-        return $this->render('user/index.html.twig', array(
+        return $this->render('user/index.html.twig', [
             'user' => $user,
-            'currentAction' => 'user'
-        ));
-
+            'currentAction' => 'user',
+        ]);
     }
 
     /**
@@ -61,13 +62,14 @@ class UserController extends AbstractController
      *     "fr": "/nouveau",
      *     "en": "/new"
      * }, methods={"GET", "POST"}, name="user_new")
-     * @param Request $request
+     *
+     * @param Request                      $request
      * @param UserPasswordEncoderInterface $passwordEncoder
+     *
      * @return Response
      */
     public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
-
         // 1) build the form
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -75,7 +77,6 @@ class UserController extends AbstractController
         // 2) handle the submit (will only happen on POST)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-
             // 3) Encode the password (you could also do this via Doctrine listener)
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
@@ -90,25 +91,27 @@ class UserController extends AbstractController
             // as they are accessed.
             // See https://symfony.com/doc/current/book/controller.html#flash-messages
             $this->addFlash('success', 'account.created_successfully');
+
             return $this->redirectToRoute('homepage');
         }
 
         return $this->render('user/new.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
-
     }
 
-
     /**
-     * Modification of user account
+     * Modification of user account.
+     *
      * @Route({
      *     "fr": "/modifier",
      *     "en": "/update"
      * }, methods={"GET", "POST"}, name="user_update")
-     * @param Request $request
+     *
+     * @param Request                       $request
      * @param AuthorizationCheckerInterface $authChecker
-     * @param UserInterface|null $user
+     * @param UserInterface|null            $user
+     *
      * @return Response
      */
     public function update(Request $request, AuthorizationCheckerInterface $authChecker, UserInterface $user = null): Response
@@ -121,8 +124,8 @@ class UserController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         $form = $this->createForm(UserType::class, $user);
-        $form->remove("username");
-        $form->remove("plainPassword");
+        $form->remove('username');
+        $form->remove('plainPassword');
 
         if ($request->isMethod('POST')) {
             // false parameter can update only changed fields of user
@@ -133,25 +136,29 @@ class UserController extends AbstractController
                 $em->flush();
 
                 $this->addFlash('success', 'account.updated_successfully');
+
                 return $this->redirectToRoute('user_account');
             }
         }
 
         return $this->render('user/update.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
     /**
-     * Modification of password
+     * Modification of password.
+     *
      * @Route({
      *     "fr": "/changer-motdepasse",
      *     "en": "/change-password"
      * }, methods={"GET", "POST"}, name="password_update")
-     * @param Request $request
-     * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param UserInterface|null $user
+     *
+     * @param Request                       $request
+     * @param UserPasswordEncoderInterface  $passwordEncoder
+     * @param UserInterface|null            $user
      * @param AuthorizationCheckerInterface $authChecker
+     *
      * @return Response
      */
     public function changePassword(Request $request, UserPasswordEncoderInterface $passwordEncoder, AuthorizationCheckerInterface $authChecker, UserInterface $user = null): Response
@@ -164,17 +171,16 @@ class UserController extends AbstractController
         $em = $this->getDoctrine()->getManager();
 
         $form = $this->createForm(UserType::class, $user);
-        $form->remove("username");
-        $form->remove("lastname");
-        $form->remove("firstname");
-        $form->remove("cellphone");
+        $form->remove('username');
+        $form->remove('lastname');
+        $form->remove('firstname');
+        $form->remove('cellphone');
 
         if ($request->isMethod('POST')) {
             // false parameter can update only changed fields of user
             $form->submit($request->request->get($form->getName()), false);
 
             if ($form->isSubmitted() && $form->isValid()) {
-
                 $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
                 $user->setPassword($password);
 
@@ -186,24 +192,27 @@ class UserController extends AbstractController
                 $em->flush();
 
                 $this->addFlash('success', 'password.updated_successfully');
+
                 return $this->redirectToRoute('user_account');
             }
         }
 
-
         return $this->render('user/change_password.html.twig', [
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ]);
     }
 
     /**
-     * Modification of user account
+     * Modification of user account.
+     *
      * @Route({
      *     "fr": "/supprimer",
      *     "en": "/rmove"
      * }, methods={"GET", "POST"}, name="user_remove")
+     *
      * @param AuthorizationCheckerInterface $authChecker
-     * @param UserInterface|null $user
+     * @param UserInterface|null            $user
+     *
      * @return Response
      */
     public function remove(AuthorizationCheckerInterface $authChecker, UserInterface $user = null): Response
@@ -221,14 +230,17 @@ class UserController extends AbstractController
         $em->flush();
 
         $session->getFlashBag()->add('success', 'account.removed_successfully');
+
         return $this->redirectToRoute('article_index');
     }
 
     /**
      * @Route("/purchase", methods={"GET"}, name="user_purchase")
+     *
      * @param AuthorizationCheckerInterface $authChecker
-     * @param PurchaseRepository $purchaseRepository
-     * @param UserInterface $user
+     * @param PurchaseRepository            $purchaseRepository
+     * @param UserInterface                 $user
+     *
      * @return Response
      */
     public function purchaseIndex(AuthorizationCheckerInterface $authChecker, PurchaseRepository $purchaseRepository, UserInterface $user = null)
@@ -241,19 +253,20 @@ class UserController extends AbstractController
         // Recuperate all purchases according to the buyer
         $purchases = $purchaseRepository->findByBuyer($user->getId());
 
-        return $this->render('user/purchase_index.html.twig', array(
+        return $this->render('user/purchase_index.html.twig', [
             'purchases' => $purchases,
-            'currentAction' => 'purchase'
-        ));
-
+            'currentAction' => 'purchase',
+        ]);
     }
 
     /**
      * @Route("/purchase/{id}", methods={"GET"} , name="user_purchase_show", requirements={"id"="\d+"})
-     * @param int $id
+     *
+     * @param int                           $id
      * @param AuthorizationCheckerInterface $authChecker
-     * @param PurchaseRepository $purchaseRepository
-     * @param UserInterface|null $user
+     * @param PurchaseRepository            $purchaseRepository
+     * @param UserInterface|null            $user
+     *
      * @return Response
      */
     public function purchaseShow(int $id, AuthorizationCheckerInterface $authChecker, PurchaseRepository $purchaseRepository, UserInterface $user = null)
@@ -266,30 +279,28 @@ class UserController extends AbstractController
 
         // Recuperate all purchases according to the buyer
         $purchase = $purchaseRepository->findOneBy([
-            'id' => $id
+            'id' => $id,
         ]);
 
         // Check the purchase and if the user is the owner of the purchase
-        if ($purchase == null || $purchase->getBuyer()->getId() != $user->getId()) {
-
+        if (null === $purchase || $purchase->getBuyer()->getId() !== $user->getId()) {
             $purchases = $purchaseRepository->findByBuyer($user->getId());
 
-            return $this->render('user/purchase_index.html.twig', array(
-                'purchases' => $purchases
-            ));
-        } else {
+            return $this->render('user/purchase_index.html.twig', [
+                'purchases' => $purchases,
+            ]);
+        }
 
-            $total = 0;
+        $total = 0;
 
-            foreach ($purchase->getItems() as $item) {
-                $total += $item->getPrice();
-            }
+        foreach ($purchase->getItems() as $item) {
+            $total += $item->getPrice();
+        }
 
-            return $this->render('user/purchase_show.html.twig', array(
+        return $this->render('user/purchase_show.html.twig', [
                 'purchase' => $purchase,
                 'total' => $total,
-                'currentAction' => 'purchase'
-            ));
-        }
+                'currentAction' => 'purchase',
+            ]);
     }
 }

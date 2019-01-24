@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Symfony package.
+ * This file is part of the lfdvn package.
  *
- * (c) Fabien Potencier <fabien@symfony.com>
+ * (c) Pierre François
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,7 +11,6 @@
 
 namespace App\Tests\Controller;
 
-use App\Entity\Article;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
@@ -32,8 +31,8 @@ class ArticleControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/');
 
         $this->assertCount(
-            Article::NUM_ITEMS,
-            $crawler->filter('article.post'),
+            1,
+            $crawler->filter('article-large'),
             'The homepage displays the right number of articles.'
         );
     }

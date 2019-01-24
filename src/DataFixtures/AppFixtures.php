@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Symfony package.
+ * This file is part of the lfdvn package.
  *
- * (c) Fabien Potencier <fabien@symfony.com>
+ * (c) Pierre François
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -11,17 +11,17 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Article;
+use App\Entity\ArticleCategory;
+use App\Entity\Category;
+use App\Entity\EnterpriseDetails;
 use App\Entity\Product;
 use App\Entity\Purchase;
 use App\Entity\PurchaseItem;
-use App\Entity\User;
 use App\Entity\Schedule;
-use App\Entity\ArticleCategory;
-use App\Entity\EnterpriseDetails;
-use App\Entity\TaxRate;
-use App\Entity\Category;
 use App\Entity\Subcategory;
-use App\Entity\Article;
+use App\Entity\TaxRate;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -52,7 +52,7 @@ class AppFixtures extends Fixture
     }
 
     /**
-     * Load information of users
+     * Load information of users.
      *
      * @param ObjectManager $manager
      */
@@ -75,7 +75,7 @@ class AppFixtures extends Fixture
     }
 
     /**
-     * Load information of schedules
+     * Load information of schedules.
      *
      * @param ObjectManager $manager
      */
@@ -97,7 +97,7 @@ class AppFixtures extends Fixture
     }
 
     /**
-     * Load information of article
+     * Load information of article.
      *
      * @param ObjectManager $manager
      */
@@ -108,14 +108,14 @@ class AppFixtures extends Fixture
             $articleCategory->setId($id);
             $articleCategory->setName($name);
             $manager->persist($articleCategory);
-            $this->addReference('article_category-' . $id, $articleCategory);
+            $this->addReference('article_category-'.$id, $articleCategory);
         }
 
         $manager->flush();
     }
 
     /**
-     * Load information of article category
+     * Load information of article category.
      *
      * @param ObjectManager $manager
      */
@@ -134,7 +134,7 @@ class AppFixtures extends Fixture
     }
 
     /**
-     * Load information of enterprise
+     * Load information of enterprise.
      *
      * @param ObjectManager $manager
      */
@@ -154,7 +154,7 @@ class AppFixtures extends Fixture
     }
 
     /**
-     * Load information of tax rate
+     * Load information of tax rate.
      *
      * @param ObjectManager $manager
      */
@@ -165,14 +165,14 @@ class AppFixtures extends Fixture
             $taxRate->setRate($rate);
 
             $manager->persist($taxRate);
-            $this->addReference('tax-' . $rate, $taxRate);
+            $this->addReference('tax-'.$rate, $taxRate);
         }
 
         $manager->flush();
     }
 
     /**
-     * Load information of category
+     * Load information of category.
      *
      * @param ObjectManager $manager
      */
@@ -186,14 +186,14 @@ class AppFixtures extends Fixture
             $category->setUpdatedAt($updates_at);
 
             $manager->persist($category);
-            $this->addReference('category-' . $name, $category);
+            $this->addReference('category-'.$name, $category);
         }
 
         $manager->flush();
     }
 
     /**
-     * Load information of subcategory
+     * Load information of subcategory.
      *
      * @param ObjectManager $manager
      */
@@ -206,14 +206,14 @@ class AppFixtures extends Fixture
             $subcategory->setCategory($category);
 
             $manager->persist($subcategory);
-            $this->addReference('subcategory-' . $name, $subcategory);
+            $this->addReference('subcategory-'.$name, $subcategory);
         }
 
         $manager->flush();
     }
 
     /**
-     * Load information of two products
+     * Load information of two products.
      *
      * @param ObjectManager $manager
      */
@@ -222,7 +222,6 @@ class AppFixtures extends Fixture
         $i = 0;
 
         foreach ($this->getProductData() as [$name, $quantity, $description, $image, $isPurchase, $enabled, $createdAt, $updatedAt, $category, $subcategory, $packaging, $price, $refundable, $taxRate]) {
-
             $product = new Product();
             $product->setName($name);
             $product->setQuantity($quantity);
@@ -238,10 +237,10 @@ class AppFixtures extends Fixture
             $product->setPrice($price);
             $product->setRefundable($refundable);
             $product->setTaxRate($taxRate);
-            $this->addReference('product-' . $i, $product);
+            $this->addReference('product-'.$i, $product);
 
             $manager->persist($product);
-            $i++;
+            ++$i;
         }
 
         $manager->flush();
@@ -282,7 +281,7 @@ class AppFixtures extends Fixture
             $tag->setName($name);
 
             $manager->persist($tag);
-            $this->addReference('tag-' . $name, $tag);
+            $this->addReference('tag-'.$name, $tag);
         }
 
         $manager->flush();
@@ -304,7 +303,7 @@ class AppFixtures extends Fixture
                 $comment = new Comment();
                 $comment->setAuthor($this->getReference('john_user'));
                 $comment->setContent($this->getRandomText(random_int(255, 512)));
-                $comment->setPublishedAt(new \DateTime('now + ' . $i . 'seconds'));
+                $comment->setPublishedAt(new \DateTime('now + '.$i.'seconds'));
 
                 $post->addComment($comment);
             }
@@ -319,9 +318,9 @@ class AppFixtures extends Fixture
     {
         return [
             // $userData = [$firstname, $lastname, $cellphone, $username, $password, $roles];
-            ['Anna', 'Admin', '0123456789','jane_admin@symfony.com', 'kitten', ['ROLE_ADMIN']],
-            ['Tom', 'Admin', '0101020203','tom_admin@symfony.com', 'kitten', ['ROLE_ADMIN']],
-            ['John', 'Doe', '0216497382','john_user@symfony.com', 'kitten', ['ROLE_USER']],
+            ['Anna', 'Admin', '0123456789', 'jane_admin@symfony.com', 'kitten', ['ROLE_ADMIN']],
+            ['Tom', 'Admin', '0101020203', 'tom_admin@symfony.com', 'kitten', ['ROLE_ADMIN']],
+            ['John', 'Doe', '0216497382', 'john_user@symfony.com', 'kitten', ['ROLE_USER']],
         ];
     }
 
@@ -340,10 +339,10 @@ class AppFixtures extends Fixture
     {
         return [
             // $userData = [$enabled, $title, $articleCategory, $contains];
-            [true, 'Bienvenue au nouveau site de La Fromagerie du vignoble nantais', $this->getReference('article_category-' . ArticleCategory::ARTICLE_PRINCIPAL), 'Mon contenu est très limité'],
-            [true, 'Présentation de l\'entreprise', $this->getReference('article_category-' . ArticleCategory::ARTICLE_ENTERPRISE), 'La passion fait naître un métier : celui de producteur-fromager. C’est alors qu’ils initient la fromagerie autour des 3 piliers fondateurs.'],
-            [true, 'Notre phylosophie', $this->getReference('article_category-' . ArticleCategory::ARTICLE_BANDEAU), 'Notre production s\'organise dans le respect d\'une agriculture durable et la conservation des méthodes traditionnlles de fabrication. La totalité des fromages sont élaborés dans notre local'],
-            [true, 'Ma recette', $this->getReference('article_category-' . ArticleCategory::ARTICLE_RECIPE), 'Notre recette est ...'],
+            [true, 'Bienvenue au nouveau site de La Fromagerie du vignoble nantais', $this->getReference('article_category-'.ArticleCategory::ARTICLE_PRINCIPAL), 'Mon contenu est très limité'],
+            [true, 'Présentation de l\'entreprise', $this->getReference('article_category-'.ArticleCategory::ARTICLE_ENTERPRISE), 'La passion fait naître un métier : celui de producteur-fromager. C’est alors qu’ils initient la fromagerie autour des 3 piliers fondateurs.'],
+            [true, 'Notre phylosophie', $this->getReference('article_category-'.ArticleCategory::ARTICLE_BANDEAU), 'Notre production s\'organise dans le respect d\'une agriculture durable et la conservation des méthodes traditionnlles de fabrication. La totalité des fromages sont élaborés dans notre local'],
+            [true, 'Ma recette', $this->getReference('article_category-'.ArticleCategory::ARTICLE_RECIPE), 'Notre recette est ...'],
         ];
     }
 
@@ -392,13 +391,13 @@ class AppFixtures extends Fixture
             // $subcategoryData = [$name, $quantity, $description, $image, $isPurchase, $enabled, $createdAt, $updatedAt, $category, $subcategory, $packaging, $price, $refundable, $taxRate];
             ['Yaourt Nature', 10, '<p>Lait entier pasteurisé, puis réincorporation de ferments lactiques.</p><p><abbr TITLE="Date limite de consommation/Date limite d\'utilisation optimale">DLC/DLUO</abbr> : 20 jours</p>', 'yaourt-nature.jpg', true, true, new \DateTime('2017-05-28 21:32:23'), new \DateTime('2017-05-28 21:32:24'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), '25 cl', 0.74, 0.16, $this->getReference('tax-5.5')],
             ['Yaourt Fraise', 10, '<p>Pr&eacute;paration de fruits sur sucre &agrave; la fraise</p><p>DLC/DLUO : 20 jours</p>', 'yaourt-fraise.jpg', true, true, new \DateTime('2017-05-28 21:46:05'), new \DateTime('2017-05-28 21:46:05'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), '25 cl', 0.95, 0.16, $this->getReference('tax-5.5')],
-            ['Fromage Frais ail et fines herbes', 10, '<p>Enrobage d’épices déshydratées</p><p><abbr TITLE="Date limite de consommation/Date limite d\'utilisation optimale">DLC/DLUO</abbr> : 20 jours</p>', 'fromage-frais-ail-fines-herbes.jpg', true, true, new \DateTime('2017-06-01 20:56:19'), new \DateTime('2017-06-01 20:56:19'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), '160g à 180g', 2.95, NULL, $this->getReference('tax-5.5')],
-            ['Fromage Frais Estragon', 10, '<p>Enrobage d’épices déshydratées</p><p><abbr TITLE="Date limite de consommation/Date limite d\'utilisation optimale">DLC/DLUO</abbr> : 20 jours</p>', 'fromage-frais-estragon.jpg', true, true, new \DateTime('2017-06-01 21:14:59'), new \DateTime('2017-06-01 21:15:00'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), '160g à 180g', 2.95, NULL, $this->getReference('tax-5.5')],
-            ['Fromage Frais Cumin', 10, '<p>Enrobage d’épices déshydratées</p><p><abbr TITLE="Date limite de consommation/Date limite d\'utilisation optimale">DLC/DLUO</abbr> : 20 jours</p>', 'fromage-frais-cumin.jpg', true, true, new \DateTime('2017-06-01 21:15:46'), new \DateTime('2017-06-01 21:15:47'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), '160g à 180g', 2.95, NULL, $this->getReference('tax-5.5')],
-            ['Fromage Frais au cèpes', 10, '<p>Enrobage d’épices déshydratées</p><p><abbr TITLE="Date limite de consommation/Date limite d\'utilisation optimale">DLC/DLUO</abbr> : 20 jours</p>', 'fromage-frais-cepes.jpg', true, true, new \DateTime('2017-06-01 21:16:56'), new \DateTime('2017-06-01 21:16:56'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), '160g à 180g', 3.15, NULL, $this->getReference('tax-5.5')],
-            ['Fromage Frais au Poivre', 10, '<p>Enrobage d&rsquo;&eacute;pices d&eacute;shydrat&eacute;es</p><p>DLC/DLUO : 20 jours</p>', 'fromage-frais-poivre.jpg', true, true, new \DateTime('2017-06-01 21:17:37'), new \DateTime('2017-06-01 21:17:37'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), '160g à 180g', 2.95, NULL, $this->getReference('tax-5.5')],
-            ['Tomme des Allerons', 10, '<p>Lait entier cru maturé et caillé en cuve ; moulé puis affiné durant 2 mois minimum (période durant laquelle chaque Tome est frotté avec de l’eau, du sel et des ferments d’affinage). Poids final entre 1,6 kg et 2,5 kg.</p><p><abbr TITLE="Date limite de consommation/Date limite d\'utilisation optimale">DLC/DLUO</abbr> : 2 mois</p>', 'la-tomme-des-allerons.jpg', true, true, new \DateTime('2017-06-01 21:29:21'), new \DateTime('2017-06-01 21:29:23'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), 'Au kg', 20.60, NULL, $this->getReference('tax-5.5')],
-            ['Petit Rebignon', 10, '<p>Lait entier cru maturé et caillé en cuve ; moulé puis affiné durant 2 mois minimum (période durant laquelle chaque fromage est frotté avec de l’eau, du sel et des ferments d’affinage). Poids final entre 800 gr et 1,2 kg.</p><p><abbr TITLE="Date limite de consommation/Date limite d\'utilisation optimale">DLC/DLUO</abbr> : 2 mois</p>', 'le-ptit-rebignon.jpg', false, true, new \DateTime('2017-06-01 21:30:15'), new \DateTime('2017-06-01 21:30:15'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), 'Au kg', 17.60, NULL, $this->getReference('tax-5.5')],
+            ['Fromage Frais ail et fines herbes', 10, '<p>Enrobage d’épices déshydratées</p><p><abbr TITLE="Date limite de consommation/Date limite d\'utilisation optimale">DLC/DLUO</abbr> : 20 jours</p>', 'fromage-frais-ail-fines-herbes.jpg', true, true, new \DateTime('2017-06-01 20:56:19'), new \DateTime('2017-06-01 20:56:19'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), '160g à 180g', 2.95, null, $this->getReference('tax-5.5')],
+            ['Fromage Frais Estragon', 10, '<p>Enrobage d’épices déshydratées</p><p><abbr TITLE="Date limite de consommation/Date limite d\'utilisation optimale">DLC/DLUO</abbr> : 20 jours</p>', 'fromage-frais-estragon.jpg', true, true, new \DateTime('2017-06-01 21:14:59'), new \DateTime('2017-06-01 21:15:00'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), '160g à 180g', 2.95, null, $this->getReference('tax-5.5')],
+            ['Fromage Frais Cumin', 10, '<p>Enrobage d’épices déshydratées</p><p><abbr TITLE="Date limite de consommation/Date limite d\'utilisation optimale">DLC/DLUO</abbr> : 20 jours</p>', 'fromage-frais-cumin.jpg', true, true, new \DateTime('2017-06-01 21:15:46'), new \DateTime('2017-06-01 21:15:47'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), '160g à 180g', 2.95, null, $this->getReference('tax-5.5')],
+            ['Fromage Frais au cèpes', 10, '<p>Enrobage d’épices déshydratées</p><p><abbr TITLE="Date limite de consommation/Date limite d\'utilisation optimale">DLC/DLUO</abbr> : 20 jours</p>', 'fromage-frais-cepes.jpg', true, true, new \DateTime('2017-06-01 21:16:56'), new \DateTime('2017-06-01 21:16:56'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), '160g à 180g', 3.15, null, $this->getReference('tax-5.5')],
+            ['Fromage Frais au Poivre', 10, '<p>Enrobage d&rsquo;&eacute;pices d&eacute;shydrat&eacute;es</p><p>DLC/DLUO : 20 jours</p>', 'fromage-frais-poivre.jpg', true, true, new \DateTime('2017-06-01 21:17:37'), new \DateTime('2017-06-01 21:17:37'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), '160g à 180g', 2.95, null, $this->getReference('tax-5.5')],
+            ['Tomme des Allerons', 10, '<p>Lait entier cru maturé et caillé en cuve ; moulé puis affiné durant 2 mois minimum (période durant laquelle chaque Tome est frotté avec de l’eau, du sel et des ferments d’affinage). Poids final entre 1,6 kg et 2,5 kg.</p><p><abbr TITLE="Date limite de consommation/Date limite d\'utilisation optimale">DLC/DLUO</abbr> : 2 mois</p>', 'la-tomme-des-allerons.jpg', true, true, new \DateTime('2017-06-01 21:29:21'), new \DateTime('2017-06-01 21:29:23'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), 'Au kg', 20.60, null, $this->getReference('tax-5.5')],
+            ['Petit Rebignon', 10, '<p>Lait entier cru maturé et caillé en cuve ; moulé puis affiné durant 2 mois minimum (période durant laquelle chaque fromage est frotté avec de l’eau, du sel et des ferments d’affinage). Poids final entre 800 gr et 1,2 kg.</p><p><abbr TITLE="Date limite de consommation/Date limite d\'utilisation optimale">DLC/DLUO</abbr> : 2 mois</p>', 'le-ptit-rebignon.jpg', false, true, new \DateTime('2017-06-01 21:30:15'), new \DateTime('2017-06-01 21:30:15'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), 'Au kg', 17.60, null, $this->getReference('tax-5.5')],
             ['Fromage Blanc 20% MG', 10, '<p>Lait demi-&eacute;cr&eacute;m&eacute; cru.</p><p>DLC/DLUO : 15 jours</p>', 'fromage-blanc-20.jpg', true, true, new \DateTime('2017-06-01 21:32:01'), new \DateTime('2017-06-01 21:32:02'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), '400g', 3.34, 0.34, $this->getReference('tax-5.5')],
             ['Fromage Blanc 0% MG', 10, '<p>Lait totalement &eacute;cr&eacute;m&eacute; cru.</p><p>DLC/DLUO : 15 jours</p>', 'fromage-blanc-0.jpg', true, true, new \DateTime('2017-06-01 21:33:17'), new \DateTime('2017-06-01 21:33:18'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), '400g', 3.24, 0.34, $this->getReference('tax-5.5')],
             ['Yaourt Abricot', 10, '<p>Préparation de fruits sur sucre à l\'abricot</p><p><abbr TITLE="Date limite de consommation/Date limite d\'utilisation optimale">DLC/DLUO</abbr> : 20 jours</p>', 'yaourt-abricot.jpg', true, true, new \DateTime('2017-06-01 21:34:38'), new \DateTime('2017-06-01 21:34:38'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), '25cl', 0.95, 0.16, $this->getReference('tax-5.5')],
@@ -407,7 +406,7 @@ class AppFixtures extends Fixture
             ['Lait Cru (1L)', 10, '<p>Lait sans aucun traitement thermique, flore microbienne intacte&nbsp;; pas de standardisation (mati&egrave;re grasse, prot&eacute;ine et lactose)</p><p>DLC/DLUO : 5 jours</p>', 'lait-cru-1l.jpg', true, true, new \DateTime('2017-06-01 21:38:46'), new \DateTime('2017-06-01 21:38:47'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), '1L', 1.30, 0.45, $this->getReference('tax-5.5')],
             ['Crème crue', 0, '<p>Cr&egrave;me sans traitement thermique&hellip;</p><p>DLC/DLUO : 8 jours</p>', 'creme-crue.jpg', true, true, new \DateTime('2017-06-02 16:45:04'), new \DateTime('2017-06-02 16:45:05'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), '200g', 2.22, 0.32, $this->getReference('tax-5.5')],
             ['Fromage blanc 40% MG', 10, '<p>Lait entier cru, matur&eacute; et caill&eacute; (pr&eacute;sure), puis &eacute;goutt&eacute; en toile (reste un peu plus de 40% du poids de d&eacute;part : &eacute;limination de l&rsquo;eau)</p><p>DLC/DLUO : 15 jours</p>', 'fromage-blanc-40.jpg', true, true, new \DateTime('2017-07-28 01:01:00'), new \DateTime('2017-07-28 01:01:00'), $this->getReference('category-Produit laitier'), $this->getReference('subcategory-lait de vache'), '400g', 3.29, 0.34, $this->getReference('tax-5.5')],
-            ['Bière de Noël', 10, 'Ma description', NULL, true, false, new \DateTime('2017-07-28 01:01:00'), new \DateTime('2017-07-28 01:01:00'), $this->getReference('category-Bière'), NULL, '75cl', 5.00, NULL, $this->getReference('tax-20')]
+            ['Bière de Noël', 10, 'Ma description', null, true, false, new \DateTime('2017-07-28 01:01:00'), new \DateTime('2017-07-28 01:01:00'), $this->getReference('category-Bière'), null, '75cl', 5.00, null, $this->getReference('tax-20')],
         ];
     }
 
@@ -417,28 +416,27 @@ class AppFixtures extends Fixture
             // $orderData = [$deliveryDate, $comment, $createdAt, $buyer]
             [
                 [new \DateTime('2017-06-01 20:56:19'), 'Commande à recevoir en fin de journée', new \DateTime('2017-12-06 14:50:36'), $this->getReference('jane_admin@symfony.com')],
-                [new \DateTime('2017-06-02 21:56:19'), null, new \DateTime('2017-12-06 14:50:36'), $this->getReference('jane_admin@symfony.com')]
+                [new \DateTime('2017-06-02 21:56:19'), null, new \DateTime('2017-12-06 14:50:36'), $this->getReference('jane_admin@symfony.com')],
             ];
     }
 
     private function getItemData(): array
     {
         $items = [];
-        $countProduct = count($this->getProductData()) - 1;
-        $nbItems = mt_rand (1, $countProduct);
+        $countProduct = \count($this->getProductData()) - 1;
+        $nbItems = mt_rand(1, $countProduct);
 
-        for ($x = 0; $x <= $nbItems; $x++) {
+        for ($x = 0; $x <= $nbItems; ++$x) {
             // $itemData = [$quantity, $taxRate, $product];
             $items[] = [
-                mt_rand (0, 10),
+                mt_rand(0, 10),
                 $this->getReference('tax-5.5'),
-                $this->getReference('product-'. mt_rand (0, $countProduct))
+                $this->getReference('product-'.mt_rand(0, $countProduct)),
             ];
         }
 
         return $items;
     }
-
 
     private function getTagData(): array
     {
@@ -465,7 +463,7 @@ class AppFixtures extends Fixture
                 Slugger::slugify($title),
                 $this->getRandomText(),
                 $this->getPostContent(),
-                new \DateTime('now - ' . $i . 'days'),
+                new \DateTime('now - '.$i.'days'),
                 // Ensure that the first post is written by Jane Doe to simplify tests
                 $this->getReference(['jane_admin', 'tom_admin'][0 === $i ? 0 : random_int(0, 1)]),
                 $this->getRandomTags(),
@@ -516,7 +514,7 @@ class AppFixtures extends Fixture
         $phrases = $this->getPhrases();
         shuffle($phrases);
 
-        while (mb_strlen($text = implode('. ', $phrases) . '.') > $maxLength) {
+        while (mb_strlen($text = implode('. ', $phrases).'.') > $maxLength) {
             array_pop($phrases);
         }
 
@@ -567,16 +565,17 @@ MARKDOWN;
     {
         $tagNames = $this->getTagData();
         shuffle($tagNames);
-        $selectedTags = array_slice($tagNames, 0, random_int(2, 4));
+        $selectedTags = \array_slice($tagNames, 0, random_int(2, 4));
 
         return array_map(function ($tagName) {
-            return $this->getReference('tag-' . $tagName);
+            return $this->getReference('tag-'.$tagName);
         }, $selectedTags);
     }
 
-
-    private function frand($min, $max, $decimals = 0) {
+    private function frand($min, $max, $decimals = 0)
+    {
         $scale = pow(10, $decimals);
+
         return mt_rand($min * $scale, $max * $scale) / $scale;
     }
 }

@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the lfdvn package.
+ *
+ * (c) Pierre François
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
@@ -9,7 +18,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * User
+ * User.
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_8D93D649E7927C74", columns={"email"})})
  * @ORM\Entity
@@ -18,16 +27,18 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User implements UserInterface, \Serializable
 {
     /**
-     * Name of user role
+     * Name of user role.
+     *
      * @var string
      */
-    const ROLE_USER = "ROLE_USER";
+    const ROLE_USER = 'ROLE_USER';
 
     /**
-     * Name of admin role
+     * Name of admin role.
+     *
      * @var string
      */
-    const ROLE_ADMIN = "ROLE_ADMIN";
+    const ROLE_ADMIN = 'ROLE_ADMIN';
 
     /**
      * @var int
@@ -56,7 +67,6 @@ class User implements UserInterface, \Serializable
 
     /**
      * @var string
-     *
      */
     private $plainPassword;
 
@@ -112,7 +122,7 @@ class User implements UserInterface, \Serializable
     public function __construct()
     {
         $this->purchases = new ArrayCollection();
-        $this->roles = array('ROLE_USER');
+        $this->roles = ['ROLE_USER'];
         $this->enabled = true;
     }
 
@@ -155,6 +165,7 @@ class User implements UserInterface, \Serializable
 
     /**
      * @param string $plainPassword
+     *
      * @return User
      */
     public function setPlainPassword(string $plainPassword): self
@@ -280,12 +291,12 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Get String information of user
+     * Get String information of user.
      *
      * @return string Name of user
      */
     public function __toString(): string
     {
-        return $this->getLastname() . " " . $this->getFirstname();
+        return $this->getLastname().' '.$this->getFirstname();
     }
 }

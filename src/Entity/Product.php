@@ -1,5 +1,14 @@
 <?php
 
+/*
+ * This file is part of the lfdvn package.
+ *
+ * (c) Pierre François
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -7,7 +16,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * Product
+ * Product.
  *
  * @ORM\Table(name="product", indexes={@ORM\Index(name="tax_rate_id", columns={"tax_rate_id"}), @ORM\Index(name="subcategory_id", columns={"subcategory_id"}), @ORM\Index(name="IDX_D34A04AD12469DE2", columns={"category_id"})})
  * @ORM\Entity
@@ -16,10 +25,10 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 class Product
 {
     /**
-     * Element number per page
+     * Element number per page.
      */
     const NUM_ITEMS = 10;
-    
+
     /**
      * @var int
      *
@@ -59,6 +68,7 @@ class Product
 
     /**
      * @Vich\UploadableField(mapping="product_images", fileNameProperty="image")
+     *
      * @var File
      */
     private $imageFile;
@@ -155,7 +165,8 @@ class Product
     }
 
     /**
-     * Get id
+     * Get id.
+     *
      * @return int|null
      */
     public function getId(): ?int
@@ -164,7 +175,8 @@ class Product
     }
 
     /**
-     * Get name
+     * Get name.
+     *
      * @return null|string
      */
     public function getName(): ?string
@@ -173,8 +185,10 @@ class Product
     }
 
     /**
-     * Set name
+     * Set name.
+     *
      * @param string $name
+     *
      * @return Product
      */
     public function setName(string $name): self
@@ -185,7 +199,8 @@ class Product
     }
 
     /**
-     * Get quantity
+     * Get quantity.
+     *
      * @return int|null
      */
     public function getQuantity(): ?int
@@ -194,8 +209,10 @@ class Product
     }
 
     /**
-     * Set quantity
+     * Set quantity.
+     *
      * @param int $quantity
+     *
      * @return Product
      */
     public function setQuantity(int $quantity): self
@@ -206,7 +223,8 @@ class Product
     }
 
     /**
-     * Get description
+     * Get description.
+     *
      * @return null|string
      */
     public function getDescription(): ?string
@@ -215,8 +233,10 @@ class Product
     }
 
     /**
-     * Set description
+     * Set description.
+     *
      * @param string $description
+     *
      * @return Product
      */
     public function setDescription(string $description): self
@@ -227,7 +247,8 @@ class Product
     }
 
     /**
-     * Get image
+     * Get image.
+     *
      * @return string
      */
     public function getImage(): ?string
@@ -236,8 +257,10 @@ class Product
     }
 
     /**
-     * Set image
+     * Set image.
+     *
      * @param string $image
+     *
      * @return Product
      */
     public function setImage(?string $image): self
@@ -247,9 +270,9 @@ class Product
         return $this;
     }
 
-
     /**
-     * Get imageFile
+     * Get imageFile.
+     *
      * @return string
      */
     public function getImageFile()
@@ -258,8 +281,10 @@ class Product
     }
 
     /**
-     * Set ImageFile
+     * Set ImageFile.
+     *
      * @param string $image
+     *
      * @return Product
      */
     public function setImageFile($image = null): self
@@ -279,7 +304,8 @@ class Product
     }
 
     /**
-     * Get isPurchase
+     * Get isPurchase.
+     *
      * @return bool|null
      */
     public function getIsPurchase(): ?bool
@@ -288,8 +314,10 @@ class Product
     }
 
     /**
-     * Set isPurchase
+     * Set isPurchase.
+     *
      * @param bool $isPurchase
+     *
      * @return Product
      */
     public function setIsPurchase(bool $isPurchase): self
@@ -300,7 +328,8 @@ class Product
     }
 
     /**
-     * Get enabled
+     * Get enabled.
+     *
      * @return bool|null
      */
     public function getEnabled(): ?bool
@@ -309,8 +338,10 @@ class Product
     }
 
     /**
-     * Set enabled
+     * Set enabled.
+     *
      * @param bool $enabled
+     *
      * @return Product
      */
     public function setEnabled(bool $enabled): self
@@ -321,7 +352,8 @@ class Product
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
+     *
      * @return \DateTimeInterface|null
      */
     public function getCreatedAt(): ?\DateTimeInterface
@@ -330,8 +362,10 @@ class Product
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
+     *
      * @param \DateTimeInterface $createdAt
+     *
      * @return Product
      */
     public function setCreatedAt(\DateTimeInterface $createdAt): self
@@ -342,7 +376,8 @@ class Product
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
+     *
      * @return \DateTimeInterface|null
      */
     public function getUpdatedAt(): ?\DateTimeInterface
@@ -351,8 +386,10 @@ class Product
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
+     *
      * @param \DateTimeInterface|null $updatedAt
+     *
      * @return Product
      */
     public function setUpdatedAt(?\DateTimeInterface $updatedAt): self
@@ -363,7 +400,8 @@ class Product
     }
 
     /**
-     * Get packaging
+     * Get packaging.
+     *
      * @return null|string
      */
     public function getPackaging(): ?string
@@ -372,8 +410,10 @@ class Product
     }
 
     /**
-     * Set packaging
+     * Set packaging.
+     *
      * @param null|string $packaging
+     *
      * @return Product
      */
     public function setPackaging(?string $packaging): self
@@ -384,7 +424,8 @@ class Product
     }
 
     /**
-     * Get price
+     * Get price.
+     *
      * @return string
      */
     public function getPrice()
@@ -393,8 +434,10 @@ class Product
     }
 
     /**
-     * Set price
+     * Set price.
+     *
      * @param $price
+     *
      * @return Product
      */
     public function setPrice($price): self
@@ -405,7 +448,8 @@ class Product
     }
 
     /**
-     * Get refundable
+     * Get refundable.
+     *
      * @return null|string
      */
     public function getRefundable()
@@ -414,8 +458,10 @@ class Product
     }
 
     /**
-     * Set refundable
+     * Set refundable.
+     *
      * @param $refundable
+     *
      * @return Product
      */
     public function setRefundable($refundable): self
@@ -426,7 +472,8 @@ class Product
     }
 
     /**
-     * Get category
+     * Get category.
+     *
      * @return Category|null
      */
     public function getCategory(): ?Category
@@ -435,8 +482,10 @@ class Product
     }
 
     /**
-     * Set category
+     * Set category.
+     *
      * @param Category|null $category
+     *
      * @return Product
      */
     public function setCategory(?Category $category): self
@@ -447,7 +496,8 @@ class Product
     }
 
     /**
-     * Get subcategory
+     * Get subcategory.
+     *
      * @return Subcategory|null
      */
     public function getSubcategory(): ?Subcategory
@@ -456,8 +506,10 @@ class Product
     }
 
     /**
-     * Set subcategory
+     * Set subcategory.
+     *
      * @param Subcategory|null $subcategory
+     *
      * @return Product
      */
     public function setSubcategory(?Subcategory $subcategory): self
@@ -468,7 +520,8 @@ class Product
     }
 
     /**
-     * Get taxRate
+     * Get taxRate.
+     *
      * @return TaxRate|null
      */
     public function getTaxRate(): ?TaxRate
@@ -477,8 +530,10 @@ class Product
     }
 
     /**
-     * Set taxRate
+     * Set taxRate.
+     *
      * @param TaxRate|null $taxRate
+     *
      * @return Product
      */
     public function setTaxRate(?TaxRate $taxRate): self
@@ -489,7 +544,7 @@ class Product
     }
 
     /**
-     * Get String information of product
+     * Get String information of product.
      *
      * @return string Name of product
      */
@@ -499,8 +554,10 @@ class Product
     }
 
     /**
-     * Replace filename for validation
+     * Replace filename for validation.
+     *
      * @param string $originFilename origin of filename
+     *
      * @return string valid filename
      */
     private function getValidFilename(string $originFilename): string

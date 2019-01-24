@@ -1,11 +1,20 @@
 <?php
 
+/*
+ * This file is part of the lfdvn package.
+ *
+ * (c) Pierre François
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ArticleCategory
+ * ArticleCategory.
  *
  * @ORM\Table(name="article_category")
  * @ORM\Entity
@@ -13,22 +22,22 @@ use Doctrine\ORM\Mapping as ORM;
 class ArticleCategory
 {
     /**
-     * Element number per page
+     * Element number per page.
      */
     const ARTICLE_PRINCIPAL = 1;
 
     /**
-     * Element number per page
+     * Element number per page.
      */
     const ARTICLE_ENTERPRISE = 2;
 
     /**
-     * Element number per page
+     * Element number per page.
      */
     const ARTICLE_BANDEAU = 3;
-    
+
     /**
-     * Id of recipe article
+     * Id of recipe article.
      */
     const ARTICLE_RECIPE = 4;
 
@@ -49,7 +58,7 @@ class ArticleCategory
     private $name;
 
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -59,7 +68,7 @@ class ArticleCategory
     }
 
     /**
-     * Set id
+     * Set id.
      *
      * @param int $id
      *
@@ -73,7 +82,7 @@ class ArticleCategory
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -83,7 +92,7 @@ class ArticleCategory
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -97,13 +106,12 @@ class ArticleCategory
     }
 
     /**
-     * Get String information of article category
+     * Get String information of article category.
      *
      * @return string Name of article category
      */
     public function __toString()
     {
-      return $this->getName();
+        return $this->getName();
     }
-
 }

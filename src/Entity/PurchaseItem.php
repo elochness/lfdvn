@@ -1,11 +1,20 @@
 <?php
 
+/*
+ * This file is part of the lfdvn package.
+ *
+ * (c) Pierre François
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * PurchaseItem
+ * PurchaseItem.
  *
  * @ORM\Table(name="purchase_item", indexes={@ORM\Index(name="IDX_6FA8ED7D4584665A", columns={"product_id"}), @ORM\Index(name="IDX_6FA8ED7D558FBEB9", columns={"purchase_id"})})
  * @ORM\Entity
@@ -63,7 +72,7 @@ class PurchaseItem
     private $purchase;
 
     /**
-     * Get String information of purchase item
+     * Get String information of purchase item.
      *
      * @return string purchase item
      */
@@ -71,14 +80,14 @@ class PurchaseItem
     {
         if (isset($this->product)) {
             return $this->product->getName();
-        } else {
-            // TODO change string in constant
-            return "Non défini";
         }
+        // TODO change string in constant
+        return 'Non défini';
     }
 
     /**
-     * Get id
+     * Get id.
+     *
      * @return int|null
      */
     public function getId(): ?int
@@ -87,7 +96,8 @@ class PurchaseItem
     }
 
     /**
-     * Get quantity
+     * Get quantity.
+     *
      * @return int|null
      */
     public function getQuantity(): ?int
@@ -96,8 +106,10 @@ class PurchaseItem
     }
 
     /**
-     * Set quantity
+     * Set quantity.
+     *
      * @param int $quantity
+     *
      * @return PurchaseItem
      */
     public function setQuantity(int $quantity): self
@@ -108,7 +120,8 @@ class PurchaseItem
     }
 
     /**
-     * Get price
+     * Get price.
+     *
      * @return float|null
      */
     public function getPrice(): ?float
@@ -117,8 +130,10 @@ class PurchaseItem
     }
 
     /**
-     * Set price
+     * Set price.
+     *
      * @param float $price
+     *
      * @return PurchaseItem
      */
     public function setPrice(float $price): self
@@ -129,7 +144,8 @@ class PurchaseItem
     }
 
     /**
-     * Get taxRate
+     * Get taxRate.
+     *
      * @return float|null
      */
     public function getTaxRate(): ?float
@@ -138,8 +154,10 @@ class PurchaseItem
     }
 
     /**
-     * Set taxRate
+     * Set taxRate.
+     *
      * @param float $taxRate
+     *
      * @return PurchaseItem
      */
     public function setTaxRate(float $taxRate): self
@@ -150,7 +168,8 @@ class PurchaseItem
     }
 
     /**
-     * Get product
+     * Get product.
+     *
      * @return Product|null
      */
     public function getProduct(): ?Product
@@ -159,8 +178,10 @@ class PurchaseItem
     }
 
     /**
-     * Set product
+     * Set product.
+     *
      * @param Product|null $product
+     *
      * @return PurchaseItem
      */
     public function setProduct(?Product $product): self
@@ -171,7 +192,8 @@ class PurchaseItem
     }
 
     /**
-     * Get getPurchase
+     * Get getPurchase.
+     *
      * @return Purchase|null
      */
     public function getPurchase(): ?Purchase
@@ -180,8 +202,10 @@ class PurchaseItem
     }
 
     /**
-     * Set getPurchase
+     * Set getPurchase.
+     *
      * @param Purchase|null $purchase
+     *
      * @return PurchaseItem
      */
     public function setPurchase(?Purchase $purchase): self
@@ -200,6 +224,4 @@ class PurchaseItem
     {
         return $this->product->getPrice() * $this->quantity;
     }
-
-
 }

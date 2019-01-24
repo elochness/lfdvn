@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Symfony package.
+ * This file is part of the lfdvn package.
  *
- * (c) Fabien Potencier <fabien@symfony.com>
+ * (c) Pierre François
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -44,6 +44,17 @@ class DefaultControllerTest extends WebTestCase
             $client->getResponse()->getStatusCode(),
             sprintf('The %s public URL loads correctly.', $url)
         );
+    }
+
+    public function testShowRecettes()
+    {
+        $client = static::createClient();
+
+        $client->request('GET', '/fr/recettes');
+
+        dump($client->getResponse());
+
+        $this->assertSame(200, $client->getResponse()->getStatusCode());
     }
 
     /**

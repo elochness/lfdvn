@@ -1,14 +1,23 @@
 <?php
 
+/*
+ * This file is part of the lfdvn package.
+ *
+ * (c) Pierre François
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
- * Category
+ * Category.
  *
  * @ORM\Table(name="category")
  * @ORM\Entity
@@ -41,6 +50,7 @@ class Category
 
     /**
      * @Vich\UploadableField(mapping="category_images", fileNameProperty="image")
+     *
      * @var File
      */
     private $imageFile;
@@ -60,12 +70,11 @@ class Category
     private $updatedAt;
 
     /**
-     * 
      * @var Subcategory[]
      * @ORM\OneToMany(targetEntity="Subcategory", mappedBy="category")
      */
     private $subcategories;
-    
+
     /**
      * @var ?Product[]
      * @ORM\OneToMany(targetEntity="Product", mappedBy="category")
@@ -83,7 +92,7 @@ class Category
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -93,7 +102,7 @@ class Category
     }
 
     /**
-     * Get name
+     * Get name.
      *
      * @return string
      */
@@ -103,7 +112,7 @@ class Category
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
      *
@@ -117,7 +126,7 @@ class Category
     }
 
     /**
-     * Get image
+     * Get image.
      *
      * @return string
      */
@@ -127,7 +136,7 @@ class Category
     }
 
     /**
-     * Set image
+     * Set image.
      *
      * @param string $image
      *
@@ -141,7 +150,7 @@ class Category
     }
 
     /**
-     * Get imageFile
+     * Get imageFile.
      *
      * @return string
      */
@@ -151,7 +160,7 @@ class Category
     }
 
     /**
-     * Set imageFile
+     * Set imageFile.
      *
      * @param string $image
      *
@@ -169,11 +178,13 @@ class Category
             // if 'updatedAt' is not defined in your entity, use another property
             $this->updatedAt = new \DateTime('now');
         }
+
         return $this;
     }
 
     /**
-     * Get all subcategories
+     * Get all subcategories.
+     *
      * @return Subcategory[]
      */
     public function getSubcategories()
@@ -182,7 +193,7 @@ class Category
     }
 
     /**
-     * Get enabled
+     * Get enabled.
      *
      * @return bool
      */
@@ -192,7 +203,7 @@ class Category
     }
 
     /**
-     * Set enabled
+     * Set enabled.
      *
      * @param bool $enabled
      *
@@ -206,7 +217,7 @@ class Category
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
      * @return \DateTimeInterface
      */
@@ -216,7 +227,7 @@ class Category
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
      * @param \DateTimeInterface $updatedAt
      *
@@ -229,29 +240,30 @@ class Category
         return $this;
     }
 
-    
     /**
-     * Get String information of category
+     * Get String information of category.
      *
      * @return string Name of category
      */
     public function __toString()
     {
-      return $this->getName();
+        return $this->getName();
     }
 
     /**
-     * Set all subcategories
+     * Set all subcategories.
+     *
      * @param $subcategories
+     *
      * @return mixed
      */
     public function setSubcategories($subcategories)
     {
         return $this->subcategories = $subcategories;
     }
-    
+
     /**
-     * Add subcategory
+     * Add subcategory.
      *
      * @param Subcategory $subcategory
      *
@@ -259,23 +271,23 @@ class Category
      */
     public function addSubcategories(Subcategory $subcategory)
     {
-    	$this->subcategories[] = $subcategory;
-    
-    	return $this;
+        $this->subcategories[] = $subcategory;
+
+        return $this;
     }
-    
+
     /**
-     * Remove subcategory
+     * Remove subcategory.
      *
      * @param Subcategory $subcategory
      */
     public function removeSubcategories(Subcategory $subcategory)
     {
-    	$this->subcategories->removeElement($subcategory);
+        $this->subcategories->removeElement($subcategory);
     }
 
     /**
-     * Get all products
+     * Get all products.
      */
     public function getProducts()
     {
@@ -283,8 +295,10 @@ class Category
     }
 
     /**
-     * Set all products
+     * Set all products.
+     *
      * @param $products
+     *
      * @return Category
      */
     public function setProducts($products): self
@@ -293,9 +307,9 @@ class Category
 
         return $this;
     }
-    
+
     /**
-     * Add product
+     * Add product.
      *
      * @param Product $product
      *
@@ -303,20 +317,18 @@ class Category
      */
     public function addProduct(Product $product): self
     {
-    	$this->products[] = $product;
-    
-    	return $this;
+        $this->products[] = $product;
+
+        return $this;
     }
-    
+
     /**
-     * Remove product
+     * Remove product.
      *
      * @param Product $product
      */
     public function removeProduct(Product $product)
     {
-    	$this->products->removeElement($product);
+        $this->products->removeElement($product);
     }
-
-
 }

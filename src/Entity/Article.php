@@ -1,11 +1,20 @@
 <?php
 
+/*
+ * This file is part of the lfdvn package.
+ *
+ * (c) Pierre François
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Article
+ * Article.
  *
  * @ORM\Table(name="article", indexes={@ORM\Index(name="article_category_id", columns={"article_category_id"})})
  * @ORM\Entity
@@ -13,7 +22,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Article
 {
     /**
-     * Element number per page
+     * Element number per page.
      */
     const NUM_ITEMS = 5;
 
@@ -83,7 +92,7 @@ class Article
     }
 
     /**
-     * Get id
+     * Get id.
      *
      * @return int
      */
@@ -93,7 +102,7 @@ class Article
     }
 
     /**
-     * Get title
+     * Get title.
      *
      * @return string
      */
@@ -103,7 +112,7 @@ class Article
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
      *
@@ -117,7 +126,7 @@ class Article
     }
 
     /**
-     * Get contains
+     * Get contains.
      *
      * @return string
      */
@@ -127,7 +136,7 @@ class Article
     }
 
     /**
-     * Set contains
+     * Set contains.
      *
      * @param string $contains
      *
@@ -141,7 +150,7 @@ class Article
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
      *
      * @return \DateTime
      */
@@ -151,7 +160,7 @@ class Article
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
      *
      * @param \DateTime $createdAt
      *
@@ -165,7 +174,7 @@ class Article
     }
 
     /**
-     * Get updatedAt
+     * Get updatedAt.
      *
      * @return \DateTime
      */
@@ -175,7 +184,7 @@ class Article
     }
 
     /**
-     * Set updatedAt
+     * Set updatedAt.
      *
      * @param \DateTime $updatedAt
      *
@@ -189,7 +198,7 @@ class Article
     }
 
     /**
-     * Get enabled
+     * Get enabled.
      *
      * @return bool
      */
@@ -199,7 +208,7 @@ class Article
     }
 
     /**
-     * Set enabled
+     * Set enabled.
      *
      * @param bool $enabled
      *
@@ -213,7 +222,7 @@ class Article
     }
 
     /**
-     * Get articleCategory
+     * Get articleCategory.
      *
      * @return \ArticleCategory
      */
@@ -223,7 +232,7 @@ class Article
     }
 
     /**
-     * Set articleCategory
+     * Set articleCategory.
      *
      * @param \ArticleCategory $articleCategory
      *
@@ -235,6 +244,4 @@ class Article
 
         return $this;
     }
-
-
 }

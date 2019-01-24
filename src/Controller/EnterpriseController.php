@@ -1,13 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: INUFRAP
- * Date: 18/07/2018
- * Time: 15:19
+
+/*
+ * This file is part of the lfdvn package.
+ *
+ * (c) Pierre François
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace App\Controller;
-
 
 use App\Entity\EnterpriseDetails;
 use App\Entity\Schedule;
@@ -18,7 +20,6 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class EnterpriseController extends AbstractController
 {
-
     /**
      * @Route({
      *     "fr": "/a-propos",
@@ -43,8 +44,7 @@ class EnterpriseController extends AbstractController
         $schedule = $repository->find(1);
 
         return $this->render('enterprise/_schedule.html.twig', [
-            'schedule' => $schedule
+            'schedule' => $schedule,
         ]);
     }
-
 }

@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Symfony package.
+ * This file is part of the lfdvn package.
  *
- * (c) Fabien Potencier <fabien@symfony.com>
+ * (c) Pierre François
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -29,30 +29,29 @@ class SecurityController extends AbstractController
 {
     /**
      * @Route("/login", name="security_login")
+     *
      * @param AuthenticationUtils $helper
-     * @param UserInterface|null $user
+     * @param UserInterface|null  $user
+     *
      * @return Response
      */
     public function login(AuthenticationUtils $helper, UserInterface $user = null): Response
     {
         // Check if user has admin role
-        if ($user != null && in_array(User::ROLE_ADMIN, $user->getRoles()))
-        {
+        if (null !== $user && \in_array(User::ROLE_ADMIN, $user->getRoles(), true)) {
             return $this->redirectToRoute('easyadmin');
         }
         // Check if user has user role
-        else if ($user != null && in_array(User::ROLE_USER, $user->getRoles()))
-        {
+        elseif (null !== $user && \in_array(User::ROLE_USER, $user->getRoles(), true)) {
             return $this->redirectToRoute('user_account');
         }
-        else {
-            return $this->render('security/login.html.twig', [
+
+        return $this->render('security/login.html.twig', [
                 // last username entered by the user (if any)
                 'last_username' => $helper->getLastUsername(),
                 // last authentication error (if any)
                 'error' => $helper->getLastAuthenticationError(),
             ]);
-        }
     }
 
     /**
