@@ -29,7 +29,7 @@ class ArticleControllerTest extends WebTestCase
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/');
-
+        var_dump($crawler);
         $this->assertCount(
             1,
             $crawler->filter('article-large'),

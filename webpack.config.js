@@ -1,4 +1,4 @@
-let Encore = require('@symfony/webpack-encore');
+var Encore = require('@symfony/webpack-encore');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 Encore

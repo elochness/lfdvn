@@ -52,7 +52,7 @@ class DefaultControllerTest extends WebTestCase
 
         $client->request('GET', '/fr/recettes');
 
-        dump($client->getResponse());
+        var_dump($client->getResponse());
 
         $this->assertSame(200, $client->getResponse()->getStatusCode());
     }

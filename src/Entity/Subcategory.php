@@ -11,6 +11,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -67,6 +68,7 @@ class Subcategory
     public function __construct()
     {
         $this->enabled = true;
+        $this->products = new ArrayCollection();
     }
 
     /**
@@ -156,7 +158,7 @@ class Subcategory
      *
      * @return Product[]
      */
-    public function getProducts(): ?object
+    public function getProducts()
     {
         return $this->products;
     }
