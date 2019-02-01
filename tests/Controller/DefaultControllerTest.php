@@ -46,17 +46,6 @@ class DefaultControllerTest extends WebTestCase
         );
     }
 
-    public function testShowRecettes()
-    {
-        $client = static::createClient();
-
-        $client->request('GET', '/fr/recettes');
-
-        var_dump($client->getResponse());
-
-        $this->assertSame(200, $client->getResponse()->getStatusCode());
-    }
-
     /**
      * A good practice for tests is to not use the service container, to make
      * them more robust. However, in this example we must access to the container
@@ -100,8 +89,8 @@ class DefaultControllerTest extends WebTestCase
         yield ['/'];
         yield ['/fr/produits/'];
         yield ['/fr/recettes'];
-        yield ['/fr/commande/etape1'];
-        yield ['/fr/commande/etape2'];
+        //yield ['/fr/commande/etape1'];
+        //yield ['/fr/commande/etape2'];
         yield ['/fr/entreprise'];
         yield ['/fr/a-propos'];
         yield ['/fr/login'];
