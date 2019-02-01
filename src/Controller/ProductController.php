@@ -97,7 +97,7 @@ class ProductController extends AbstractController
      * @param $params
      * @param $categories
      *
-     * @return null|string
+     * @return string|null
      */
     private function getCategoryName($params, $categories): ?string
     {
@@ -132,7 +132,7 @@ class ProductController extends AbstractController
      *
      * @param string $categoryName category to plural
      *
-     * @return null|string category with plural
+     * @return string|null category with plural
      */
     private function getCategoryPluralName($categoryName): ?string
     {

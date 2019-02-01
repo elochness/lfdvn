@@ -177,7 +177,7 @@ class Product
     /**
      * Get name.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getName(): ?string
     {
@@ -225,7 +225,7 @@ class Product
     /**
      * Get description.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getDescription(): ?string
     {
@@ -402,7 +402,7 @@ class Product
     /**
      * Get packaging.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getPackaging(): ?string
     {
@@ -412,7 +412,7 @@ class Product
     /**
      * Set packaging.
      *
-     * @param null|string $packaging
+     * @param string|null $packaging
      *
      * @return Product
      */
@@ -450,7 +450,7 @@ class Product
     /**
      * Get refundable.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getRefundable()
     {

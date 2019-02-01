@@ -122,7 +122,7 @@ class Schedule
     /**
      * Get monday.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getMonday(): ?string
     {
@@ -146,7 +146,7 @@ class Schedule
     /**
      * Get tuesday.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getTuesday(): ?string
     {
@@ -170,7 +170,7 @@ class Schedule
     /**
      * Get wednesday.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getWednesday(): ?string
     {
@@ -194,7 +194,7 @@ class Schedule
     /**
      * Get thursday.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getThursday(): ?string
     {
@@ -218,7 +218,7 @@ class Schedule
     /**
      * Get friday.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getFriday(): ?string
     {
@@ -242,7 +242,7 @@ class Schedule
     /**
      * Get saturday.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getSaturday(): ?string
     {
@@ -266,7 +266,7 @@ class Schedule
     /**
      * Get sunday.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getSunday(): ?string
     {
@@ -290,7 +290,7 @@ class Schedule
     /**
      * Get alertDay.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getAlertDay(): ?string
     {

@@ -147,7 +147,7 @@ class Purchase
     /**
      * Get comment.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getComment(): ?string
     {
@@ -157,7 +157,7 @@ class Purchase
     /**
      * Set comment.
      *
-     * @param null|string $comment
+     * @param string|null $comment
      *
      * @return Purchase
      */

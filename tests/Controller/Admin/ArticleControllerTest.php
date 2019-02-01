@@ -84,14 +84,13 @@ class ArticleControllerTest extends WebTestCase
         ]);
         $crawler = $client->request('GET', '/admin/?action=new&entity=Article');
         $form = $crawler->selectButton('Sauvegarder')->form([
-            'article[articleCategory]'  => ArticleCategory::ARTICLE_PRINCIPAL,
-            'article[title]'            => $articleTitle,
-            'article[contains]'         => $articleContains,
+            'article[articleCategory]' => ArticleCategory::ARTICLE_PRINCIPAL,
+            'article[title]' => $articleTitle,
+            'article[contains]' => $articleContains,
         ]);
         $client->submit($form);
 
         $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
-
 
         /** @var Article $article */
         $article = $client->getContainer()->get('doctrine')->getRepository(Article::class)->findOneBy([

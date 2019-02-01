@@ -99,7 +99,7 @@ class EnterpriseDetails
     /**
      * get name.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getName(): ?string
     {
@@ -123,7 +123,7 @@ class EnterpriseDetails
     /**
      * get address.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getAddress(): ?string
     {
@@ -147,7 +147,7 @@ class EnterpriseDetails
     /**
      * gte codepostal.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getCodePostal(): ?string
     {
@@ -171,7 +171,7 @@ class EnterpriseDetails
     /**
      * get city.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getCity(): ?string
     {
@@ -195,7 +195,7 @@ class EnterpriseDetails
     /**
      * get telephone.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getTelephone(): ?string
     {
@@ -219,7 +219,7 @@ class EnterpriseDetails
     /**
      * get email.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getEmail(): ?string
     {
@@ -229,7 +229,7 @@ class EnterpriseDetails
     /**
      * set email.
      *
-     * @param null|string $email
+     * @param string|null $email
      *
      * @return EnterpriseDetails
      */

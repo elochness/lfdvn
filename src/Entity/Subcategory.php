@@ -84,7 +84,7 @@ class Subcategory
     /**
      * Get name.
      *
-     * @return null|string
+     * @return string|null
      */
     public function getName(): ?string
     {
