@@ -1,12 +1,20 @@
 <?php
 
-namespace App\Entity;
+/*
+ * This file is part of the lfdvn package.
+ *
+ * (c) Pierre François
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
+namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * EnterpriseDetails
+ * EnterpriseDetails.
  *
  * @ORM\Table(name="enterprise_details")
  * @ORM\Entity
@@ -65,7 +73,8 @@ class EnterpriseDetails
     private $email;
 
     /**
-     * get id
+     * get id.
+     *
      * @return int|null
      */
     public function getId(): ?int
@@ -74,7 +83,7 @@ class EnterpriseDetails
     }
 
     /**
-     * Set id
+     * Set id.
      *
      * @param int $id
      *
@@ -88,8 +97,9 @@ class EnterpriseDetails
     }
 
     /**
-     * get name
-     * @return null|string
+     * get name.
+     *
+     * @return string|null
      */
     public function getName(): ?string
     {
@@ -97,8 +107,10 @@ class EnterpriseDetails
     }
 
     /**
-     * set name
+     * set name.
+     *
      * @param string $name
+     *
      * @return EnterpriseDetails
      */
     public function setName(string $name): self
@@ -109,8 +121,9 @@ class EnterpriseDetails
     }
 
     /**
-     * get address
-     * @return null|string
+     * get address.
+     *
+     * @return string|null
      */
     public function getAddress(): ?string
     {
@@ -118,8 +131,10 @@ class EnterpriseDetails
     }
 
     /**
-     * set address
+     * set address.
+     *
      * @param string $address
+     *
      * @return EnterpriseDetails
      */
     public function setAddress(string $address): self
@@ -130,8 +145,9 @@ class EnterpriseDetails
     }
 
     /**
-     * gte codepostal
-     * @return null|string
+     * gte codepostal.
+     *
+     * @return string|null
      */
     public function getCodePostal(): ?string
     {
@@ -139,8 +155,10 @@ class EnterpriseDetails
     }
 
     /**
-     * set codepostal
+     * set codepostal.
+     *
      * @param string $codePostal
+     *
      * @return EnterpriseDetails
      */
     public function setCodePostal(string $codePostal): self
@@ -151,8 +169,9 @@ class EnterpriseDetails
     }
 
     /**
-     * get city
-     * @return null|string
+     * get city.
+     *
+     * @return string|null
      */
     public function getCity(): ?string
     {
@@ -160,8 +179,10 @@ class EnterpriseDetails
     }
 
     /**
-     * set city
+     * set city.
+     *
      * @param string $city
+     *
      * @return EnterpriseDetails
      */
     public function setCity(string $city): self
@@ -172,8 +193,9 @@ class EnterpriseDetails
     }
 
     /**
-     * get telephone
-     * @return null|string
+     * get telephone.
+     *
+     * @return string|null
      */
     public function getTelephone(): ?string
     {
@@ -181,8 +203,10 @@ class EnterpriseDetails
     }
 
     /**
-     * set telephone
+     * set telephone.
+     *
      * @param string $telephone
+     *
      * @return EnterpriseDetails
      */
     public function setTelephone(string $telephone): self
@@ -193,8 +217,9 @@ class EnterpriseDetails
     }
 
     /**
-     * get email
-     * @return null|string
+     * get email.
+     *
+     * @return string|null
      */
     public function getEmail(): ?string
     {
@@ -202,8 +227,10 @@ class EnterpriseDetails
     }
 
     /**
-     * set email
-     * @param null|string $email
+     * set email.
+     *
+     * @param string|null $email
+     *
      * @return EnterpriseDetails
      */
     public function setEmail(?string $email): self
@@ -212,6 +239,4 @@ class EnterpriseDetails
 
         return $this;
     }
-
-
 }

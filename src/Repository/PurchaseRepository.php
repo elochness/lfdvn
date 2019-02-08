@@ -1,13 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: INUFRAP
- * Date: 18/07/2018
- * Time: 14:59
+
+/*
+ * This file is part of the lfdvn package.
+ *
+ * (c) Pierre François
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace App\Repository;
-
 
 use App\Entity\Purchase;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -15,9 +17,9 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class PurchaseRepository extends ServiceEntityRepository
 {
-
     /**
      * PurchaseRepository constructor.
+     *
      * @param RegistryInterface $registry
      */
     public function __construct(RegistryInterface $registry)
@@ -25,9 +27,9 @@ class PurchaseRepository extends ServiceEntityRepository
         parent::__construct($registry, Purchase::class);
     }
 
-
     /**
      * @param int $uid
+     *
      * @return mixed
      */
     public function findByBuyer(int $uid)
@@ -43,7 +45,7 @@ class PurchaseRepository extends ServiceEntityRepository
           ')
         ;
         $query->setParameter('uid', $uid);
+
         return $query->getResult();
     }
-
 }

@@ -1,25 +1,34 @@
 <?php
 
+/*
+ * This file is part of the lfdvn package.
+ *
+ * (c) Pierre François
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**
- * Schedule
+ * Schedule.
  *
  * @ORM\Table(name="schedule")
  * @ORM\Entity
  */
 class Schedule
 {
-
     /** @TODO Make a translation */
     /**
-     * Indicate the day is close
+     * Indicate the day is close.
+     *
      * @var string
      */
-    const CLOSED_DAY = "Fermé";
+    const CLOSED_DAY = 'Fermé';
 
     /**
      * @var int
@@ -87,7 +96,8 @@ class Schedule
     private $alertDay;
 
     /**
-     * Get id
+     * Get id.
+     *
      * @return int|null
      */
     public function getId(): ?int
@@ -96,7 +106,7 @@ class Schedule
     }
 
     /**
-     * Set id
+     * Set id.
      *
      * @param int $id
      *
@@ -110,8 +120,9 @@ class Schedule
     }
 
     /**
-     * Get monday
-     * @return null|string
+     * Get monday.
+     *
+     * @return string|null
      */
     public function getMonday(): ?string
     {
@@ -119,8 +130,10 @@ class Schedule
     }
 
     /**
-     * Set monday
+     * Set monday.
+     *
      * @param string $monday
+     *
      * @return Schedule
      */
     public function setMonday(string $monday): self
@@ -131,8 +144,9 @@ class Schedule
     }
 
     /**
-     * Get tuesday
-     * @return null|string
+     * Get tuesday.
+     *
+     * @return string|null
      */
     public function getTuesday(): ?string
     {
@@ -140,8 +154,10 @@ class Schedule
     }
 
     /**
-     * Set tuesday
+     * Set tuesday.
+     *
      * @param string $tuesday
+     *
      * @return Schedule
      */
     public function setTuesday(string $tuesday): self
@@ -152,8 +168,9 @@ class Schedule
     }
 
     /**
-     * Get wednesday
-     * @return null|string
+     * Get wednesday.
+     *
+     * @return string|null
      */
     public function getWednesday(): ?string
     {
@@ -161,8 +178,10 @@ class Schedule
     }
 
     /**
-     * Set wednesday
+     * Set wednesday.
+     *
      * @param string $wednesday
+     *
      * @return Schedule
      */
     public function setWednesday(string $wednesday): self
@@ -173,8 +192,9 @@ class Schedule
     }
 
     /**
-     * Get thursday
-     * @return null|string
+     * Get thursday.
+     *
+     * @return string|null
      */
     public function getThursday(): ?string
     {
@@ -182,8 +202,10 @@ class Schedule
     }
 
     /**
-     * Set thursday
+     * Set thursday.
+     *
      * @param string $thursday
+     *
      * @return Schedule
      */
     public function setThursday(string $thursday): self
@@ -194,8 +216,9 @@ class Schedule
     }
 
     /**
-     * Get friday
-     * @return null|string
+     * Get friday.
+     *
+     * @return string|null
      */
     public function getFriday(): ?string
     {
@@ -203,8 +226,10 @@ class Schedule
     }
 
     /**
-     * Set friday
+     * Set friday.
+     *
      * @param string $friday
+     *
      * @return Schedule
      */
     public function setFriday(string $friday): self
@@ -215,8 +240,9 @@ class Schedule
     }
 
     /**
-     * Get saturday
-     * @return null|string
+     * Get saturday.
+     *
+     * @return string|null
      */
     public function getSaturday(): ?string
     {
@@ -224,8 +250,10 @@ class Schedule
     }
 
     /**
-     * Set saturday
+     * Set saturday.
+     *
      * @param string $saturday
+     *
      * @return Schedule
      */
     public function setSaturday(string $saturday): self
@@ -236,8 +264,9 @@ class Schedule
     }
 
     /**
-     * Get sunday
-     * @return null|string
+     * Get sunday.
+     *
+     * @return string|null
      */
     public function getSunday(): ?string
     {
@@ -245,8 +274,10 @@ class Schedule
     }
 
     /**
-     * Set sunday
+     * Set sunday.
+     *
      * @param string $sunday
+     *
      * @return Schedule
      */
     public function setSunday(string $sunday): self
@@ -257,8 +288,9 @@ class Schedule
     }
 
     /**
-     * Get alertDay
-     * @return null|string
+     * Get alertDay.
+     *
+     * @return string|null
      */
     public function getAlertDay(): ?string
     {
@@ -266,8 +298,10 @@ class Schedule
     }
 
     /**
-     * Set alertDay
+     * Set alertDay.
+     *
      * @param string $alertDay
+     *
      * @return Schedule
      */
     public function setAlertDay(string $alertDay): self
@@ -278,35 +312,31 @@ class Schedule
     }
 
     /**
-     * Get day formatted by datetime
+     * Get day formatted by datetime.
+     *
      * @param $date
      * @param TranslatorInterface $translator
+     *
      * @return string
      */
     public static function getDayFormatted(string $date, TranslatorInterface $translator): string
     {
-        $dayNumberOfWeek = date("N",strtotime($date));
-        $stringDay = "";
+        $dayNumberOfWeek = date('N', strtotime($date));
+        $stringDay = '';
         // Day
-        if ($dayNumberOfWeek == 1) {
+        if (1 === $dayNumberOfWeek) {
             $stringDay = $translator->trans('Monday');
-        }
-        elseif ($dayNumberOfWeek == 2) {
+        } elseif (2 === $dayNumberOfWeek) {
             $stringDay = $translator->trans('Tuesday');
-        }
-        elseif ($dayNumberOfWeek == 3) {
+        } elseif (3 === $dayNumberOfWeek) {
             $stringDay = $translator->trans('Wednesday');
-        }
-        elseif ($dayNumberOfWeek == 4) {
+        } elseif (4 === $dayNumberOfWeek) {
             $stringDay = $translator->trans('Thursday');
-        }
-        elseif ($dayNumberOfWeek == 5) {
+        } elseif (5 === $dayNumberOfWeek) {
             $stringDay = $translator->trans('Friday');
-        }
-        elseif ($dayNumberOfWeek == 6) {
+        } elseif (6 === $dayNumberOfWeek) {
             $stringDay = $translator->trans('Saturday');
-        }
-        elseif ($dayNumberOfWeek == 7) {
+        } elseif (7 === $dayNumberOfWeek) {
             $stringDay = $translator->trans('Sunday');
         }
 
@@ -314,50 +344,41 @@ class Schedule
     }
 
     /**
-     * Get month formatted by datetime
-     * @param string $date
+     * Get month formatted by datetime.
+     *
+     * @param string              $date
      * @param TranslatorInterface $translator
+     *
      * @return string
      */
     public static function getMonthFormatted(string $date, TranslatorInterface $translator): string
     {
-        $monthNumber = date("m",strtotime($date));
-        $stringMonth = "";
+        $monthNumber = date('m', strtotime($date));
+        $stringMonth = '';
 
-        if ($monthNumber == 1) {
+        if (1 === $monthNumber) {
             $stringMonth = $translator->trans('january');
-        }
-        elseif ($monthNumber == 2) {
+        } elseif (2 === $monthNumber) {
             $stringMonth = $translator->trans('february');
-        }
-        elseif ($monthNumber == 3) {
+        } elseif (3 === $monthNumber) {
             $stringMonth = $translator->trans('march');
-        }
-        elseif ($monthNumber == 4) {
+        } elseif (4 === $monthNumber) {
             $stringMonth = $translator->trans('april');
-        }
-        elseif ($monthNumber == 5) {
+        } elseif (5 === $monthNumber) {
             $stringMonth = $translator->trans('may');
-        }
-        elseif ($monthNumber == 6) {
+        } elseif (6 === $monthNumber) {
             $stringMonth = $translator->trans('june');
-        }
-        elseif ($monthNumber == 7) {
+        } elseif (7 === $monthNumber) {
             $stringMonth = $translator->trans('july');
-        }
-        elseif ($monthNumber == 8) {
+        } elseif (8 === $monthNumber) {
             $stringMonth = $translator->trans('august');
-        }
-        elseif ($monthNumber == 9) {
+        } elseif (9 === $monthNumber) {
             $stringMonth = $translator->trans('september');
-        }
-        elseif ($monthNumber == 10) {
+        } elseif (10 === $monthNumber) {
             $stringMonth = $translator->trans('october');
-        }
-        elseif ($monthNumber == 11) {
+        } elseif (11 === $monthNumber) {
             $stringMonth = $translator->trans('november');
-        }
-        elseif ($monthNumber == 12) {
+        } elseif (12 === $monthNumber) {
             $stringMonth = $translator->trans('december');
         }
 

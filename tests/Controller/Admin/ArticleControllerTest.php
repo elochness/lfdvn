@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Symfony package.
+ * This file is part of the lfdvn package.
  *
- * (c) Fabien Potencier <fabien@symfony.com>
+ * (c) Pierre François
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -39,7 +39,7 @@ class ArticleControllerTest extends WebTestCase
     public function testAccessDeniedForRegularUsers(string $httpMethod, string $url)
     {
         $client = static::createClient([], [
-            'PHP_AUTH_USER' => 'tom_admin@symfony.com',
+            'PHP_AUTH_USER' => 'john_user@symfony.com',
             'PHP_AUTH_PW' => 'kitten',
         ]);
 
@@ -64,12 +64,6 @@ class ArticleControllerTest extends WebTestCase
 
         $crawler = $client->request('GET', '/admin/?action=list&entity=Article');
         $this->assertSame(Response::HTTP_OK, $client->getResponse()->getStatusCode());
-
-        $this->assertGreaterThanOrEqual(
-            1,
-            $crawler->filter('body#admin_post_index #main tbody tr')->count(),
-            'The backend homepage displays all the available posts.'
-        );
     }
 
     /**
@@ -90,24 +84,22 @@ class ArticleControllerTest extends WebTestCase
         ]);
         $crawler = $client->request('GET', '/admin/?action=new&entity=Article');
         $form = $crawler->selectButton('Sauvegarder')->form([
-            'article[articleCategory]'  => ArticleCategory::ARTICLE_PRINCIPAL,
-            'article[title]'            => $articleTitle,
-            'article[contains]'         => $articleContains,
+            'article[articleCategory]' => ArticleCategory::ARTICLE_PRINCIPAL,
+            'article[title]' => $articleTitle,
+            'article[contains]' => $articleContains,
         ]);
         $client->submit($form);
 
         $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
-
 
         /** @var Article $article */
         $article = $client->getContainer()->get('doctrine')->getRepository(Article::class)->findOneBy([
             'title' => $articleTitle,
         ]);
         $this->assertNotNull($article);
-        $this->assertSame($articleContains, $article->getTitle());
-        $this->assertSame($articleType, $article->getContains());
-        $this->assertSame($articleType, $article->getEnabled());
-        $this->assertSame($articleType, $article->getArticleCategory());
+        $this->assertSame($articleTitle, $article->getTitle());
+        $this->assertSame($articleContains, $article->getContains());
+        $this->assertSame(ArticleCategory::ARTICLE_PRINCIPAL, $article->getArticleCategory()->getId());
     }
 
     public function testAdminShowArticle()
@@ -146,28 +138,6 @@ class ArticleControllerTest extends WebTestCase
         /** @var Article $article */
         $article = $client->getContainer()->get('doctrine')->getRepository(Article::class)->find(1);
         $this->assertSame($newArticleTitle, $article->getTitle());
-    }
-
-    /**
-     * This test changes the database contents by deleting a article post. However,
-     * thanks to the DAMADoctrineTestBundle and its PHPUnit listener, all changes
-     * to the database are rolled back when this test completes. This means that
-     * all the application tests begin with the same database contents.
-     */
-    public function testAdminDeletePost()
-    {
-        $client = static::createClient([], [
-            'PHP_AUTH_USER' => 'jane_admin@symfony.com',
-            'PHP_AUTH_PW' => 'kitten',
-        ]);
-        $crawler = $client->request('GET', '/admin/?action=delete&entity=Article&id=1');
-        $client->submit($crawler->filter('#delete-form')->form());
-
-        $this->assertSame(Response::HTTP_FOUND, $client->getResponse()->getStatusCode());
-
-        /** @var Article $article */
-        $article = $client->getContainer()->get('doctrine')->getRepository(Article::class)->find(1);
-        $this->assertNull($article);
     }
 
     private function generateRandomString(int $length): string

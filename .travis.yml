@@ -4,16 +4,17 @@ sudo: false
 cache:
   directories:
     - $HOME/.composer/cache/files
-    - $HOME/symfony-bridge/.phpunit
+    - ./bin/.phpunit
 
 env:
   global:
-    - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
+    - SYMFONY_PHPUNIT_DIR=./bin/.phpunit
+    - SYMFONY_DEPRECATIONS_HELPER=29
 
 matrix:
   fast_finish: true
   include:
-    - php: 7.1
+    - php: 7.1.18
     - php: 7.2
     - php: nightly
   allow_failures:
@@ -25,10 +26,10 @@ before_install:
 
 install:
   - composer install
-  - ./vendor/bin/simple-phpunit install
+  - ./bin/phpunit install
 
 script:
-  - ./vendor/bin/simple-phpunit
+  - ./bin/phpunit
   # this checks that the source code follows the Symfony Code Syntax rules
   - '[[ "$TRAVIS_PHP_VERSION" == "nightly" ]] || ./vendor/bin/php-cs-fixer fix --diff --dry-run -v'
   # this checks that the YAML config files contain no syntax errors
@@ -38,8 +39,6 @@ script:
   # this checks that the XLIFF translations contain no syntax errors
   - ./bin/console lint:xliff translations
   # this checks that the application doesn't use dependencies with known security vulnerabilities
-  - ./bin/console security:check --end-point=http://security.sensiolabs.org/check_lock
-  # this checks that the composer.json and composer.lock files are valid
-  - composer validate --strict
+  - ./bin/console security:check
   # this checks that Doctrine's mapping configurations are valid
   - ./bin/console doctrine:schema:validate --skip-sync -vvv --no-interaction

@@ -1,13 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: INUFRAP
- * Date: 18/07/2018
- * Time: 13:26
+
+/*
+ * This file is part of the lfdvn package.
+ *
+ * (c) Pierre François
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace App\Repository;
-
 
 use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -18,9 +20,9 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class ProductRepository extends ServiceEntityRepository
 {
-
     /**
      * ProductRepository constructor.
+     *
      * @param RegistryInterface $registry
      */
     public function __construct(RegistryInterface $registry)
@@ -30,6 +32,7 @@ class ProductRepository extends ServiceEntityRepository
 
     /**
      * @param array $params
+     *
      * @return Query
      */
     public function queryLatest(array $params)
@@ -46,23 +49,24 @@ class ProductRepository extends ServiceEntityRepository
             ORDER BY p.name ASC, c.name ASC
             ';
 
-        if(isset($params))
-        {
+        if (isset($params)) {
             $queryFilter = $this->getFilters($params);
-            $query = $this->getEntityManager()->createQuery($queryString .  $queryFilter . $queryOrder);
+            $query = $this->getEntityManager()->createQuery($queryString.$queryFilter.$queryOrder);
             $this->addParameters($params, $query);
+
             return $query;
-        } else {
-            return $this->getEntityManager()->createQuery($queryString . $queryOrder);
         }
+
+        return $this->getEntityManager()->createQuery($queryString.$queryOrder);
     }
 
     /**
      * @param $page
      * @param array $params
+     *
      * @return Pagerfanta
      */
-    public function findLatest($page,array $params): Pagerfanta
+    public function findLatest($page, array $params): Pagerfanta
     {
         $paginator = new Pagerfanta(new DoctrineORMAdapter($this->queryLatest($params), false));
         $paginator->setMaxPerPage(Product::NUM_ITEMS);
@@ -72,13 +76,14 @@ class ProductRepository extends ServiceEntityRepository
     }
 
     /**
-     * Add filter for request
+     * Add filter for request.
      *
      * @param array $params
      * @param Query $query
      */
-    private function addParameters(array $params, Query $query) {
-        if(isset($params['category'])) {
+    private function addParameters(array $params, Query $query)
+    {
+        if (isset($params['category'])) {
             $query->setParameter('cid', $params['category']);
         }
         if (isset($params['subcategory'])) {
@@ -86,10 +91,11 @@ class ProductRepository extends ServiceEntityRepository
         }
     }
 
-    private function getFilters($params) {
+    private function getFilters($params)
+    {
         $queryFilter = '';
 
-        if(isset($params['category'])) {
+        if (isset($params['category'])) {
             $queryFilter .= ' AND c.id = :cid ';
         }
         if (isset($params['subcategory'])) {

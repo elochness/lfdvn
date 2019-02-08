@@ -1,13 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: INUFRAP
- * Date: 18/07/2018
- * Time: 12:49
+
+/*
+ * This file is part of the lfdvn package.
+ *
+ * (c) Pierre François
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace App\Repository;
-
 
 use App\Entity\Article;
 use App\Entity\ArticleCategory;
@@ -18,14 +20,13 @@ use Pagerfanta\Pagerfanta;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * Class ArticleRepository
- * @package App\Repository
+ * Class ArticleRepository.
  */
 class ArticleRepository extends ServiceEntityRepository
 {
-
     /**
      * ArticleRepository constructor.
+     *
      * @param RegistryInterface $registry
      */
     public function __construct(RegistryInterface $registry)
@@ -33,10 +34,11 @@ class ArticleRepository extends ServiceEntityRepository
         parent::__construct($registry, Article::class);
     }
 
-
     /**
-     * Create query for selected articles
+     * Create query for selected articles.
+     *
      * @param string $caid id of article category
+     *
      * @return Query
      */
     public function queryLatest(string $caid = ArticleCategory::ARTICLE_PRINCIPAL): Query
@@ -53,13 +55,16 @@ class ArticleRepository extends ServiceEntityRepository
           ')
         ;
         $query->setParameter('caid', $caid);
+
         return $query;
     }
 
     /**
-     * Create a paginator for articles
+     * Create a paginator for articles.
+     *
      * @param Query $query
-     * @param int $page
+     * @param int   $page
+     *
      * @return Pagerfanta
      */
     private function createPaginator(Query $query, int $page): Pagerfanta
@@ -72,17 +77,20 @@ class ArticleRepository extends ServiceEntityRepository
     }
 
     /**
-     * Find latest articles
+     * Find latest articles.
+     *
      * @param int $page
+     *
      * @return Pagerfanta
      */
     public function findLatest(int $page = 1)
     {
-        return $this->createPaginator( $this->queryLatest(), $page);
+        return $this->createPaginator($this->queryLatest(), $page);
     }
 
     /**
-     * Find articles of enterprise
+     * Find articles of enterprise.
+     *
      * @return mixed
      */
     public function findEnterprise()
@@ -91,7 +99,8 @@ class ArticleRepository extends ServiceEntityRepository
     }
 
     /**
-     * Find articles of bandeau
+     * Find articles of bandeau.
+     *
      * @return mixed
      */
     public function findBandeau()
@@ -100,12 +109,12 @@ class ArticleRepository extends ServiceEntityRepository
     }
 
     /**
-     * Find articles of recipe
+     * Find articles of recipe.
+     *
      * @return mixed
      */
     public function findRecipe()
     {
         return $this->queryLatest(ArticleCategory::ARTICLE_RECIPE)->getResult();
     }
-
 }

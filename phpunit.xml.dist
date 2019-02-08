@@ -11,11 +11,15 @@
         <ini name="error_reporting" value="-1" />
         <env name="APP_ENV" value="test" />
         <env name="SHELL_VERBOSITY" value="-1" />
+        <env name="APP_SECRET" value="s$cretf0rt3st" />
+        <env name="DATABASE_URL" value="sqlite:///%kernel.project_dir%/data/database_test.sqlite"/>
+        <env name="BOOTSTRAP_RESET_DATABASE" value="1" />
+        <server name="KERNEL_CLASS" value="App\Kernel" />
     </php>
 
     <testsuites>
         <testsuite name="Project Test Suite">
-            <directory>tests</directory>
+            <directory>tests/</directory>
         </testsuite>
     </testsuites>
 
@@ -26,6 +30,8 @@
     </filter>
 
     <listeners>
-        <listener class="Symfony\Bridge\PhpUnit\SymfonyTestsListener" />
+        <!-- it begins a database transaction before every testcase and rolls it back after
+             the test finished, so tests can manipulate the database without affecting other tests -->
+        <listener class="\DAMA\DoctrineTestBundle\PHPUnit\PHPUnitListener" />
     </listeners>
 </phpunit>

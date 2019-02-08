@@ -1,11 +1,21 @@
 <?php
 
+/*
+ * This file is part of the lfdvn package.
+ *
+ * (c) Pierre François
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Subcategory
+ * Subcategory.
  *
  * @ORM\Table(name="subcategory", indexes={@ORM\Index(name="category_id", columns={"category_id"})})
  * @ORM\Entity
@@ -51,7 +61,6 @@ class Subcategory
      */
     private $products;
 
-
     /**
      * Constructor of the subcategory class.
      * (Initialize some fields).
@@ -59,10 +68,12 @@ class Subcategory
     public function __construct()
     {
         $this->enabled = true;
+        $this->products = new ArrayCollection();
     }
 
     /**
-     * Get id
+     * Get id.
+     *
      * @return int|null
      */
     public function getId(): ?int
@@ -71,8 +82,9 @@ class Subcategory
     }
 
     /**
-     * Get name
-     * @return null|string
+     * Get name.
+     *
+     * @return string|null
      */
     public function getName(): ?string
     {
@@ -80,8 +92,10 @@ class Subcategory
     }
 
     /**
-     * Set name
+     * Set name.
+     *
      * @param string $name
+     *
      * @return Subcategory
      */
     public function setName(string $name): self
@@ -92,7 +106,8 @@ class Subcategory
     }
 
     /**
-     * Get enabled
+     * Get enabled.
+     *
      * @return bool|null
      */
     public function getEnabled(): ?bool
@@ -101,8 +116,10 @@ class Subcategory
     }
 
     /**
-     * Set enabled
+     * Set enabled.
+     *
      * @param bool $enabled
+     *
      * @return Subcategory
      */
     public function setEnabled(bool $enabled): self
@@ -113,7 +130,8 @@ class Subcategory
     }
 
     /**
-     * Get category
+     * Get category.
+     *
      * @return Category|null
      */
     public function getCategory(): ?Category
@@ -122,8 +140,10 @@ class Subcategory
     }
 
     /**
-     * Set category
+     * Set category.
+     *
      * @param Category|null $category
+     *
      * @return Subcategory
      */
     public function setCategory(?Category $category): self
@@ -134,16 +154,18 @@ class Subcategory
     }
 
     /**
-     * Get products
+     * Get products.
+     *
      * @return Product[]
      */
-    public function getProducts(): ?object
+    public function getProducts()
     {
         return $this->products;
     }
 
     /**
-     * Set products
+     * Set products.
+     *
      * @param Product[] $products
      */
     public function setProducts(array $products): void
@@ -152,7 +174,7 @@ class Subcategory
     }
 
     /**
-     * Add product
+     * Add product.
      *
      * @param Product $product
      *
@@ -166,7 +188,7 @@ class Subcategory
     }
 
     /**
-     * Remove product
+     * Remove product.
      *
      * @param Product $product
      */
@@ -176,7 +198,7 @@ class Subcategory
     }
 
     /**
-     * Get String information of subcategory
+     * Get String information of subcategory.
      *
      * @return string Name of subcategory
      */
@@ -184,5 +206,4 @@ class Subcategory
     {
         return $this->getName();
     }
-
 }

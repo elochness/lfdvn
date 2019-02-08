@@ -1,13 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: INUFRAP
- * Date: 18/07/2018
- * Time: 12:32
+
+/*
+ * This file is part of the lfdvn package.
+ *
+ * (c) Pierre François
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace App\Controller;
-
 
 use App\Repository\ArticleRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Cache;
@@ -18,13 +20,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ArticleController extends AbstractController
 {
-
     /**
      * @Route(methods={"GET"}, name="article_index")
      * @Route("/page/{page<[1-9]\d*>}",  methods={"GET"}, name="article_index_paginated")
      * @Cache(smaxage="10")
-     * @param Request $request
+     *
+     * @param Request           $request
      * @param ArticleRepository $articleRepository
+     *
      * @return Response
      */
     public function index(Request $request, ArticleRepository $articleRepository): Response
@@ -41,13 +44,15 @@ class ArticleController extends AbstractController
      *     "en": "/enterprise"
      * }, methods={"GET"}, name="article_enterprise")
      * @Cache(smaxage="10")
+     *
      * @param ArticleRepository $articleRepository
+     *
      * @return Response
      */
-
     public function enterpriseShow(ArticleRepository $articleRepository): Response
     {
         $articlesEnterprise = $articleRepository->findEnterprise();
+
         return $this->render('article/enterprise.html.twig', ['articles' => $articlesEnterprise]);
     }
 
@@ -58,23 +63,27 @@ class ArticleController extends AbstractController
      * }
      * , methods={"GET"}, name="article_recipe")
      * @Cache(smaxage="10")
+     *
      * @param ArticleRepository $articleRepository
+     *
      * @return Response
      */
     public function recipeShow(ArticleRepository $articleRepository): Response
     {
         $articlesRecipe = $articleRepository->findRecipe();
+
         return $this->render('article/recipe.html.twig', ['articles' => $articlesRecipe]);
     }
 
     /**
      * @param ArticleRepository $articleRepository
+     *
      * @return Response
      */
     public function bandeauShow(ArticleRepository $articleRepository): Response
     {
         $articlesBandeau = $articleRepository->findBandeau();
+
         return $this->render('article/bandeau.html.twig', ['articlesBandeau' => $articlesBandeau]);
     }
-
 }

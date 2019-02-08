@@ -1,9 +1,9 @@
 <?php
 
 /*
- * This file is part of the Symfony package.
+ * This file is part of the lfdvn package.
  *
- * (c) Fabien Potencier <fabien@symfony.com>
+ * (c) Pierre François
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -89,8 +89,8 @@ class DefaultControllerTest extends WebTestCase
         yield ['/'];
         yield ['/fr/produits/'];
         yield ['/fr/recettes'];
-        yield ['/fr/commande/etape1'];
-        yield ['/fr/commande/etape2'];
+        //yield ['/fr/commande/etape1'];
+        //yield ['/fr/commande/etape2'];
         yield ['/fr/entreprise'];
         yield ['/fr/a-propos'];
         yield ['/fr/login'];

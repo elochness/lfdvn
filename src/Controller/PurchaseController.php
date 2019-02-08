@@ -1,13 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: INUFRAP
- * Date: 18/07/2018
- * Time: 16:09
+
+/*
+ * This file is part of the lfdvn package.
+ *
+ * (c) Pierre François
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace App\Controller;
-
 
 use App\Entity\Product;
 use App\Entity\Purchase;
@@ -37,8 +39,7 @@ use Symfony\Component\Translation\TranslatorInterface;
 class PurchaseController extends AbstractController
 {
     /**
-     *
-     * @var integer
+     * @var int
      */
     const NB_OPENED_DAYS = 20;
 
@@ -47,9 +48,11 @@ class PurchaseController extends AbstractController
      *     "fr": "/etape1",
      *     "en": "/step1"
      * }, methods={"GET"}, name="purchase_step1")
-     * @param SessionInterface $session
-     * @param CategoryRepository $categoryRepository
+     *
+     * @param SessionInterface    $session
+     * @param CategoryRepository  $categoryRepository
      * @param TranslatorInterface $translator
+     *
      * @return Response
      */
     public function step1(SessionInterface $session, CategoryRepository $categoryRepository, TranslatorInterface $translator): Response
@@ -60,13 +63,13 @@ class PurchaseController extends AbstractController
         /* @var Schedule $schedule */
         $schedule = $repository->find(1);
 
-        $filters = $session->get('purchase', array());
+        $filters = $session->get('purchase', []);
 
         return $this->render('purchase/step1.html.twig', [
             'categories' => $categories,
-            'filters'    => $filters,
+            'filters' => $filters,
             'datesForDelivrery' => $this->getDatesForDelivery($schedule, $translator),
-            'currentStep' => 1
+            'currentStep' => 1,
         ]);
     }
 
@@ -75,9 +78,11 @@ class PurchaseController extends AbstractController
      *     "fr": "/etape2",
      *     "en": "/step2"
      * }, methods={"GET", "POST"}, name="purchase_step2")
-     * @param Request $request
+     *
+     * @param Request          $request
      * @param SessionInterface $session
-     * @param User|null $user
+     * @param User|null        $user
+     *
      * @return Response
      */
     public function step2(Request $request, SessionInterface $session, AuthenticationUtils $helper, UserInterface $user = null): Response
@@ -85,20 +90,19 @@ class PurchaseController extends AbstractController
         $session->set('purchase', $this->cleanPurchaseParams($request->request));
 
         // Check if user is connected
-        if ($user != null) {
+        if (null !== $user) {
             // redirect in step 3 is connected
 //     		return $this->render('purchase/step3.html.twig');
             return  $this->forward('App\Controller\PurchaseController::step3');
-        } else {
+        }
 
-            return $this->render('purchase/step2.html.twig', [
+        return $this->render('purchase/step2.html.twig', [
                 // last username entered by the user (if any)
                 'last_username' => $helper->getLastUsername(),
                 // last authentication error (if any)
                 'error' => $helper->getLastAuthenticationError(),
-                'currentStep' => 2
+                'currentStep' => 2,
             ]);
-        }
     }
 
     /**
@@ -106,97 +110,98 @@ class PurchaseController extends AbstractController
      *     "fr": "/etape3",
      *     "en": "/step3"
      * }, methods={"GET"}, name="purchase_step3")
-     * @param SessionInterface $session
+     *
+     * @param SessionInterface    $session
      * @param TranslatorInterface $translator
-     * @param User|null $user
+     * @param User|null           $user
+     *
      * @return Response
      */
     public function step3(SessionInterface $session, TranslatorInterface $translator, UserInterface $user = null): Response
     {
         // Check if user is connected
-        if ($user === null) {
+        if (null === $user) {
             // redirect in step 2 isn't connected
             return  $this->forward('App\Controller\PurchaseController::step2');
         } elseif (empty($session->get('purchase'))) {
             // redirect in step 1 isn't purchase object
             return  $this->forward('App\Controller\PurchaseController::step1');
-        } else {
-            // On créé un objet Purchase
-            $purchase = $this->constructPurchase($session->get('purchase'), $translator);
-            $total = 0;
+        }
+        // On créé un objet Purchase
+        $purchase = $this->constructPurchase($session->get('purchase'), $translator);
+        $total = 0;
 
-            foreach ($purchase->getItems() as $item) {
-                $total += $item->getPrice();
-            }
+        foreach ($purchase->getItems() as $item) {
+            $total += $item->getPrice();
+        }
 
-            return $this->render('purchase/step3.html.twig', array(
+        return $this->render('purchase/step3.html.twig', [
                 'purchase' => $purchase,
                 'total' => $total,
-                'currentStep' => 3
-            ));
-        }
+                'currentStep' => 3,
+            ]);
     }
-
 
     /**
      * @Route({
      *     "fr": "/etape4",
      *     "en": "/step4"
      * }, methods={"GET", "POST"}, name="purchase_step4")
-     * @param Request $request
-     * @param SessionInterface $session
+     *
+     * @param Request             $request
+     * @param SessionInterface    $session
      * @param TranslatorInterface $translator
-     * @param \Swift_Mailer $mailer
-     * @param UserInterface|null $user
+     * @param \Swift_Mailer       $mailer
+     * @param UserInterface|null  $user
+     *
      * @return Response
      */
     public function step4(Request $request, SessionInterface $session, TranslatorInterface $translator, \Swift_Mailer $mailer, UserInterface $user = null)
     {
         // Check if user is connected
-        if ($user === null) {
+        if (null === $user) {
             // redirect in step 2 isn't connected
             return  $this->forward('App\Controller\PurchaseController::step2');
-        } elseif ($session->get('purchase') === null) {
+        } elseif (null === $session->get('purchase')) {
             // redirect in step 1 isn't purchase object
             return  $this->forward('App\Controller\PurchaseController::step1');
-        } else {
+        }
 
-            if ($request->isMethod('post')) {
-                $total = 0;
-                $purchase = $this->constructPurchase($session->get('purchase'), $translator);
-                $purchase->setBuyer($user);
-                $purchase->setComment($request->request->get('comment'));
+        if ($request->isMethod('post')) {
+            $total = 0;
+            $purchase = $this->constructPurchase($session->get('purchase'), $translator);
+            $purchase->setBuyer($user);
+            $purchase->setComment($request->request->get('comment'));
 
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($purchase);
-                $em->flush($purchase);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($purchase);
+            $em->flush($purchase);
 
-                foreach ($purchase->getItems() as $item) {
-                    $total += $item->getPrice();
-                }
+            foreach ($purchase->getItems() as $item) {
+                $total += $item->getPrice();
+            }
 
-                // delete data session
-                $session->clear();
+            // delete data session
+            $session->clear();
 
-                $this->sendCustomerMail($purchase, $total, $mailer);
-                //$this->sendEnterpriseMail($purchase, $total, $mailer);
+            $this->sendCustomerMail($purchase, $total, $mailer);
+            //$this->sendEnterpriseMail($purchase, $total, $mailer);
 
-                return $this->render('purchase/step4.html.twig', [
-                    'currentStep' => 4
+            return $this->render('purchase/step4.html.twig', [
+                    'currentStep' => 4,
                 ]);
-// 		    	return $this->render('email/enterprise_purchase.html.twig', array(
+            // 		    	return $this->render('email/enterprise_purchase.html.twig', array(
 // 	    			'purchase' => $purchase,
 // 	    			'total' => $total
 // 	    		));
-            } else {
-                return  $this->forward('App\Controller\PurchaseController::step3');
-            }
         }
+
+        return  $this->forward('App\Controller\PurchaseController::step3');
     }
 
     private function cleanPurchaseParams($params)
     {
-        $cleanedParams = array();
+        $cleanedParams = [];
 
         foreach ($params as $key => $value) {
             if (!empty($value)) {
@@ -210,14 +215,14 @@ class PurchaseController extends AbstractController
     /**
      * @param $params
      * @param TranslatorInterface $translator
+     *
      * @return Purchase
      */
     private function constructPurchase($params, TranslatorInterface $translator): Purchase
     {
-
         // Initialization
         $purchase = new Purchase();
-        $listIdProducts = array();
+        $listIdProducts = [];
         $em = $this->getDoctrine()->getManager();
 
         // Recuperate all products
@@ -231,7 +236,7 @@ class PurchaseController extends AbstractController
             $listIdProducts[$product->getId()] = $product;
         }
         foreach ($params as $key => $value) {
-            $currentlyKey = str_replace("qte_", "", $key);
+            $currentlyKey = str_replace('qte_', '', $key);
 //     		echo $currentlyKey . PHP_EOL;
 //     		echo $value . PHP_EOL;
 //     		echo $listIdProducts[$currentlyKey] . PHP_EOL;
@@ -246,9 +251,8 @@ class PurchaseController extends AbstractController
                 $purchaseItem->setPurchase($purchase);
                 // Add item to list
                 $purchase->addItem($purchaseItem);
-            }
-            else if ($key === 'delivery_date') {
-// 	    		$purchase->setDeliveryDate($value);
+            } elseif ('delivery_date' === $key) {
+                // 	    		$purchase->setDeliveryDate($value);
                 // create Date object according to the value
                 $purchase->setDeliveryDateFormatted($this->getDateFormatted($value, $translator));
                 $purchase->setDeliveryDate(date_create($value));
@@ -259,90 +263,92 @@ class PurchaseController extends AbstractController
     }
 
     /**
-     * @param Schedule $schedule
+     * @param Schedule            $schedule
      * @param TranslatorInterface $translator
+     *
      * @return array
      */
-    private function getDatesForDelivery(Schedule $schedule, TranslatorInterface $translator) {
-
+    private function getDatesForDelivery(Schedule $schedule, TranslatorInterface $translator)
+    {
         $countDay = 0;
-        $collectDays = array();
-        $openDays  = array();
+        $collectDays = [];
+        $openDays = [];
 
-        if ($schedule->getMonday() !== Schedule::CLOSED_DAY) {
+        if (Schedule::CLOSED_DAY !== $schedule->getMonday()) {
             $openDays[] = 1;
         }
-        if ($schedule->getTuesday() !== Schedule::CLOSED_DAY) {
+        if (Schedule::CLOSED_DAY !== $schedule->getTuesday()) {
             $openDays[] = 2;
         }
-        if ($schedule->getWednesday() !== Schedule::CLOSED_DAY) {
+        if (Schedule::CLOSED_DAY !== $schedule->getWednesday()) {
             $openDays[] = 3;
         }
-        if ($schedule->getThursday() !== Schedule::CLOSED_DAY) {
+        if (Schedule::CLOSED_DAY !== $schedule->getThursday()) {
             $openDays[] = 4;
         }
-        if ($schedule->getFriday() !== Schedule::CLOSED_DAY) {
+        if (Schedule::CLOSED_DAY !== $schedule->getFriday()) {
             $openDays[] = 5;
         }
-        if ($schedule->getSaturday() !== Schedule::CLOSED_DAY) {
+        if (Schedule::CLOSED_DAY !== $schedule->getSaturday()) {
             $openDays[] = 6;
         }
-        if ($schedule->getSunday() !== Schedule::CLOSED_DAY) {
+        if (Schedule::CLOSED_DAY !== $schedule->getSunday()) {
             $openDays[] = 7;
         }
 
-        $date = date("Y-m-d"); // Format AAAA-MM-DD
+        $date = date('Y-m-d'); // Format AAAA-MM-DD
         // On récupère le numero du jour pour savoir si on est un samedi ou un dimanche
-        $collectDay = date("N",strtotime($date));
+        $collectDay = date('N', strtotime($date));
 
         // We take 20 opened days
         while ($countDay <= self::NB_OPENED_DAYS) {
-
-            if (in_array( $collectDay , $openDays )) {
+            if (\in_array($collectDay, $openDays, true)) {
 //     			$collectDays[] = date('d/m/Y', strtotime($date)) ;
                 $key = date('Y-m-d', strtotime($date));
                 $value = $this->getDateFormatted($key, $translator);
-                $collectDays[$key] = $value ;
-                $countDay++;
+                $collectDays[$key] = $value;
+                ++$countDay;
             }
 
             // Next Day
-            $date = date("Y-m-d", strtotime($date." +1 days"));
-            $collectDay = date("N",strtotime($date));
+            $date = date('Y-m-d', strtotime($date.' +1 days'));
+            $collectDay = date('N', strtotime($date));
         }
 
         return $collectDays;
     }
 
     /**
-     * @param string $date
+     * @param string              $date
      * @param TranslatorInterface $translator
+     *
      * @return string
      */
-    private function getDateFormatted(string $date, TranslatorInterface $translator) {
+    private function getDateFormatted(string $date, TranslatorInterface $translator)
+    {
         /* @var TranslatorInterface $translator */
         $stringDay = Schedule::getDayFormatted($date, $translator);
-        $day = date("d",strtotime($date));
+        $day = date('d', strtotime($date));
         $stringMonth = Schedule::getMonthFormatted($date, $translator);
-        $year = date("Y",strtotime($date));
+        $year = date('Y', strtotime($date));
 
-        return $stringDay . " " . $day . " " . $stringMonth . " " . $year;
+        return $stringDay.' '.$day.' '.$stringMonth.' '.$year;
     }
 
     /**
-     *
      * @param Purchase $purchase
-     * @param unknown $total
+     * @param unknown  $total
      */
-    private function sendCustomerMail($purchase, $total, \Swift_Mailer $mailer) {
+    private function sendCustomerMail($purchase, $total, \Swift_Mailer $mailer)
+    {
         $message = (new \Swift_Message('Récapitulatif de la commande à la Fromagerie du Vignoble Nantais'))
             ->setFrom('test@lafromagerieduvignoblenantais.com')
             ->setTo($purchase->getBuyer()->getUsername())
             ->setBody(
-                $this->renderView('email/_customer_purchase.html.twig', array(
+                $this->renderView('email/_customer_purchase.html.twig', [
                     'purchase' => $purchase,
-                    'total' => $total
-                )),
+                    'total' => $total,
+                ]),
                 'text/html'
             )
             /*
@@ -361,19 +367,19 @@ class PurchaseController extends AbstractController
     }
 
     /**
-     *
      * @param Purchase $purchase
-     * @param unknown $total
+     * @param unknown  $total
      */
-    private function sendEnterpriseMail($purchase, $total, \Swift_Mailer $mailer) {
+    private function sendEnterpriseMail($purchase, $total, \Swift_Mailer $mailer)
+    {
         $message = (new \Swift_Message('Nouvelle commande n° ' + $purchase->getId() + 'à la Fromagerie du Vignoble Nantais'))
             ->setFrom('test@lafromagerieduvignoblenantais.com')
             ->setTo($purchase->getBuyer()->getUsername())
             ->setBody(
-                $this->renderView('email/_enterprise_purchase.html.twig', array(
+                $this->renderView('email/_enterprise_purchase.html.twig', [
                     'purchase' => $purchase,
-                    'total' => $total
-                )),
+                    'total' => $total,
+                ]),
                 'text/html'
             )
             /*
@@ -390,6 +396,4 @@ class PurchaseController extends AbstractController
 
         $mailer->send($message);
     }
-
-
 }

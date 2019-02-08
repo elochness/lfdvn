@@ -1,13 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: INUFRAP
- * Date: 18/07/2018
- * Time: 13:24
+
+/*
+ * This file is part of the lfdvn package.
+ *
+ * (c) Pierre François
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
  */
 
 namespace App\Repository;
-
 
 use App\Entity\Category;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -15,9 +17,9 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class CategoryRepository extends ServiceEntityRepository
 {
-
     /**
      * CategoryRepository constructor.
+     *
      * @param RegistryInterface $registry
      */
     public function __construct(RegistryInterface $registry)
@@ -26,7 +28,8 @@ class CategoryRepository extends ServiceEntityRepository
     }
 
     /**
-     * Find active category
+     * Find active category.
+     *
      * @return mixed
      */
     public function findActiveCategory()

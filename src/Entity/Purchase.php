@@ -1,12 +1,21 @@
 <?php
 
+/*
+ * This file is part of the lfdvn package.
+ *
+ * (c) Pierre François
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Purchase
+ * Purchase.
  *
  * @ORM\Table(name="purchase", indexes={@ORM\Index(name="IDX_6117D13B6C755722", columns={"buyer_id"})})
  * @ORM\Entity
@@ -30,12 +39,11 @@ class Purchase
     private $deliveryDate;
 
     /**
-     * Delivery date formatted
+     * Delivery date formatted.
      *
      * @var string
      */
     private $deliveryDateFormatted;
-
 
     /**
      * @var string|null
@@ -79,7 +87,8 @@ class Purchase
     }
 
     /**
-     * Get id
+     * Get id.
+     *
      * @return int|null
      */
     public function getId(): ?int
@@ -88,7 +97,8 @@ class Purchase
     }
 
     /**
-     * Get deliveryDate
+     * Get deliveryDate.
+     *
      * @return \DateTimeInterface|null
      */
     public function getDeliveryDate(): ?\DateTimeInterface
@@ -97,8 +107,10 @@ class Purchase
     }
 
     /**
-     * Set deliveryDate
+     * Set deliveryDate.
+     *
      * @param \DateTimeInterface $deliveryDate
+     *
      * @return Purchase
      */
     public function setDeliveryDate(\DateTimeInterface $deliveryDate): self
@@ -109,7 +121,8 @@ class Purchase
     }
 
     /**
-     * Get deliveryDateFormatted
+     * Get deliveryDateFormatted.
+     *
      * @return string
      */
     public function getDeliveryDateFormatted(): string
@@ -118,8 +131,10 @@ class Purchase
     }
 
     /**
-     * Set deliveryDateFormatted
+     * Set deliveryDateFormatted.
+     *
      * @param string $deliveryDateFormatted
+     *
      * @return Purchase
      */
     public function setDeliveryDateFormatted(string $deliveryDateFormatted): self
@@ -130,8 +145,9 @@ class Purchase
     }
 
     /**
-     * Get comment
-     * @return null|string
+     * Get comment.
+     *
+     * @return string|null
      */
     public function getComment(): ?string
     {
@@ -139,8 +155,10 @@ class Purchase
     }
 
     /**
-     * Set comment
-     * @param null|string $comment
+     * Set comment.
+     *
+     * @param string|null $comment
+     *
      * @return Purchase
      */
     public function setComment(?string $comment): self
@@ -151,7 +169,8 @@ class Purchase
     }
 
     /**
-     * Get createdAt
+     * Get createdAt.
+     *
      * @return \DateTimeInterface|null
      */
     public function getCreatedAt(): ?\DateTimeInterface
@@ -160,8 +179,10 @@ class Purchase
     }
 
     /**
-     * Set createdAt
+     * Set createdAt.
+     *
      * @param \DateTimeInterface $createdAt
+     *
      * @return Purchase
      */
     public function setCreatedAt(\DateTimeInterface $createdAt): self
@@ -172,7 +193,8 @@ class Purchase
     }
 
     /**
-     * Get buyer
+     * Get buyer.
+     *
      * @return User|null
      */
     public function getBuyer(): ?User
@@ -181,8 +203,10 @@ class Purchase
     }
 
     /**
-     * Set buyer
+     * Set buyer.
+     *
      * @param User|null $buyer
+     *
      * @return Purchase
      */
     public function setBuyer(?User $buyer): self
@@ -193,7 +217,7 @@ class Purchase
     }
 
     /**
-     * Add item
+     * Add item.
      *
      * @param PurchaseItem $item
      *
@@ -207,7 +231,7 @@ class Purchase
     }
 
     /**
-     * Remove item
+     * Remove item.
      *
      * @param PurchaseItem $item
      *
@@ -221,7 +245,8 @@ class Purchase
     }
 
     /**
-     * Get items
+     * Get items.
+     *
      * @return \Doctrine\Common\Collections\Collection
      */
     public function getItems(): \Doctrine\Common\Collections\Collection
@@ -230,15 +255,14 @@ class Purchase
     }
 
     /**
-     * Get String information of purchase
+     * Get String information of purchase.
      *
      * @return string Name of purchase
      */
     public function __toString(): string
     {
-        return $this->getId() . " - " . $this->getCreatedAt();
+        return $this->getId().' - '.$this->getCreatedAt();
     }
-
 
     /**
      * @return float
@@ -249,7 +273,7 @@ class Purchase
         foreach ($this->getItems() as $item) {
             $total += $item->getTotalPrice();
         }
+
         return $total;
     }
-
 }
