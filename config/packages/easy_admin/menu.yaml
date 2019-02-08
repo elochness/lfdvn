@@ -13,6 +13,7 @@ easy_admin:
     - { label: menu.vat,            entity: 'TaxRate',  icon: 'percent' }
     - { label: menu.header.orders }
     - { label: menu.orders,         entity: 'Purchase', icon: 'shopping-cart' }
+    - { label: menu.order_config,   entity: 'PurchaseConfig', icon: 'wrench' }
     #    - { entity: 'PurchaseItem', icon: 'cart-plus' }
     - { label: menu.header.enterprise }
     - { label: menu.articles,       entity: 'Article', icon: 'newspaper-o' }

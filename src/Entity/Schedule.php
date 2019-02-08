@@ -12,7 +12,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Schedule.
@@ -322,21 +322,21 @@ class Schedule
     public static function getDayFormatted(string $date, TranslatorInterface $translator): string
     {
         $dayNumberOfWeek = date('N', strtotime($date));
-        $stringDay = '';
+
         // Day
-        if (1 === $dayNumberOfWeek) {
+        if ('1' === $dayNumberOfWeek) {
             $stringDay = $translator->trans('Monday');
-        } elseif (2 === $dayNumberOfWeek) {
+        } elseif ('2' === $dayNumberOfWeek) {
             $stringDay = $translator->trans('Tuesday');
-        } elseif (3 === $dayNumberOfWeek) {
+        } elseif ('3' === $dayNumberOfWeek) {
             $stringDay = $translator->trans('Wednesday');
-        } elseif (4 === $dayNumberOfWeek) {
+        } elseif ('4' === $dayNumberOfWeek) {
             $stringDay = $translator->trans('Thursday');
-        } elseif (5 === $dayNumberOfWeek) {
+        } elseif ('5' === $dayNumberOfWeek) {
             $stringDay = $translator->trans('Friday');
-        } elseif (6 === $dayNumberOfWeek) {
+        } elseif ('6' === $dayNumberOfWeek) {
             $stringDay = $translator->trans('Saturday');
-        } elseif (7 === $dayNumberOfWeek) {
+        } elseif ('7' === $dayNumberOfWeek) {
             $stringDay = $translator->trans('Sunday');
         }
 
@@ -356,29 +356,29 @@ class Schedule
         $monthNumber = date('m', strtotime($date));
         $stringMonth = '';
 
-        if (1 === $monthNumber) {
+        if ('01' === $monthNumber) {
             $stringMonth = $translator->trans('january');
-        } elseif (2 === $monthNumber) {
+        } elseif ('02' === $monthNumber) {
             $stringMonth = $translator->trans('february');
-        } elseif (3 === $monthNumber) {
+        } elseif ('03' === $monthNumber) {
             $stringMonth = $translator->trans('march');
-        } elseif (4 === $monthNumber) {
+        } elseif ('04' === $monthNumber) {
             $stringMonth = $translator->trans('april');
-        } elseif (5 === $monthNumber) {
+        } elseif ('05' === $monthNumber) {
             $stringMonth = $translator->trans('may');
-        } elseif (6 === $monthNumber) {
+        } elseif ('06' === $monthNumber) {
             $stringMonth = $translator->trans('june');
-        } elseif (7 === $monthNumber) {
+        } elseif ('07' === $monthNumber) {
             $stringMonth = $translator->trans('july');
-        } elseif (8 === $monthNumber) {
+        } elseif ('08' === $monthNumber) {
             $stringMonth = $translator->trans('august');
-        } elseif (9 === $monthNumber) {
+        } elseif ('09' === $monthNumber) {
             $stringMonth = $translator->trans('september');
-        } elseif (10 === $monthNumber) {
+        } elseif ('10' === $monthNumber) {
             $stringMonth = $translator->trans('october');
-        } elseif (11 === $monthNumber) {
+        } elseif ('11' === $monthNumber) {
             $stringMonth = $translator->trans('november');
-        } elseif (12 === $monthNumber) {
+        } elseif ('12' === $monthNumber) {
             $stringMonth = $translator->trans('december');
         }
 

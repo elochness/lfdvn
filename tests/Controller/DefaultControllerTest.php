@@ -89,8 +89,8 @@ class DefaultControllerTest extends WebTestCase
         yield ['/'];
         yield ['/fr/produits/'];
         yield ['/fr/recettes'];
-        //yield ['/fr/commande/etape1'];
-        //yield ['/fr/commande/etape2'];
+        yield ['/fr/commande/etape1'];
+        yield ['/fr/commande/etape2'];
         yield ['/fr/entreprise'];
         yield ['/fr/a-propos'];
         yield ['/fr/login'];

@@ -27,6 +27,10 @@
                     <source>group.product.order</source>
                     <target>Commande</target>
                 </trans-unit>
+                <trans-unit id="group.order_config.open_days">
+                    <source>group.order_config.open_days</source>
+                    <target>Jours ouverts pour recevoir la commande</target>
+                </trans-unit>
             </group>
             <group id="group.menu">
                 <note>menu of administration</note>
@@ -53,6 +57,10 @@
                 <trans-unit id="menu.orders">
                     <source>menu.orders</source>
                     <target>Commandes</target>
+                </trans-unit>
+                <trans-unit id="menu.order_config">
+                    <source>menu.order_config</source>
+                    <target>Paramètres</target>
                 </trans-unit>
                 <trans-unit id="menu.tax_rates">
                     <source>menu.vat</source>
@@ -294,6 +302,49 @@
                 <trans-unit id="label.total">
                     <source>label.total</source>
                     <target>Total</target>
+                </trans-unit>
+            </group>
+            <group id="group.order-config">
+                <note>Label of order config</note>
+                <trans-unit id="title.order_config.edit">
+                    <source>title.order_config.edit</source>
+                    <target>Modifier le paramétrage des commandes</target>
+                </trans-unit>
+                <trans-unit id="title.order_config.show">
+                    <source>title.order_config.show</source>
+                    <target>Voir le paramétrage des commandes</target>
+                </trans-unit>
+                <trans-unit id="title.order_config.list">
+                    <source>title.order_config.list</source>
+                    <target>Liste les paramétrages des commandes</target>
+                </trans-unit>
+                <trans-unit id="label.monday.open">
+                    <source>label.monday.open</source>
+                    <target>Lundi ouvert</target>
+                </trans-unit>
+                <trans-unit id="label.tuesday.open">
+                    <source>label.tuesday.open</source>
+                    <target>Mardi  ouvert</target>
+                </trans-unit>
+                <trans-unit id="label.wednesday.open">
+                    <source>label.wednesday.open</source>
+                    <target>Mercredi ouvert</target>
+                </trans-unit>
+                <trans-unit id="label.thursday.open">
+                    <source>label.thursday.open</source>
+                    <target>Jeudi ouvert</target>
+                </trans-unit>
+                <trans-unit id="label.friday.open">
+                    <source>label.friday.open</source>
+                    <target>Vendredi ouvert</target>
+                </trans-unit>
+                <trans-unit id="label.saturday.open">
+                    <source>label.saturday.open</source>
+                    <target>Samedi ouvert</target>
+                </trans-unit>
+                <trans-unit id="label.sunday.open">
+                    <source>label.sunday.open</source>
+                    <target>Dimanche ouvert</target>
                 </trans-unit>
             </group>
             <group id="group.enterprise">

@@ -1,0 +1,38 @@
+easy_admin:
+  entities:
+    PurchaseConfig:
+      disabled_actions: ['delete', 'new']
+      class: App\Entity\PurchaseConfig
+      list:
+        title: title.order_config.list
+        fields:
+        - { property: 'id'        , label: label.id }
+        - { property: 'isOpenMondayDelivery'    , label: label.monday.open }
+        - { property: 'isOpenTuesdayDelivery'   , label: label.tuesday.open }
+        - { property: 'isOpenWednesdayDelivery' , label: label.wednesday.open }
+        - { property: 'isOpenThursdayDelivery'  , label: label.thursday.open }
+        - { property: 'isOpenFridayDelivery'    , label: label.friday.open }
+        - { property: 'isOpenSaturdayDelivery'  , label: label.saturday.open }
+        - { property: 'isOpenSundayDelivery'    , label: label.sunday.open }
+      show:
+        title: title.order_config.show
+        fields:
+        - { property: 'id'        , label: label.id }
+        - { property: 'isOpenMondayDelivery'    , label: label.monday.open }
+        - { property: 'isOpenTuesdayDelivery'   , label: label.tuesday.open }
+        - { property: 'isOpenWednesdayDelivery' , label: label.wednesday.open }
+        - { property: 'isOpenThursdayDelivery'  , label: label.thursday.open }
+        - { property: 'isOpenFridayDelivery'    , label: label.friday.open }
+        - { property: 'isOpenSaturdayDelivery'  , label: label.saturday.open }
+        - { property: 'isOpenSundayDelivery'    , label: label.sunday.open }
+      edit:
+        title: title.order_config.edit
+        fields:
+        - { type: 'group',          label: group.order_config.open_days, icon: 'wrench' }
+        - { property: 'isOpenMondayDelivery'    , label: label.monday }
+        - { property: 'isOpenTuesdayDelivery'   , label: label.tuesday }
+        - { property: 'isOpenWednesdayDelivery' , label: label.wednesday }
+        - { property: 'isOpenThursdayDelivery'  , label: label.thursday }
+        - { property: 'isOpenFridayDelivery'    , label: label.friday }
+        - { property: 'isOpenSaturdayDelivery'  , label: label.saturday }
+        - { property: 'isOpenSundayDelivery'    , label: label.sunday }

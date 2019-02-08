@@ -17,6 +17,7 @@ use App\Entity\Category;
 use App\Entity\EnterpriseDetails;
 use App\Entity\Product;
 use App\Entity\Purchase;
+use App\Entity\PurchaseConfig;
 use App\Entity\PurchaseItem;
 use App\Entity\Schedule;
 use App\Entity\Subcategory;
@@ -46,6 +47,7 @@ class AppFixtures extends Fixture
         $this->loadCategory($manager);
         $this->loadSubCategory($manager);
         $this->loadProducts($manager);
+        $this->loadOrderConfig($manager);
         $this->loadOrders($manager);
         //$this->loadTags($manager);
         //$this->loadPosts($manager);
@@ -243,6 +245,27 @@ class AppFixtures extends Fixture
             ++$i;
         }
 
+        $manager->flush();
+    }
+
+    /**
+     * Load information of order config.
+     *
+     * @param ObjectManager $manager
+     */
+    private function loadOrderConfig(ObjectManager $manager)
+    {
+        $purchaseConfig = new PurchaseConfig();
+        $purchaseConfig->setId(1);
+        $purchaseConfig->setIsOpenMondayDelivery(true);
+        $purchaseConfig->setIsOpenTuesdayDelivery(false);
+        $purchaseConfig->setIsOpenWednesdayDelivery(true);
+        $purchaseConfig->setIsOpenThursdayDelivery(false);
+        $purchaseConfig->setIsOpenFridayDelivery(false);
+        $purchaseConfig->setIsOpenSaturdayDelivery(false);
+        $purchaseConfig->setIsOpenSundayDelivery(false);
+
+        $manager->persist($purchaseConfig);
         $manager->flush();
     }
 

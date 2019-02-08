@@ -13,6 +13,7 @@ namespace App\Controller;
 
 use App\Entity\Product;
 use App\Entity\Purchase;
+use App\Entity\PurchaseConfig;
 use App\Entity\PurchaseItem;
 use App\Entity\Schedule;
 use App\Entity\User;
@@ -24,7 +25,7 @@ use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Component\Translation\TranslatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Controller used to manage user contents in the public part of the site.
@@ -59,16 +60,16 @@ class PurchaseController extends AbstractController
     {
         $categories = $categoryRepository->findActiveCategory();
 
-        $repository = $this->getDoctrine()->getRepository(Schedule::class);
-        /* @var Schedule $schedule */
-        $schedule = $repository->find(1);
+        $repository = $this->getDoctrine()->getRepository(PurchaseConfig::class);
+        /* @var PurchaseConfig $purchaseConfig */
+        $purchaseConfig = $repository->find(1);
 
         $filters = $session->get('purchase', []);
 
         return $this->render('purchase/step1.html.twig', [
             'categories' => $categories,
             'filters' => $filters,
-            'datesForDelivrery' => $this->getDatesForDelivery($schedule, $translator),
+            'datesForDelivrery' => $this->getDatesForDelivery($purchaseConfig, $translator),
             'currentStep' => 1,
         ]);
     }
@@ -263,36 +264,36 @@ class PurchaseController extends AbstractController
     }
 
     /**
-     * @param Schedule            $schedule
+     * @param PurchaseConfig      $purchaseConfig
      * @param TranslatorInterface $translator
      *
      * @return array
      */
-    private function getDatesForDelivery(Schedule $schedule, TranslatorInterface $translator)
+    private function getDatesForDelivery(PurchaseConfig $purchaseConfig, TranslatorInterface $translator)
     {
         $countDay = 0;
         $collectDays = [];
         $openDays = [];
 
-        if (Schedule::CLOSED_DAY !== $schedule->getMonday()) {
+        if ($purchaseConfig->getIsOpenMondayDelivery()) {
             $openDays[] = 1;
         }
-        if (Schedule::CLOSED_DAY !== $schedule->getTuesday()) {
+        if ($purchaseConfig->getIsOpenTuesdayDelivery()) {
             $openDays[] = 2;
         }
-        if (Schedule::CLOSED_DAY !== $schedule->getWednesday()) {
+        if ($purchaseConfig->getIsOpenWednesdayDelivery()) {
             $openDays[] = 3;
         }
-        if (Schedule::CLOSED_DAY !== $schedule->getThursday()) {
+        if ($purchaseConfig->getIsOpenThursdayDelivery()) {
             $openDays[] = 4;
         }
-        if (Schedule::CLOSED_DAY !== $schedule->getFriday()) {
+        if ($purchaseConfig->getIsOpenFridayDelivery()) {
             $openDays[] = 5;
         }
-        if (Schedule::CLOSED_DAY !== $schedule->getSaturday()) {
+        if ($purchaseConfig->getIsOpenSaturdayDelivery()) {
             $openDays[] = 6;
         }
-        if (Schedule::CLOSED_DAY !== $schedule->getSunday()) {
+        if ($purchaseConfig->getIsOpenSundayDelivery()) {
             $openDays[] = 7;
         }
 
@@ -302,7 +303,7 @@ class PurchaseController extends AbstractController
 
         // We take 20 opened days
         while ($countDay <= self::NB_OPENED_DAYS) {
-            if (\in_array($collectDay, $openDays, true)) {
+            if (\in_array($collectDay, $openDays, false)) {
 //     			$collectDays[] = date('d/m/Y', strtotime($date)) ;
                 $key = date('Y-m-d', strtotime($date));
                 $value = $this->getDateFormatted($key, $translator);
@@ -331,6 +332,11 @@ class PurchaseController extends AbstractController
         $day = date('d', strtotime($date));
         $stringMonth = Schedule::getMonthFormatted($date, $translator);
         $year = date('Y', strtotime($date));
+
+        /*print "stringDay";
+        var_dump($stringDay);
+        print "stringMonth";
+        var_dump($stringMonth);*/
 
         return $stringDay.' '.$day.' '.$stringMonth.' '.$year;
     }
