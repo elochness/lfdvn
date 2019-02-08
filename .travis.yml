@@ -27,6 +27,7 @@ before_install:
 install:
   - composer install
   - cp .env.dist .env
+  - cp phpunit.xml.dist phpunit.xml
   - ./bin/phpunit install
 
 script:
