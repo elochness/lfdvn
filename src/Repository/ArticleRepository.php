@@ -1,120 +1,50 @@
 <?php
 
-/*
- * This file is part of the lfdvn package.
- *
- * (c) Pierre François
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace App\Repository;
 
 use App\Entity\Article;
-use App\Entity\ArticleCategory;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Query;
-use Pagerfanta\Adapter\DoctrineORMAdapter;
-use Pagerfanta\Pagerfanta;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\Persistence\ManagerRegistry;
 
 /**
- * Class ArticleRepository.
+ * @method Article|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Article|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Article[]    findAll()
+ * @method Article[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
 class ArticleRepository extends ServiceEntityRepository
 {
-    /**
-     * ArticleRepository constructor.
-     *
-     * @param RegistryInterface $registry
-     */
-    public function __construct(RegistryInterface $registry)
+    public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Article::class);
     }
 
-    /**
-     * Create query for selected articles.
-     *
-     * @param string $caid id of article category
-     *
-     * @return Query
-     */
-    public function queryLatest(string $caid = ArticleCategory::ARTICLE_PRINCIPAL): Query
+    // /**
+    //  * @return Article[] Returns an array of Article objects
+    //  */
+    /*
+    public function findByExampleField($value)
     {
-        $query = $this->getEntityManager()
-            ->createQuery('
-              SELECT a
-              FROM App\Entity\Article a
-              INNER JOIN App\Entity\ArticleCategory ac
-              WITH a.articleCategory = ac.id
-              WHERE a.enabled = true
-              AND ac.id = :caid
-              ORDER BY a.updatedAt DESC, a.createdAt DESC
-          ')
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.exampleField = :val')
+            ->setParameter('val', $value)
+            ->orderBy('a.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
         ;
-        $query->setParameter('caid', $caid);
-
-        return $query;
     }
+    */
 
-    /**
-     * Create a paginator for articles.
-     *
-     * @param Query $query
-     * @param int   $page
-     *
-     * @return Pagerfanta
-     */
-    private function createPaginator(Query $query, int $page): Pagerfanta
+    /*
+    public function findOneBySomeField($value): ?Article
     {
-        $paginator = new Pagerfanta(new DoctrineORMAdapter($query));
-        $paginator->setMaxPerPage(Article::NUM_ITEMS);
-        $paginator->setCurrentPage($page);
-
-        return $paginator;
+        return $this->createQueryBuilder('a')
+            ->andWhere('a.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
     }
-
-    /**
-     * Find latest articles.
-     *
-     * @param int $page
-     *
-     * @return Pagerfanta
-     */
-    public function findLatest(int $page = 1)
-    {
-        return $this->createPaginator($this->queryLatest(), $page);
-    }
-
-    /**
-     * Find articles of enterprise.
-     *
-     * @return mixed
-     */
-    public function findEnterprise()
-    {
-        return $this->queryLatest(ArticleCategory::ARTICLE_ENTERPRISE)->getResult();
-    }
-
-    /**
-     * Find articles of bandeau.
-     *
-     * @return mixed
-     */
-    public function findBandeau()
-    {
-        return $this->queryLatest(ArticleCategory::ARTICLE_BANDEAU)->getResult();
-    }
-
-    /**
-     * Find articles of recipe.
-     *
-     * @return mixed
-     */
-    public function findRecipe()
-    {
-        return $this->queryLatest(ArticleCategory::ARTICLE_RECIPE)->getResult();
-    }
+    */
 }

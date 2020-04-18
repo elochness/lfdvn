@@ -1,56 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block body_id '_index' %}
+{% block title %}Hello ArticleController!{% endblock %}
 
-{% block body_title %}
-	<div class="row">
-        <div class="col-sm-12">
-        	<h1>{{ 'title.homepage'|trans }}</h1>
-        </div>
-    </div>
-{% endblock %}
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
 
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
 
-{% block main %}
-
-    <div>
-        {% for article in articles %}
-            <article class="box article-large">
-                <h2>
-                    {{ article.title }}
-                </h2>
-                <div>
-                  {{article.contains | raw }}
-                </div>
-
-            </article>
-
-        {% else %}
-        	<article class="box article-large">
-                <h2>{{ 'label.article.not_found.title'|trans }}</h2>
-                <div>
-                	<div class="flex flex-center">
-                		<div >{{ 'label.article.not_found.description'|trans }}</div>
-                		<div><img class="center" src="{{ asset('build/images/svg/009-notes.svg') }}" width="128" height="128" alt="Note" /> </div>
-                	</div>
-                </div>
-
-            </article>
-        {% endfor %}
-    </div>
-
-    <div class="navigation text-center">
-        {{ pagerfanta(articles, 'twitter_bootstrap3_translated', { routeName: 'article_index' }) }}
-    </div>
-{% endblock %}
-
-{% block sidebar %}
-
-	{{ render_esi(controller('App\\Controller\\EnterpriseController::schedule', {
-        'sharedAge': 600,
-        '_locale': app.request.locale
-    })) }}
-    
-    {{ parent() }}
-    
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ '/home/pierre/Documents/Workspace/lfdvn/src/Controller/ArticleController.php'|file_link(0) }}">src/Controller/ArticleController.php</a></code></li>
+        <li>Your template at <code><a href="{{ '/home/pierre/Documents/Workspace/lfdvn/templates/article/index.html.twig'|file_link(0) }}">templates/article/index.html.twig</a></code></li>
+    </ul>
+</div>
 {% endblock %}

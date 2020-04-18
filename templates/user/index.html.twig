@@ -1,85 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block body_id '_index' %}
+{% block title %}Hello UserController!{% endblock %}
 
-{% block stylesheets %}
-    {{ parent() }}
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
 
-{% endblock %}
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
 
-{% block body_title %}
-    <div class="row">
-        <div class="col-sm-12">
-            <h1>{{ 'title.account'|trans }}</h1>
-        </div>
-    </div>
-{% endblock %}
-
-
-{% block main %}
-
-    <article class="box article-large">
-
-        {% include 'user/_breadcrumb.html.twig' with {'currentAction': currentAction} only %}
-
-
-        <fieldset>
-            <legend><i class="fas fa-user-circle" aria-hidden="true"></i> Informations</legend>
-            <div class="form-group">
-                <label for="username">{{ 'label.email'|trans }}</label>
-                <input type="text" id="username" name="_username" value="" class="form-control"
-                       placeholder="{{ user.username }}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="lastname">{{ 'label.lastname'|trans }}</label>
-                <input type="text" id="lastname" name="_lastname" value="" class="form-control"
-                       placeholder="{{ user.lastname }}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="firstname">{{ 'label.firstname'|trans }}</label>
-                <input type="text" id="firstname" name="_firstname" value="" class="form-control"
-                       placeholder="{{ user.firstname }}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="cellphone">{{ 'label.telephone'|trans }}</label>
-                <input type="text" id="cellphone" name="_cellphone" value="" class="form-control"
-                       placeholder="{{ user.cellphone }}" readonly>
-            </div>
-        </fieldset>
-
-        <br/>
-
-        <fieldset>
-            <legend><i class="fas fa-list" aria-hidden="true"></i> Actions</legend>
-
-            <div class="flex">
-
-                <a class="btn btn-a btn-primary" href="{{ path('password_update') }}">
-                    <i class="fas fa-key" aria-hidden="true"></i> {{ 'action.change_password'|trans }}
-                </a>
-                &nbsp;
-                <a class="btn btn-a btn-primary" href="{{ path('user_update') }}">
-                    <i class="fas fa-user-alt" aria-hidden="true"></i> {{ 'action.user.update'|trans }}
-                </a>
-                &nbsp;
-                <!-- Trigger/Open The Modal -->
-                <button id="btnModalRemove" class="btn btn-primary">
-                    <i class="fas fa-user-alt-slash" aria-hidden="true"></i> {{ 'action.user.delete'|trans }}
-                </button>
-
-            </div>
-
-        </fieldset>
-
-    </article>
-
-    {% include 'user/_delete_user_confirmation.html.twig' %}
-    <script src="{{ asset('build/js/modal.js') }}"></script>
-
-{% endblock %}
-
-{% block sidebar %}
-
-    {{ parent() }}
-
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ '/home/pierre/Documents/Workspace/lfdvn/src/Controller/UserController.php'|file_link(0) }}">src/Controller/UserController.php</a></code></li>
+        <li>Your template at <code><a href="{{ '/home/pierre/Documents/Workspace/lfdvn/templates/user/index.html.twig'|file_link(0) }}">templates/user/index.html.twig</a></code></li>
+    </ul>
+</div>
 {% endblock %}

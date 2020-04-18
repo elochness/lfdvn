@@ -1,133 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block body_id '_index' %}
+{% block title %}Hello ProductController!{% endblock %}
 
-{% block body_title %}
-	<div class="row">
-        <div class="col-sm-12">
-        	{% if selectedCategoryName is not null  %}
-        		{% if selectedCategoryPluralName is not null  %}
-        			<h1>{{ 'title.product.category.long'|trans({'%category%': selectedCategoryPluralName}) }}</h1>
-        		{% else %}
-	            	<h1>{{ 'title.product.category.short'|trans({'%category%': selectedCategoryName|lower}) }}</h1>
-	            {% endif %}
-        	{% else %}
-            	<h1>{{ 'title.product'|trans }}</h1>
-            {% endif %}
-        </div>
-    </div>
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
 
-{% endblock %}
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
 
-{% block main %}
-
-    <section>
-        {% for product in products %}
-            <article class="box product flex">
-                <div class="image">
-                    {% if product.image %}
-                        <img class="photo" src="{{ product_prefix ~"/"~ product.image }}" alt="{{ product.name }}"/>
-                    {% else %}
-                        <img class="photo" src="{{ product_prefix ~"/empty-product.png" }}" alt="{{ 'label.product.without_image'|trans }}"/>
-                    {% endif %}
-                </div>
-                <div class="details">
-                
-                	<h2>{{ product.name }}</h2>
-                    <header class="flex">
-                    	{# Caracteristics of product #}
-                      	<div class="flex">
-                          	{% if product.category.name %}
-	                          	<div class="mesure">
-	                              	<div class="mesure-id">
-	                              		<img class="center" src="{{ asset('build/images/svg/001-shopping-1.svg') }}" width="32" height="32" alt="{{ 'label.category' |trans }}" />
-	                                  	{{ 'label.category' |trans }}
-	                              	</div>
-	                              	<div class="mesure-value">
-	                                  	{{ product.category.name }}
-	                              	</div>
-	                          	</div>
-                          	{% endif %}
-                           	{% if product.packaging %}
-                              	<div class="mesure">
-                                  	<div class="mesure-id">
-                                  		<img class="center" src="{{ asset('build/images/svg/003-business.svg') }}" width="32" height="32" alt="{{ 'label.packaging' |trans }}" />
-                                      	{{ 'label.packaging' |trans }}
-                                  	</div>
-                                  	<div class="mesure-value">
-                                      	{{ product.packaging}}
-                                  	</div>
-                              	</div>
-                          	{% endif %}
-                          	{% if product.price %}
-                          		<div class="mesure">
-                              		<div class="mesure-id">
-                              			<img class="center" src="{{ asset('build/images/svg/004-coins.svg') }}" width="32" height="32" alt="{{ 'label.price' |trans }}" />
-                                  		{{ 'label.price' |trans }}
-                              		</div>
-                              		<div class="mesure-value">
-                                  		{{ product.price }} €
-                              		</div>
-                          		</div>
-                      		{% endif %}
-                      		{% if product.refundable and  product.refundable > 0 %}
-                          		<div class="mesure">
-                              		<div class="mesure-id">
-                              			<img class="center" src="{{ asset('build/images/svg/006-get-money.svg') }}" width="32" height="32" alt="{{ 'label.refundable' |trans }}" />
-                                  		{{ 'label.refundable' |trans }}
-                              		</div>
-                              		<div class="mesure-value">
-                                  		{{ product.refundable }} €
-                              		</div>
-                          		</div>
-                      		{% endif %}
-                      	</div>
-                    </header>
-                    
-                    {# Complete description of product #}
-                    <div>{{ product.description  | raw }}</div>
-                </div>
-            </article>
-
-        {% else %}
-        	<article class="box article-large">
-                <div>
-                	<div class="flex flex-center">
-                		<div >{{ 'label.product.not_found'|trans }}</div>
-                		<div><img class="center" src="{{ asset('build/images/svg/007-groceries.svg') }}" width="128" height="128" alt="Groceries" /> </div>
-                	</div>
-                </div>
-            </article>
-        {% endfor %}
-    </section>
-
-    <div class="navigation text-center">
-        {{ pagerfanta(products, 'twitter_bootstrap3_translated', { routeName: 'product_index' }) }}
-    </div>
-{% endblock %}
-
-{% block sidebar %}
-
-	{% if categories is defined %}
-	    <div class="box article-large">
-	    
-	        <img src="{{ asset('build/images/svg/007-groceries.svg') }}" width="32" height="32" alt="Categories" /><h2 class="title-inline">Catégories</h2>
-	        <ul id="category-list">
-	        
-	        {% for category in categories %}
-	        	<li class="category-name"><img src="{{ category_prefix ~"/"~ category.image }}" width="24" height="24" alt="{{ category.name }}" /> <a href=" {{ path('product_index', {'category':category.id}) }} ">{{ category.name }} ({{ category.products | length }})</a></li>
-	        	{% if category.subcategories %}
-	        		<ul>
-		        	{% for subcategory in category.subcategories | sort %}
-		        		<li class="category-subname"><a href=" {{ path('product_index', {'subcategory':subcategory.id}) }} ">{{ subcategory.name }} ({{ subcategory.products | length }})</a></li>
-		        	{% endfor %}
-		        	</ul>
-	        	{% endif %}
-	        {% endfor %}
-	        </ul>
-	    </div>
-    {% endif %}
-    
-    {{ parent() }}
-
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ '/home/pierre/Documents/Workspace/lfdvn/src/Controller/ProductController.php'|file_link(0) }}">src/Controller/ProductController.php</a></code></li>
+        <li>Your template at <code><a href="{{ '/home/pierre/Documents/Workspace/lfdvn/templates/product/index.html.twig'|file_link(0) }}">templates/product/index.html.twig</a></code></li>
+    </ul>
+</div>
 {% endblock %}
