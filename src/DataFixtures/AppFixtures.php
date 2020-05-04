@@ -287,10 +287,10 @@ class AppFixtures extends Fixture
     {
         return [
             // $userData = [$enabled, $title, $articleCategory, $contains];
-            [true, 'Bienvenue au nouveau site de La Fromagerie du vignoble nantais', $this->getReference('article_category-'.ArticleCategory::ARTICLE_PRINCIPAL), 'Mon contenu est très limité'],
-            [true, 'Présentation de l\'entreprise', $this->getReference('article_category-'.ArticleCategory::ARTICLE_ENTERPRISE), 'La passion fait naître un métier : celui de producteur-fromager. C’est alors qu’ils initient la fromagerie autour des 3 piliers fondateurs.'],
-            [true, 'Notre phylosophie', $this->getReference('article_category-'.ArticleCategory::ARTICLE_BANDEAU), 'Notre production s\'organise dans le respect d\'une agriculture durable et la conservation des méthodes traditionnlles de fabrication. La totalité des fromages sont élaborés dans notre local'],
-            [true, 'Ma recette', $this->getReference('article_category-'.ArticleCategory::ARTICLE_RECIPE), 'Notre recette est ...'],
+            [true, 'Bienvenue au nouveau site de La Fromagerie du vignoble nantais', $this->getReference('article_category-'.ArticleCategory::MAIN_ARTICLE), 'Mon contenu est très limité'],
+            [true, 'Présentation de l\'entreprise', $this->getReference('article_category-'.ArticleCategory::COMPANY_ARTICLE), 'La passion fait naître un métier : celui de producteur-fromager. C’est alors qu’ils initient la fromagerie autour des 3 piliers fondateurs.'],
+            [true, 'Notre phylosophie', $this->getReference('article_category-'.ArticleCategory::BANNER_ARTICLE), 'Notre production s\'organise dans le respect d\'une agriculture durable et la conservation des méthodes traditionnlles de fabrication. La totalité des fromages sont élaborés dans notre local'],
+            [true, 'Ma recette', $this->getReference('article_category-'.ArticleCategory::RECIPE_ARTICLE), 'Notre recette est ...'],
         ];
     }
 

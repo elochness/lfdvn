@@ -13,6 +13,26 @@ use Doctrine\ORM\Mapping as ORM;
 class ArticleCategory
 {
     /**
+     * Id of main article.
+     */
+    const MAIN_ARTICLE = 1;
+
+    /**
+     * Id of company article.
+     */
+    const COMPANY_ARTICLE = 2;
+
+    /**
+     * Id of banner article.
+     */
+    const BANNER_ARTICLE = 3;
+
+    /**
+     * Id of recipe article.
+     */
+    const RECIPE_ARTICLE = 4;
+
+    /**
      * Article category ID
      * @var int
      *
