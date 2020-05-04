@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -13,6 +14,12 @@ use Doctrine\ORM\Mapping as ORM;
 class Product
 {
     /**
+     * Number of items per page.
+     */
+    const NUM_ITEMS = 10;
+
+    /**
+     * Product ID
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
@@ -22,6 +29,7 @@ class Product
     private $id;
 
     /**
+     * Name of the product
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=50, nullable=false)
@@ -29,6 +37,7 @@ class Product
     private $name;
 
     /**
+     * Quantity of the product
      * @var int
      *
      * @ORM\Column(name="quantity", type="integer", nullable=false)
@@ -36,6 +45,7 @@ class Product
     private $quantity;
 
     /**
+     * Description of the product
      * @var string
      *
      * @ORM\Column(name="description", type="text", length=0, nullable=false)
@@ -43,6 +53,7 @@ class Product
     private $description;
 
     /**
+     * Image of the product
      * @var string|null
      *
      * @ORM\Column(name="image", type="string", length=100, nullable=true)
@@ -50,34 +61,39 @@ class Product
     private $image;
 
     /**
+     * Indication whether the product can be ordered
      * @var bool
      *
-     * @ORM\Column(name="is_purchase", type="boolean", nullable=false, options={"default"="1"})
+     * @ORM\Column(name="is_can_be_ordered", type="boolean", nullable=false, options={"default"="1"})
      */
-    private $isPurchase = true;
+    private $isCanBeOrdered = true;
 
     /**
+     * Indication whether the product is activated
      * @var bool
      *
      * @ORM\Column(name="enabled", type="boolean", nullable=false)
      */
-    private $enabled;
+    private $enabled = true;
 
     /**
-     * @var \DateTime
+     * Product creation date
+     * @var DateTime
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
-    private $createdAt;
+    private $createdAt = 'CURRENT_TIMESTAMP';
 
     /**
-     * @var \DateTime|null
+     * Update date of product
+     * @var DateTime|null
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
-    private $updatedAt;
+    private $updatedAt = 'CURRENT_TIMESTAMP';
 
     /**
+     * Packaging of the product
      * @var string|null
      *
      * @ORM\Column(name="packaging", type="string", length=100, nullable=true)
@@ -85,6 +101,7 @@ class Product
     private $packaging;
 
     /**
+     * Price of the product
      * @var string
      *
      * @ORM\Column(name="price", type="decimal", precision=10, scale=2, nullable=false)
@@ -92,6 +109,7 @@ class Product
     private $price;
 
     /**
+     * Refundable of the product
      * @var string|null
      *
      * @ORM\Column(name="refundable", type="decimal", precision=10, scale=2, nullable=true)
@@ -99,7 +117,8 @@ class Product
     private $refundable;
 
     /**
-     * @var \Category
+     * Category of the product
+     * @var Category
      *
      * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumns({
@@ -109,7 +128,8 @@ class Product
     private $category;
 
     /**
-     * @var \Subcategory
+     * Subcategory of the product
+     * @var Subcategory
      *
      * @ORM\ManyToOne(targetEntity="Subcategory")
      * @ORM\JoinColumns({
@@ -119,7 +139,8 @@ class Product
     private $subcategory;
 
     /**
-     * @var \VatRate
+     * VAT Rate of the product
+     * @var VatRate
      *
      * @ORM\ManyToOne(targetEntity="VatRate")
      * @ORM\JoinColumns({
@@ -127,6 +148,276 @@ class Product
      * })
      */
     private $vatRate;
+
+    /**
+     * Get product ID
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get name of the product
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set name of the product
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * Get quantity of the product
+     * @return int
+     */
+    public function getQuantity(): int
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * Set quantity of the product
+     * @param int $quantity
+     */
+    public function setQuantity(int $quantity): void
+    {
+        $this->quantity = $quantity;
+    }
+
+    /**
+     * Get description of the product
+     * @return string
+     */
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set description of the product
+     * @param string $description
+     */
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * Get image of the product
+     * @return string|null
+     */
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    /**
+     * Set image of the product
+     * @param string|null $image
+     */
+    public function setImage(?string $image): void
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * Get indication whether the product can be ordered
+     * @return bool
+     */
+    public function isCanBeOrdered(): bool
+    {
+        return $this->isCanBeOrdered;
+    }
+
+    /**
+     * Set indication whether the product can be ordered
+     * @param bool $isCanBeOrdered
+     */
+    public function setIsCanBeOrdered(bool $isCanBeOrdered): void
+    {
+        $this->isCanBeOrdered = $isCanBeOrdered;
+    }
+
+    /**
+     * Get indication whether the product is activated
+     * @return bool
+     */
+    public function isEnabled(): bool
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * Set indication whether the product is activated
+     * @param bool $enabled
+     */
+    public function setEnabled(bool $enabled): void
+    {
+        $this->enabled = $enabled;
+    }
+
+    /**
+     * Get product creation date
+     * @return DateTime
+     */
+    public function getCreatedAt(): DateTime
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * Set product creation date
+     * @param DateTime $createdAt
+     */
+    public function setCreatedAt(DateTime $createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * Get update date of product
+     * @return DateTime|null
+     */
+    public function getUpdatedAt(): ?DateTime
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * Set update date of product
+     * @param DateTime|null $updatedAt
+     */
+    public function setUpdatedAt(?DateTime $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * Get packaging of the product
+     * @return string|null
+     */
+    public function getPackaging(): ?string
+    {
+        return $this->packaging;
+    }
+
+    /**
+     * Set packaging of the product
+     * @param string|null $packaging
+     */
+    public function setPackaging(?string $packaging): void
+    {
+        $this->packaging = $packaging;
+    }
+
+    /**
+     * Get price of the product
+     * @return string
+     */
+    public function getPrice(): string
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set price of the product
+     * @param string $price
+     */
+    public function setPrice(string $price): void
+    {
+        $this->price = $price;
+    }
+
+    /**
+     * Get refundable of the product
+     * @return string|null
+     */
+    public function getRefundable(): ?string
+    {
+        return $this->refundable;
+    }
+
+    /**
+     * Set refundable of the product
+     * @param string|null $refundable
+     */
+    public function setRefundable(?string $refundable): void
+    {
+        $this->refundable = $refundable;
+    }
+
+    /**
+     * Get category of the product
+     * @return Category
+     */
+    public function getCategory(): Category
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set category of the product
+     * @param Category $category
+     */
+    public function setCategory(Category $category): void
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * Get subcategory of the product
+     * @return Subcategory
+     */
+    public function getSubcategory(): Subcategory
+    {
+        return $this->subcategory;
+    }
+
+    /**
+     * Set subcategory of the product
+     * @param Subcategory $subcategory
+     */
+    public function setSubcategory(Subcategory $subcategory): void
+    {
+        $this->subcategory = $subcategory;
+    }
+
+    /**
+     * Get VAT rate of the product
+     * @return VatRate
+     */
+    public function getVatRate(): VatRate
+    {
+        return $this->vatRate;
+    }
+
+    /**
+     * Set VAT rate of the product
+     * @param VatRate $vatRate
+     */
+    public function setVatRate(VatRate $vatRate): void
+    {
+        $this->vatRate = $vatRate;
+    }
+
+    /**
+     * Get String information of the product.
+     * @return string Name of the product
+     */
+    public function __toString(): string
+    {
+        return $this->name;
+    }
 
 
 }
