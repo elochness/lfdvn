@@ -31,7 +31,7 @@ class AppFixtures extends Fixture
         $this->loadSchedules($manager);
         $this->loadArticleCategory($manager);
         $this->loadArticle($manager);
-        $this->loadEnterpriseDetails($manager);
+        $this->companyLoading($manager);
         $this->loadTaxRate($manager);
         $this->loadCategory($manager);
         $this->loadSubCategory($manager);
@@ -122,22 +122,21 @@ class AppFixtures extends Fixture
     }
 
     /**
-     * Load information of enterprise.
-     *
+     * Loading company
      * @param ObjectManager $manager
      */
-    private function loadEnterpriseDetails(ObjectManager $manager)
+    private function companyLoading(ObjectManager $manager)
     {
-        $enterpriseDetails = new Company();
-        $enterpriseDetails->setId(1);
-        $enterpriseDetails->setName('Mon entreprise');
-        $enterpriseDetails->setAddress('9, rue des Moulins');
-        $enterpriseDetails->setCodePostal('99510');
-        $enterpriseDetails->setCity('Le village');
-        $enterpriseDetails->setTelephone('01 11 11 11 87');
-        $enterpriseDetails->setEmail('monentreprise@gmail.com');
+        $company = new Company();
+        $company->setId(1);
+        $company->setName('Mon entreprise');
+        $company->setAddress('9, rue des Moulins');
+        $company->setPostcode('99510');
+        $company->setCity('Le village');
+        $company->setPhone('01 11 11 11 87');
+        $company->setEmail('monentreprise@gmail.com');
 
-        $manager->persist($enterpriseDetails);
+        $manager->persist($company);
         $manager->flush();
     }
 
