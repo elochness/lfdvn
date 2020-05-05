@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Serializable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -14,9 +15,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_email", columns={"email"})})
  * @ORM\Entity
- * @UniqueEntity(fields={"username"}, message="user.email.exist")
+ * @UniqueEntity(fields={"email"}, message="user.email.exist")
  */
-class User implements UserInterface
+class User implements UserInterface, Serializable
 {
     /**
      * Name of user role.
@@ -33,6 +34,7 @@ class User implements UserInterface
     const ROLE_ADMIN = 'ROLE_ADMIN';
 
     /**
+     * User ID
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
@@ -42,15 +44,17 @@ class User implements UserInterface
     private $id;
 
     /**
+     * Username
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=false, unique=true)
      * @Assert\NotBlank(message="user.email.not_blank")
      * @Assert\Email(message = "user.email.not_email")
      */
-    private $username;
+    private $email;
 
     /**
+     * Password of the user
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=255, nullable=false)
@@ -58,54 +62,54 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @var string
-     */
-    private $plainPassword;
-
-    /**
      * @var array
      *
-     * @ORM\Column(name="roles", type="json_array", length=0, nullable=false)
+     * @ORM\Column(name="roles", type="json", length=0, nullable=false)
      */
     private $roles;
 
     /**
+     * First name of the user
      * @var string
      *
-     * @ORM\Column(name="firstname", type="string", length=255, nullable=false)
-     * @Assert\NotBlank(message="user.firstname.not_blank")
+     * @ORM\Column(name="first_name", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="user.first_name.not_blank")
      */
-    private $firstname;
+    private $firstName;
 
     /**
+     * Last name of the user
      * @var string
      *
-     * @ORM\Column(name="lastname", type="string", length=255, nullable=false)
-     * @Assert\NotBlank(message="user.lastname.not_blank")
+     * @ORM\Column(name="last_name", type="string", length=255, nullable=false)
+     * @Assert\NotBlank(message="user.last_name.not_blank")
      */
-    private $lastname;
+    private $lastName;
 
     /**
+     * Phone of the user
      * @var string|null
      *
-     * @ORM\Column(name="cellphone", type="string", length=20, nullable=true)
-     * @Assert\NotBlank(message="user.cellphone.not_blank")
+     * @ORM\Column(name="phone", type="string", length=20, nullable=true)
+     * @Assert\NotBlank(message="user.phone.not_blank")
      */
-    private $cellphone;
+    private $phone;
 
     /**
+     * Indication whether the user is activated
      * @var bool
      *
      * @ORM\Column(name="enabled", type="boolean", nullable=false)
      */
-    private $enabled;
+    private $enabled = true;
 
     /**
-     * @var Purchase[]
+     * List of product order of the user
+     * @var ProductOrder[]
      *
-     * @ORM\OneToMany(targetEntity="Purchase", mappedBy="buyer", cascade={"remove"})
+     * @ORM\OneToMany(targetEntity="ProductOrder", mappedBy="user", cascade={"remove"})
      */
-    private $purchases;
+    private $productOrders;
 
     /**
      * Constructor of the user class.
@@ -113,107 +117,127 @@ class User implements UserInterface
      */
     public function __construct()
     {
-        $this->purchases = new ArrayCollection();
-        $this->roles = ['ROLE_USER'];
-        $this->enabled = true;
+        $this->productOrders = new ArrayCollection();
+        $this->roles = User::ROLE_USER;
     }
 
-    public function getId(): ?int
+    /**
+     * Get user ID
+     * @return int
+     */
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getUsername(): ?string
+    /**
+     * Get email of the user
+     * @return string
+     */
+    public function getEmail(): string
     {
-        return $this->username;
+        return $this->email;
     }
 
-    public function setUsername(string $username): self
+    /**
+     * Set email of the user
+     * @param string $email
+     */
+    public function setEmail(string $email): void
     {
-        $this->username = $username;
-
-        return $this;
+        $this->email = $email;
     }
 
-    public function getPassword(): ?string
+    /**
+     * Get password of the user
+     * @return string
+     */
+    public function getPassword(): string
     {
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    /**
+     * Set password of the user
+     * @param string $password
+     */
+    public function setPassword(string $password): void
     {
         $this->password = $password;
-
-        return $this;
     }
 
     /**
+     * Get first name of the user
      * @return string
      */
-    public function getPlainPassword(): ?string
+    public function getFirstName(): string
     {
-        return $this->plainPassword;
+        return $this->firstName;
     }
 
     /**
-     * @param string $plainPassword
-     *
-     * @return User
+     * Set first name of the user
+     * @param string $firstName
      */
-    public function setPlainPassword(string $plainPassword): self
+    public function setFirstName(string $firstName): void
     {
-        $this->plainPassword = $plainPassword;
-
-        return $this;
+        $this->firstName = $firstName;
     }
 
-    public function getFirstname(): ?string
+    /**
+     * Get last name of the user
+     * @return string
+     */
+    public function getLastName(): string
     {
-        return $this->firstname;
+        return $this->lastName;
     }
 
-    public function setFirstname(string $firstname): self
+    /**
+     * Set last name of the user
+     * @param string $lastName
+     */
+    public function setLastName(string $lastName): void
     {
-        $this->firstname = $firstname;
-
-        return $this;
+        $this->lastName = $lastName;
     }
 
-    public function getLastname(): ?string
+    /**
+     * Get phone of the user
+     * @return string|null
+     */
+    public function getPhone(): ?string
     {
-        return $this->lastname;
+        return $this->phone;
     }
 
-    public function setLastname(string $lastname): self
+    /**
+     * Set phone of the user
+     * @param string|null $phone
+     */
+    public function setPhone(?string $phone): void
     {
-        $this->lastname = $lastname;
-
-        return $this;
+        $this->phone = $phone;
     }
 
-    public function getCellphone(): ?string
-    {
-        return $this->cellphone;
-    }
-
-    public function setCellphone(?string $cellphone): self
-    {
-        $this->cellphone = $cellphone;
-
-        return $this;
-    }
-
-    public function getEnabled(): ?bool
+    /**
+     * Get indication whether the user is activated
+     * @return bool
+     */
+    public function isEnabled(): bool
     {
         return $this->enabled;
     }
 
-    public function setEnabled(bool $enabled): self
+    /**
+     * Set indication whether the user is activated
+     * @param bool $enabled
+     */
+    public function setEnabled(bool $enabled): void
     {
         $this->enabled = $enabled;
-
-        return $this;
     }
+
 
     /**
      * Returns the roles or permissions granted to the user for security.
@@ -232,11 +256,49 @@ class User implements UserInterface
         return array_unique($roles);
     }
 
-    public function setRoles($roles): self
+    /**
+     * Get roles of the user
+     * @param $roles
+     */
+    public function setRoles($roles): void
     {
         $this->roles = $roles;
+    }
 
-        return $this;
+    /**
+     * Get product orders of the user
+     * @return ProductOrder[]
+     */
+    public function getProductOrders(): array
+    {
+        return $this->productOrders;
+    }
+
+    /**
+     * Set product orders of the user
+     * @param ProductOrder[] $productOrders
+     */
+    public function setProductOrders(array $productOrders): void
+    {
+        $this->productOrders = $productOrders;
+    }
+
+    /**
+     * Add product order.
+     * @param ProductOrder $productOrder
+     */
+    public function addProductOrder(ProductOrder $productOrder):void
+    {
+        $this->productOrders[] = $productOrder;
+    }
+
+    /**
+     * Remove product order.
+     * @param ProductOrder $productOrder
+     */
+    public function removeSubcategories(ProductOrder $productOrder): void
+    {
+        $this->productOrders->removeElement($productOrder);
     }
 
     /**
@@ -270,7 +332,7 @@ class User implements UserInterface
     public function serialize(): string
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i
-        return serialize([$this->id, $this->username, $this->password]);
+        return serialize([$this->id, $this->email, $this->password]);
     }
 
     /**
@@ -279,7 +341,7 @@ class User implements UserInterface
     public function unserialize($serialized): void
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i
-        [$this->id, $this->username, $this->password] = unserialize($serialized, ['allowed_classes' => false]);
+        [$this->id, $this->email, $this->password] = unserialize($serialized, ['allowed_classes' => false]);
     }
 
     /**
@@ -289,7 +351,7 @@ class User implements UserInterface
      */
     public function __toString(): string
     {
-        return $this->getLastname().' '.$this->getFirstname();
+        return $this->getLastName().' '.$this->getFirstName();
     }
 
 
