@@ -13,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class ProductOrderItem
 {
     /**
+     * Item of the product order ID
      * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
@@ -22,6 +23,7 @@ class ProductOrderItem
     private $id;
 
     /**
+     * Quantity of item of the product order
      * @var int
      *
      * @ORM\Column(name="quantity", type="smallint", nullable=false)
@@ -29,6 +31,7 @@ class ProductOrderItem
     private $quantity;
 
     /**
+     * Price of item of the product order
      * @var float
      *
      * @ORM\Column(name="price", type="float", precision=10, scale=0, nullable=false)
@@ -36,14 +39,16 @@ class ProductOrderItem
     private $price;
 
     /**
+     * VAT rate of item of the product order
      * @var float
      *
-     * @ORM\Column(name="tax_rate", type="float", precision=10, scale=0, nullable=false)
+     * @ORM\Column(name="vat_rate", type="float", precision=10, scale=0, nullable=false)
      */
-    private $taxRate;
+    private $vatRate;
 
     /**
-     * @var \Product
+     * Product of item of the product order
+     * @var Product
      *
      * @ORM\ManyToOne(targetEntity="Product")
      * @ORM\JoinColumns({
@@ -53,7 +58,8 @@ class ProductOrderItem
     private $product;
 
     /**
-     * @var \ProductOrder
+     * The product order
+     * @var ProductOrder
      *
      * @ORM\ManyToOne(targetEntity="ProductOrder")
      * @ORM\JoinColumns({
@@ -62,5 +68,116 @@ class ProductOrderItem
      */
     private $productOrder;
 
+    /**
+     * Get Item of the product order ID
+     * @return int
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get quantity of item of the product order ID
+     * @return int
+     */
+    public function getQuantity(): int
+    {
+        return $this->quantity;
+    }
+
+    /**
+     * Set quantity of item of the product order ID
+     * @param int $quantity
+     */
+    public function setQuantity(int $quantity): void
+    {
+        $this->quantity = $quantity;
+    }
+
+    /**
+     * Get price of item of the product order ID
+     * @return float
+     */
+    public function getPrice(): float
+    {
+        return $this->price;
+    }
+
+    /**
+     * Set price of item of the product order ID
+     * @param float $price
+     */
+    public function setPrice(float $price): void
+    {
+        $this->price = $price;
+    }
+
+    /**
+     * Get VAT rate of item of the product order ID
+     * @return float
+     */
+    public function getVatRate(): float
+    {
+        return $this->vatRate;
+    }
+
+    /**
+     * Set VAT rate of item of the product order ID
+     * @param float $vatRate
+     */
+    public function setVatRate(float $vatRate): void
+    {
+        $this->vatRate = $vatRate;
+    }
+
+    /**
+     * Get product of item of the product order ID
+     * @return Product
+     */
+    public function getProduct(): Product
+    {
+        return $this->product;
+    }
+
+    /**
+     * Set product of item of the product order ID
+     * @param Product $product
+     */
+    public function setProduct(Product $product): void
+    {
+        $this->product = $product;
+    }
+
+    /**
+     * Get product order
+     * @return ProductOrder
+     */
+    public function getProductOrder(): ProductOrder
+    {
+        return $this->productOrder;
+    }
+
+    /**
+     * Set product order
+     * @param ProductOrder $productOrder
+     */
+    public function setProductOrder(ProductOrder $productOrder): void
+    {
+        $this->productOrder = $productOrder;
+    }
+
+    /**
+     * Get String information of purchase item.
+     * @return string
+     */
+    public function __toString()
+    {
+        if (isset($this->product)) {
+            return $this->product->getName();
+        }
+        // TODO change string in constant
+        return 'Non défini';
+    }
 
 }
