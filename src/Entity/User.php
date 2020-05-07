@@ -51,7 +51,7 @@ class User implements UserInterface, Serializable
      * @Assert\NotBlank(message="user.email.not_blank")
      * @Assert\Email(message = "user.email.not_email")
      */
-    private $email;
+    private $username;
 
     /**
      * Password of the user
@@ -134,18 +134,18 @@ class User implements UserInterface, Serializable
      * Get email of the user
      * @return string
      */
-    public function getEmail(): string
+    public function getUsername(): string
     {
-        return $this->email;
+        return $this->username;
     }
 
     /**
      * Set email of the user
-     * @param string $email
+     * @param string $username
      */
-    public function setEmail(string $email): void
+    public function setUsername(string $username): void
     {
-        $this->email = $email;
+        $this->username = $username;
     }
 
     /**
@@ -332,7 +332,7 @@ class User implements UserInterface, Serializable
     public function serialize(): string
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i
-        return serialize([$this->id, $this->email, $this->password]);
+        return serialize([$this->id, $this->username, $this->password]);
     }
 
     /**
@@ -341,7 +341,7 @@ class User implements UserInterface, Serializable
     public function unserialize($serialized): void
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i
-        [$this->id, $this->email, $this->password] = unserialize($serialized, ['allowed_classes' => false]);
+        [$this->id, $this->username, $this->password] = unserialize($serialized, ['allowed_classes' => false]);
     }
 
     /**
