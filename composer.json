@@ -1,6 +1,8 @@
 {
+    "name": "elochness/lfdvn",
     "type": "project",
     "license": "proprietary",
+    "description": "LFDVN Application",
     "require": {
         "php": "^7.3.16",
         "ext-ctype": "*",
@@ -20,10 +22,10 @@
         "symfony/mailer": "5.0.*",
         "symfony/monolog-bundle": "^3.1",
         "symfony/notifier": "5.0.*",
-        "symfony/orm-pack": "*",
+        "symfony/orm-pack": "1.0.7",
         "symfony/process": "5.0.*",
         "symfony/security-bundle": "5.0.*",
-        "symfony/serializer-pack": "*",
+        "symfony/serializer-pack": "1.0.*",
         "symfony/string": "5.0.*",
         "symfony/translation": "5.0.*",
         "symfony/twig-pack": "^1.0",
@@ -79,6 +81,9 @@
         "symfony/symfony": "*"
     },
     "extra": {
+        "comments": {
+            "symfony/orm-pack": "exactly version for compatibility PHP 5.3"
+        },
         "symfony": {
             "allow-contrib": false,
             "require": "5.0.*"
