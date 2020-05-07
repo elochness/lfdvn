@@ -47,13 +47,13 @@ class ProductOrder
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
-    private $createdAt = 'CURRENT_TIMESTAMP';
+    private $createdAt;
 
     /**
      * User of the product order
-     * @var \User
+     * @var User
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="productOrders")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
@@ -74,6 +74,7 @@ class ProductOrder
     public function __construct()
     {
         $this->items = new ArrayCollection();
+        $this->createdAt = new DateTime();
     }
 
     /**
@@ -141,18 +142,18 @@ class ProductOrder
 
     /**
      * Get user of the product order
-     * @return \User
+     * @return User
      */
-    public function getUser(): \User
+    public function getUser(): User
     {
         return $this->user;
     }
 
     /**
      * Set user of the product order
-     * @param \User $user
+     * @param User $user
      */
-    public function setUser(\User $user): void
+    public function setUser(User $user): void
     {
         $this->user = $user;
     }
@@ -199,7 +200,7 @@ class ProductOrder
      */
     public function __toString(): string
     {
-        return $this->id.' - '.$this->createdAt;
+        return $this->id.' - '.$this->getCreatedAt()->format('d-m-Y H:i:s');
     }
 
     /**
@@ -211,7 +212,7 @@ class ProductOrder
         $total = 0.0;
         foreach ($this->getItems() as $item) {
             /* @var ProductOrderItem $item */
-            $total += $item->getTotalPrice();
+            $total += $item->getFullPrice();
         }
 
         return $total;

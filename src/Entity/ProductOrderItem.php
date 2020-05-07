@@ -61,7 +61,7 @@ class ProductOrderItem
      * The product order
      * @var ProductOrder
      *
-     * @ORM\ManyToOne(targetEntity="ProductOrder")
+     * @ORM\ManyToOne(targetEntity="ProductOrder", inversedBy="items")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="product_order_id", referencedColumnName="id")
      * })
@@ -180,4 +180,13 @@ class ProductOrderItem
         return 'Non défini';
     }
 
+    /**
+     * Return the full price (tax included).
+     *
+     * @return float
+     */
+    public function getFullPrice()
+    {
+        return $this->product->getPrice() * $this->quantity;
+    }
 }

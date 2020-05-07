@@ -50,7 +50,7 @@ class Article
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
      */
-    private $createdAt = 'CURRENT_TIMESTAMP';
+    private $createdAt;
 
     /**
      * Update date of article
@@ -58,7 +58,7 @@ class Article
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
-    private $updatedAt = 'CURRENT_TIMESTAMP';
+    private $updatedAt;
 
     /**
      * Indication whether the article is activated
@@ -66,7 +66,9 @@ class Article
      *
      * @ORM\Column(name="enabled", type="boolean", nullable=false)
      */
-    private $enabled = true;
+    private $enabled;
+
+
 
     /**
      * Category of article
@@ -78,6 +80,16 @@ class Article
      * })
      */
     private $articleCategory;
+
+    /**
+     * Article constructor.
+     */
+    public function __construct()
+    {
+        $this->createdAt = new DateTime();
+        $this->updatedAt = new DateTime();
+        $this->enabled = true;
+    }
 
     /**
      * Get Id of article

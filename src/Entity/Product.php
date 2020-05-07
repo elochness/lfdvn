@@ -82,7 +82,7 @@ class Product
      *
      * @ORM\Column(name="created_at", type="datetime", nullable=false)
      */
-    private $createdAt = 'CURRENT_TIMESTAMP';
+    private $createdAt;
 
     /**
      * Update date of product
@@ -90,7 +90,7 @@ class Product
      *
      * @ORM\Column(name="updated_at", type="datetime", nullable=true)
      */
-    private $updatedAt = 'CURRENT_TIMESTAMP';
+    private $updatedAt;
 
     /**
      * Packaging of the product
@@ -120,7 +120,7 @@ class Product
      * Category of the product
      * @var Category
      *
-     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="products")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      * })
@@ -131,7 +131,7 @@ class Product
      * Subcategory of the product
      * @var Subcategory
      *
-     * @ORM\ManyToOne(targetEntity="Subcategory")
+     * @ORM\ManyToOne(targetEntity="Subcategory", inversedBy="products")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="subcategory_id", referencedColumnName="id")
      * })
@@ -148,6 +148,16 @@ class Product
      * })
      */
     private $vatRate;
+
+    /**
+     * Product constructor.
+     */
+    public function __construct()
+    {
+        $this->createdAt = new DateTime();
+        $this->updatedAt =  new DateTime();
+    }
+
 
     /**
      * Get product ID
@@ -358,36 +368,36 @@ class Product
 
     /**
      * Get category of the product
-     * @return Category
+     * @return Category|null
      */
-    public function getCategory(): Category
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
 
     /**
      * Set category of the product
-     * @param Category $category
+     * @param Category|null $category
      */
-    public function setCategory(Category $category): void
+    public function setCategory(?Category $category): void
     {
         $this->category = $category;
     }
 
     /**
      * Get subcategory of the product
-     * @return Subcategory
+     * @return Subcategory|null
      */
-    public function getSubcategory(): Subcategory
+    public function getSubcategory(): ?Subcategory
     {
         return $this->subcategory;
     }
 
     /**
      * Set subcategory of the product
-     * @param Subcategory $subcategory
+     * @param Subcategory|null $subcategory
      */
-    public function setSubcategory(Subcategory $subcategory): void
+    public function setSubcategory(?Subcategory $subcategory): void
     {
         $this->subcategory = $subcategory;
     }

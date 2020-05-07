@@ -43,7 +43,7 @@ class Subcategory
      * Category of the subcategory
      * @var Category
      *
-     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="subcategories")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      * })
