@@ -2,7 +2,7 @@
     "type": "project",
     "license": "proprietary",
     "require": {
-        "php": "^7.3.17",
+        "php": "^7.3.16",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "laminas/laminas-code": "^3.4",
