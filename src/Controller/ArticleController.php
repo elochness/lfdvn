@@ -25,7 +25,7 @@ class ArticleController extends AbstractController
         $page = $request->query->get('page', 1);
         $articles = $articleRepository->findLatest($page);
 
-        return $this->render('article/index.html.twig', ['articles' => $articles]);
+        return $this->render('article/index.html.twig', ['paginator' => $articles]);
     }
 
     /**
@@ -73,7 +73,10 @@ class ArticleController extends AbstractController
     public function showBanner(ArticleRepository $articleRepository): Response
     {
         $articlesBandeau = $articleRepository->findBandeau();
+        $response = $this->render('article/banner.html.twig', ['articlesBandeau' => $articlesBandeau]);
+        // sets the shared max age - which also marks the response as public
+        $response->setSharedMaxAge(600);
 
-        return $this->render('article/bandeau.html.twig', ['articlesBandeau' => $articlesBandeau]);
+        return $response;
     }
 }
