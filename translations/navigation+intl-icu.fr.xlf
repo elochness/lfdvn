@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit  id="menu.homepage">
+                <source>menu.homepage</source>
+                <target>Accueil</target>
+            </trans-unit>
+            <trans-unit id="menu.products">
+                <source>menu.products</source>
+                <target>Produits</target>
+            </trans-unit>
+            <trans-unit id="menu.recipes">
+                <source>menu.recipes</source>
+                <target>Nos idées recettes</target>
+            </trans-unit>
+            <trans-unit id="menu.product_order">
+                <source>menu.product_order</source>
+                <target>Commander</target>
+            </trans-unit>
+            <trans-unit id="menu.company">
+                <source>menu.company</source>
+                <target>Entreprise</target>
+            </trans-unit>
+            <trans-unit id="menu.contact_us">
+                <source>menu.contact_us</source>
+                <target>Nous contacter</target>
+            </trans-unit>
+
+            <trans-unit id="menu.admin">
+                <source>menu.admin</source>
+                <target>Administration</target>
+            </trans-unit>
+            <trans-unit id="menu.account">
+                <source>menu.account</source>
+                <target>Compte</target>
+            </trans-unit>
+            <trans-unit id="menu.logout">
+                <source>menu.logout</source>
+                <target>Déconnexion</target>
+            </trans-unit>
+            <trans-unit id="menu.sign_in">
+                <source>menu.sign_in</source>
+                <target>Se connecter</target>
+            </trans-unit>
+            <group id="group_id">
+                <trans-unit id="test">
+                    <source>test</source>
+                    <target>test-1</target>
+                </trans-unit>
+            </group>
+        </body>
+    </file>
+</xliff>
