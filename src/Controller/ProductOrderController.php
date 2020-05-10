@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductOrderController extends AbstractController
 {
     /**
-     * @Route("/", name="product_order_index", methods={"GET"})
+     * @Route("/", methods="GET", name="product_order_index")
      */
     public function index(): Response
     {
