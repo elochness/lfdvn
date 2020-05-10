@@ -33,13 +33,13 @@ class ArticleRepository extends ServiceEntityRepository
     public function queryLatest(string $articleCategoryID): QueryBuilder
     {
         $qb = $this->createQueryBuilder('article')
-            ->addSelect('ArticleCategory')
+            ->addSelect('articleCategory')
             ->innerJoin('article.articleCategory', 'articleCategory')
             ->where('article.enabled = true')
-            ->andWhere('articleCategory.id = :$articleCategoryID')
+            ->andWhere('articleCategory.id = :articleCategoryID')
             ->orderBy('article.updatedAt', 'DESC')
             ->addOrderBy('article.createdAt', 'DESC')
-            ->setParameter('$articleCategoryID', $articleCategoryID);
+            ->setParameter('articleCategoryID', $articleCategoryID);
         ;
 
         return $qb;
@@ -55,7 +55,7 @@ class ArticleRepository extends ServiceEntityRepository
     public function findLatest(int $page = 1): Paginator
     {
         $qb = $this->queryLatest(ArticleCategory::MAIN_ARTICLE);
-        return (new Paginator($qb, Article::NUM_ITEMS))->paginate($page);
+        return (new Paginator($qb))->paginate($page);
     }
 
     /**
