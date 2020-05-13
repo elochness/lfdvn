@@ -1,0 +1,66 @@
+<div class="box article-large">
+    <h2>{{ 'title.schedule' | trans }}</h2>
+
+    {% if schedule %}
+        <ul class="list_style_none">
+            <li>
+                {{ 'Monday' | trans }} :
+                {% if schedule.monday %}
+                    <span class="{% if schedule.monday == "Fermé" %}day_red{%endif%}">{{ schedule.monday }}</span>
+                {% else %}
+                    {{ 'label.not_defined' | trans }}
+                {% endif %}
+            </li>
+            <li>
+                {{ 'Tuesday' | trans }} :
+                {% if schedule.tuesday %}
+                    <span class="{% if schedule.tuesday == "Fermé" %}day_red{%endif%}">{{ schedule.tuesday }}</span>
+                {% else %}
+                    {{ 'label.not_defined' | trans }}
+                {% endif %}
+            </li>
+            <li>
+                {{ 'Wednesday' | trans }} :
+                {% if schedule.wednesday %}
+                    <span class="{% if schedule.wednesday == "Fermé" %}day_red{%endif%}">{{ schedule.wednesday }}</span>
+                {% else %}
+                    {{ 'label.not_defined' | trans }}
+                {% endif %}
+            </li>
+            <li>
+                {{ 'Thursday' | trans }} :
+                {% if schedule.thursday %}
+                    <span class="{% if schedule.thursday == "Fermé" %}day_red{%endif%}">{{ schedule.thursday }}</span>
+                {% else %}
+                    {{ 'label.not_defined' | trans }}
+                {% endif %}
+            </li>
+            <li>
+                {{ 'Friday' | trans }} :
+                {% if schedule.friday %}
+                    <span class="{% if schedule.friday == "Fermé" %}day_red{%endif%}">{{ schedule.friday }}</span>
+                {% else %}
+                    {{ 'label.not_defined' | trans }}
+                {% endif %}
+            </li>
+            <li>
+                {{ 'Saturday' | trans }} :
+                {% if schedule.saturday %}
+                    <span class="{% if schedule.saturday == "Fermé" %}day_red{%endif%}">{{ schedule.saturday }}</span>
+                {% else %}
+                    {{ 'label.not_defined' | trans }}
+                {% endif %}
+            </li>
+            <li>
+                {{ 'Sunday' | trans }} :
+                {% if schedule.sunday %}
+                    <span class="{% if schedule.sunday == "Fermé" %}day_red{%endif%}">{{ schedule.sunday }}</span>
+                {% else %}
+                    {{ 'label.not_defined' | trans }}
+                {% endif %}
+            </li>
+        </ul>
+    {% else %}
+        {{ 'label.schedule.not_found'|trans }}
+    {% endif %}
+</div>

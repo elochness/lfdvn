@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id '_index' %}
+
+{% block body_title %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{ 'title.company'|trans }}</h1>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block main %}
+
+    <div>
+        {% for article in articles %}
+            <article class="box article-large">
+                <h2>
+                    {{ article.title }}
+                </h2>
+                <div>
+                    {{article.contains | raw }}
+                </div>
+
+            </article>
+
+        {% else %}
+            <article class="box article-large">
+                <h2>{{ 'label.enterprise.not_found.title'|trans }}</h2>
+                <div>
+                    <div class="flex flex-center">
+                        <div >{{ 'label.enterprise.not_found.description'|trans }}</div>
+                        <div><img class="center" src="{{ asset('build/images/svg/010-curriculum.svg') }}" width="128" height="128" alt="Curriculum" /> </div>
+                    </div>
+                </div>
+
+            </article>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+
+{% block sidebar %}
+
+    {{ parent() }}
+
+{% endblock %}
