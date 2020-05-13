@@ -1,0 +1,352 @@
+//■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀
+// VARIABLES
+//■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀
+$primary: #dd5555;
+// dd5555
+$background: #ebebeb;
+$navbar-background: #DDE236;
+$navbar-front: #91AD37;
+$navbar-background-focus: #afd241;
+$font-color: #7d7d7d;
+$font-color-close: #fb0303;
+$space: 1rem;
+$factor_font_size: 16;
+
+//■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀
+// CSS RESET
+//■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀
+
+// setting the value of this variable to an empty data URL is the only working solution
+// to load the Bootswatch web fonts locally and avoid loading them from Google servers
+// see https://github.com/thomaspark/bootswatch/issues/55#issuecomment-298093182
+$web-font-path: 'data:text/css;base64,';
+
+// Make sure the bootstrap-sass and lato fonts are resolved correctly
+$icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
+$lato-font-path: '~lato-font/fonts';
+
+
+
+// pick the Lato fonts individually to avoid importing the entire font family
+@import '~lato-font/scss/public-api';
+@include lato-include-font('normal');
+@include lato-include-font('bold');
+
+//@font-face {
+//    font-family: lato;
+//    src: url('../fonts/lato/Lato-Regular.woff');
+//}
+//
+//@font-face {
+//    font-family: roboto_slab;
+//    src: url('../fonts/Roboto_Slab/RobotoSlab-Regular.ttf');
+//}
+
+*,
+*:after,
+*:before {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    //outline: 0;
+    -webkit-tap-highlight-color: transparent;
+    box-sizing: border-box;
+    font-size: 1rem;
+    line-height: 1;
+    font: inherit;
+}
+
+footer,
+header,
+main,
+nav {
+    display: block;
+}
+
+html {
+    font-family: 'roboto_slab', 'lato', 'Open Sans', sans-serif;
+    font-size: 16px;
+    color: $font-color;
+    /*font-family: 'Montserrat', sans-serif;*/
+}
+
+/**:not(input):not(textarea) {
+  -webkit-user-select: none; // disable selection/Copy of UIWebView
+  -webkit-touch-callout: none; // disable the IOS popup when long-press on a link
+}*/
+img {
+    display: inline-block;
+    max-width: 100%;
+}
+
+input:not([type=checkbox]):not([type=radio]) {
+    -webkit-appearance: none;
+}
+
+button {
+    background: none;
+    cursor: pointer;
+}
+
+form {
+    width: 100%;
+    height: 100%;
+}
+
+b {
+    font-weight: 600;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+p {
+    margin-bottom: $space/2;
+}
+
+.aria-only-text {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+//■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀
+// IMPORT
+//■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀
+
+@import "sidebar";
+@import "alert";
+@import "btn";
+@import "img";
+@import "category";
+@import "product";
+@import "pagination";
+@import "footer";
+@import "map";
+@import "schedules";
+@import "product-order";
+@import "modal";
+@import "navbar";
+
+*,
+*:after,
+*:before {
+    box-sizing: border-box;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: sub;
+}
+
+body {
+    background: $background;
+}
+
+h1 {
+    color: $primary;
+    font-weight: bold;
+    font-size: (28/$factor_font_size) + em;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.box {
+    background: #f9f9f9;
+    box-shadow: 0 0 1px rgba(0, 0, 0, .2), 0 2px 4px rgba(0, 0, 0, .1);
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .1);
+
+    h2 {
+        color: $primary;
+        font-weight: bold;
+        font-size: (28/$factor_font_size) + em;
+    }
+
+    h3 {
+        font-size: (20/$factor_font_size) + em;
+    }
+
+    p {
+        font-size: (17/$factor_font_size) + em;
+        color: $font-color;
+    }
+
+    ul, ol {
+        margin-left: 20px;
+        font-size: (17/$factor_font_size) + em;
+        color: $font-color;
+    }
+
+    li {
+        margin-bottom: 5px;
+    }
+
+    em {
+        font-style: italic;
+    }
+
+}
+
+.navbar {
+    color: $navbar-front;
+    background-color: $navbar-background;
+    border-width: 0;
+    border: 1px solid transparent;
+    border-color: transparent;
+    z-index: 1000;
+    position: relative;
+    margin-bottom: 21px;
+}
+
+.nav > li > a, .nav > li > a {
+    color: $navbar-front;
+}
+
+.nav {
+    li {
+
+        a {
+            font-size: medium;
+        }
+
+        a:hover {
+            text-decoration: none;
+            background-color: $navbar-background-focus;
+            color: white;
+
+        }
+    }
+}
+
+ol, ul {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+
+    .col-sm-3, .col-sm-9 {
+        float: left;
+    }
+
+    .col-sm-3 {
+        width: 25%;
+    }
+
+    .col-sm-9 {
+        width: 75%;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+    .col-sm-3, .col-sm-9 {
+        float: left;
+    }
+
+    .col-sm-3 {
+        width: 25%;
+    }
+
+    .col-sm-9 {
+        width: 75%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+    .col-sm-3, .col-sm-9 {
+        float: left;
+    }
+
+    .col-sm-3 {
+        width: 25%;
+    }
+
+    .col-sm-9 {
+        width: 75%;
+    }
+
+}
+
+.container {
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Article */
+.article-large {
+    padding: 20px;
+
+    h2 {
+        margin-top: 0;
+        border-bottom: 3px solid;
+        margin-bottom: 20px;
+    }
+}
+
+.flex {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-center {
+    align-items: center;
+    justify-content: center;
+}
+
+/* Cas pour afficher correctement les caracteristiques d'un produit */
+@media (max-width: 992px) {
+    .flex {
+        flex-direction: column;
+    }
+}
+
+/* Row class */
+.row {
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+.row:before, .row:after {
+    content: " ";
+    display: table;
+}
+
+.row:after {
+    clear: both;
+}
+
+.paragraph {
+    border: 1px solid #ccc;
+    padding: 10px 10px 10px 10px;
+    background-color: #eee;
+}
+
+.separator {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

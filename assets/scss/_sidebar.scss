@@ -1,0 +1,11 @@
+#sidebar {
+  padding-left: 10px;
+}
+
+/* Enlever les arrondis lors affichage telportable */
+@media (max-width: 768px) {
+
+  #sidebar {
+    padding-left: 0;
+  }
+}

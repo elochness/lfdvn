@@ -1,0 +1,35 @@
+img.center {
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .navbar-brand {
+    float: none;
+    padding: 0 0;
+  }
+}
+
+.navbar-brand {
+
+  img {
+    width: 80px;
+  }
+
+  /* Arrondi sur les deux coins au top lors affichage petit */
+  @media (max-width: 768px) {
+    img {
+      width: 100px;
+      margin: auto;
+    }
+  }
+
+  /* Arrondi sur lee coin top left lors affichage grand */
+  @media (min-width: 1550px) {
+    img {
+      width: 180px;
+      margin-left: 10px;
+      margin-right: 50px;
+    }
+  }
+}

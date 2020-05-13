@@ -24,14 +24,21 @@
     <meta property="og:type" content="website"/>
 
     {% block stylesheets %}
-        {#  <link rel="stylesheet" href="{{ asset('css/app.css') }}"> #}
-        <link rel="stylesheet" href="{{ asset('build/css/nav.css') }}">
-        <link rel="stylesheet" href="{{ asset('build/css/fromagerie.css') }}">
-        <link rel="stylesheet" href="{{ asset('build/css/fontawesome.css') }}">
-        <link rel="stylesheet" href="{{ asset('build/css/solid.css') }}">
+        {# 'app' must match the first argument to addEntry() in webpack.config.js #}
+        {{ encore_entry_link_tags('app') }}
+        {{ encore_entry_link_tags('nav') }}
 
-        {# uncomment the following lines to compile SCSS assets with Assetic {% stylesheets filter="scssphp" output="css/app.css" "%kernel.root_dir%/Resources/assets/scss/bootstrap-flatly.scss" "%kernel.root_dir%/Resources/assets/scss/font-awesome.scss"
-        "%kernel.root_dir%/Resources/assets/css/*.css" "%kernel.root_dir%/Resources/assets/scss/main.scss" %} <link rel="stylesheet" href="{{ asset_url }}" /> {% endstylesheets %} #}
+        <!-- Renders a link tag (if your module requires any CSS)
+             <link rel="stylesheet" href="/build/app.scss"> -->
+
+        {#  <link rel="stylesheet" href="{{ asset('scss/app.scss') }}"> #}
+{#        <link rel="stylesheet" href="{{ asset('build/scss/nav.scss') }}">#}
+{#        <link rel="stylesheet" href="{{ asset('build/scss/app.scss') }}">#}
+{#        <link rel="stylesheet" href="{{ asset('build/scss/fontawesome.scss') }}">#}
+{#        <link rel="stylesheet" href="{{ asset('build/scss/solid.scss') }}">#}
+
+        {# uncomment the following lines to compile SCSS assets with Assetic {% stylesheets filter="scssphp" output="scss/app.scss" "%kernel.root_dir%/Resources/assets/scss/bootstrap-flatly.scss" "%kernel.root_dir%/Resources/assets/scss/font-awesome.scss"
+        "%kernel.root_dir%/Resources/assets/scss/*.scss" "%kernel.root_dir%/Resources/assets/scss/main.scss" %} <link rel="stylesheet" href="{{ asset_url }}" /> {% endstylesheets %} #}
 
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('build/favicon.ico') }}"/>
@@ -162,6 +169,12 @@
 {% endblock %}
 
 {% block javascripts %}
+
+    {{ encore_entry_script_tags('app') }}
+
+    <!-- Renders app.js & a webpack runtime.js file
+        <script src="/build/runtime.js"></script>
+        <script src="/build/app.js"></script> -->
 
     {# uncomment the following lines to combine and minimize JavaScript assets with Assetic {% javascripts filter="?jsqueeze" output="js/app.js" "%kernel.root_dir%/Resources/assets/js/jquery-2.1.4.js" "%kernel.root_dir%/Resources/assets/js/moment.min.js"
     "%kernel.root_dir%/Resources/assets/js/bootstrap-3.3.4.js" "%kernel.root_dir%/Resources/assets/js/highlight.pack.js" "%kernel.root_dir%/Resources/assets/js/bootstrap-datetimepicker.min.js" "%kernel.root_dir%/Resources/assets/js/main.js" %} <script
