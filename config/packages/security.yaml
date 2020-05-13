@@ -16,7 +16,7 @@ security:
     # https://symfony.com/doc/current/security.html#a-authentication-firewalls
     firewalls:
         dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            pattern: ^/(_(profiler|wdt)|scss|css|images|js)/
             security: false
 
         main:
