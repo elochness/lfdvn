@@ -32,11 +32,11 @@ class ProductRepository extends ServiceEntityRepository
     public function queryLatest(array $params): QueryBuilder
     {
         $qb = $this->createQueryBuilder('product')
-            ->addSelect('ArticleCategory')
+            ->addSelect('category')
+            ->addSelect('subcategory')
             ->innerJoin('product.category', 'category')
             ->leftJoin('product.subcategory', 'subcategory')
             ->where('product.enabled = true')
-            ->andWhere('articleCategory.id = :$articleCategoryID')
             ->orderBy('product.name', 'ASC')
             ->addOrderBy('category.name', 'ASC')
         ;

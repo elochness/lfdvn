@@ -164,7 +164,7 @@ class Category
      * Get subcategories of the category
      * @return Subcategory[]
      */
-    public function getSubcategories(): array
+    public function getSubcategories()
     {
         return $this->subcategories;
     }

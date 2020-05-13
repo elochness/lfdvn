@@ -131,7 +131,7 @@ class Subcategory
      * Get products of the subcategory
      * @return Product[]
      */
-    public function getProducts(): array
+    public function getProducts()
     {
         return $this->products;
     }

@@ -525,6 +525,19 @@
                 <source>action.user.delete</source>
                 <target>Supprimer le compte utilisateur</target>
             </trans-unit>
+
+            <trans-unit id="paginator.previous">
+                <source>paginator.previous</source>
+                <target>Précédent</target>
+            </trans-unit>
+            <trans-unit id="paginator.current">
+                <source>paginator.current</source>
+                <target>En cours</target>
+            </trans-unit>
+            <trans-unit id="paginator.next">
+                <source>paginator.next</source>
+                <target>Suivant</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
