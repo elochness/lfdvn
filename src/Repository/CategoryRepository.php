@@ -33,7 +33,8 @@ class CategoryRepository extends ServiceEntityRepository
               LEFT OUTER JOIN App\Entity\Product p WITH p.category = c.id
               LEFT OUTER JOIN App\Entity\Subcategory s WITH p.subcategory = s.id
               WHERE c.enabled = true
-              ORDER BY c.name ASC
+              AND p.enabled = true
+              ORDER BY c.name, s.name ASC
           ')->getResult();
     }
 }

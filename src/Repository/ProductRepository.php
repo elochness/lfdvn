@@ -43,11 +43,11 @@ class ProductRepository extends ServiceEntityRepository
 
         if (isset($params)) {
             if (isset($params['category'])) {
-                $qb->andWhere(' AND category.id = :cid ');
+                $qb->andWhere('category.id = :cid ');
                 $qb->setParameter('cid', $params['category']);
             }
             if (isset($params['subcategory'])) {
-                $qb->andWhere(' AND subcategory.id = :sid ');
+                $qb->andWhere('subcategory.id = :sid ');
                 $qb->setParameter('sid', $params['subcategory']);
             }
         }

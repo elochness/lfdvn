@@ -143,7 +143,7 @@
                     {% if category.subcategories %}
                         <ul>
                             {% for subcategory in category.subcategories | sort %}
-                                <li class="category-subname"><a href=" {{ path('product_index', {'subcategory':subcategory.id}) }} ">{{ subcategory.name }} ({{ subcategory.products | length }})</a></li>
+                                <li class="category-subname"><a href=" {{ path('product_index', {'subcategory':subcategory.id}) }} ">{{ subcategory.name }}</a></li>
                             {% endfor %}
                         </ul>
                     {% endif %}
