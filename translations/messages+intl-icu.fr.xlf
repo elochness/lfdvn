@@ -426,6 +426,18 @@
                 <source>label.password_repeat</source>
                 <target>Répéter le mot de passe</target>
             </trans-unit>
+            <trans-unit id="label.current_password">
+                <source>label.current_password</source>
+                <target>Mot de passe actuel</target>
+            </trans-unit>
+            <trans-unit id="label.new_password">
+                <source>label.new_password</source>
+                <target>Nouveau mot de passe</target>
+            </trans-unit>
+            <trans-unit id="label.new_password_confirm">
+                <source>label.new_password_confirm</source>
+                <target>Confirmer le mot de passe</target>
+            </trans-unit>
 
             <trans-unit id="label.company.details">
                 <source>label.company.details</source>

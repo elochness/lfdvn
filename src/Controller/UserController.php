@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\Type\ChangePasswordType;
 use App\Repository\ProductOrderRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -71,14 +72,43 @@ class UserController extends AbstractController
      * }, methods="GET|POST", name="password_update")
      *
      * @param Request $request
-     * @param UserPasswordEncoderInterface $encoder
+     * @param UserPasswordEncoderInterface $passwordEncoder
      * @return Response
      */
-    public function changePassword(Request $request, UserPasswordEncoderInterface $encoder): Response
+    public function changePassword(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
     {
-        // TODO change password user function
-        return new Response();
+
+        // returns your User object, or null if the user is not authenticated
+        // use inline documentation to tell your editor your exact User class
+        /** @var User $user */
+        $user = $this->getUser();
+
+        // 1) build the form
+        $form = $this->createForm(ChangePasswordType::class);
+
+        // 2) handle the submit (will only happen on POST)
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            // 3) Encode the password (you could also do this via Doctrine listener)
+            $user->setPassword($passwordEncoder->encodePassword($user, $form->get('newPassword')->getData()));
+
+            // 4) save the modification!
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'password.updated_successfully');
+
+            return $this->redirectToRoute('user_account');
+        }
+
+        return $this->render('user/change_password.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
+
+
 
     /**
      * @Route({
