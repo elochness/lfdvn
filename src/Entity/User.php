@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_email", columns={"email"})})
  * @ORM\Entity
- * @UniqueEntity(fields={"email"}, message="user.email.exist")
+ * @UniqueEntity(fields={"username"}, message="user.email.exist")
  */
 class User implements UserInterface, Serializable
 {
@@ -62,6 +62,11 @@ class User implements UserInterface, Serializable
     private $password;
 
     /**
+     * @var string
+     */
+    private $plainPassword;
+
+    /**
      * @var array
      *
      * @ORM\Column(name="roles", type="json", length=0, nullable=false)
@@ -101,7 +106,7 @@ class User implements UserInterface, Serializable
      *
      * @ORM\Column(name="enabled", type="boolean", nullable=false)
      */
-    private $enabled = true;
+    private $enabled;
 
     /**
      * List of product order of the user
@@ -118,14 +123,15 @@ class User implements UserInterface, Serializable
     public function __construct()
     {
         $this->productOrders = new ArrayCollection();
-        $this->roles = User::ROLE_USER;
+        $this->roles = [User::ROLE_USER];
+        $this->enabled = true;
     }
 
     /**
      * Get user ID
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -134,7 +140,7 @@ class User implements UserInterface, Serializable
      * Get email of the user
      * @return string
      */
-    public function getUsername(): string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
@@ -152,7 +158,7 @@ class User implements UserInterface, Serializable
      * Get password of the user
      * @return string
      */
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
@@ -167,10 +173,28 @@ class User implements UserInterface, Serializable
     }
 
     /**
+     * Get plain password of the user
+     * @return string
+     */
+    public function getPlainPassword(): ?string
+    {
+        return $this->plainPassword;
+    }
+
+    /**
+     * Set plain password of the user
+     * @param string $plainPassword
+     */
+    public function setPlainPassword(string $plainPassword): void
+    {
+        $this->plainPassword = $plainPassword;
+    }
+
+    /**
      * Get first name of the user
      * @return string
      */
-    public function getFirstName(): string
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
@@ -188,7 +212,7 @@ class User implements UserInterface, Serializable
      * Get last name of the user
      * @return string
      */
-    public function getLastName(): string
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
@@ -353,6 +377,5 @@ class User implements UserInterface, Serializable
     {
         return $this->getLastName().' '.$this->getFirstName();
     }
-
 
 }
