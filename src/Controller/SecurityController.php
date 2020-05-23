@@ -5,10 +5,12 @@ namespace App\Controller;
 
 
 use App\Entity\User;
+use App\Form\UserType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
@@ -45,6 +47,48 @@ class SecurityController extends AbstractController
             'last_username' => $helper->getLastUsername(),
             // last authentication error (if any)
             'error' => $helper->getLastAuthenticationError(),
+        ]);
+    }
+
+    /**
+     * @Route({
+     *     "fr": "/nouveau_utilisateur",
+     *     "en": "/new_user"
+     * },  methods="GET|POST", name="security_user_new")
+     *
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $passwordEncoder
+     * @return Response
+     */
+    public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder): Response
+    {
+        // 1) build the form
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
+
+        // 2) handle the submit (will only happen on POST)
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // 3) Encode the password (you could also do this via Doctrine listener)
+            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+            $user->setPassword($password);
+
+            // 4) save the User!
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);
+            $entityManager->flush();
+
+            // Flash messages are used to notify the user about the result of the
+            // actions. They are deleted automatically from the session as soon
+            // as they are accessed.
+            // See https://symfony.com/doc/current/book/controller.html#flash-messages
+            $this->addFlash('success', 'account.created_successfully');
+
+            return $this->redirectToRoute('homepage');
+        }
+
+        return $this->render('security/new.html.twig', [
+            'form' => $form->createView(),
         ]);
     }
 

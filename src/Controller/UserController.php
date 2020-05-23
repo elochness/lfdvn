@@ -34,21 +34,6 @@ class UserController extends AbstractController
 
     /**
      * @Route({
-     *     "fr": "/nouveau",
-     *     "en": "/new"
-     * },  methods="GET|POST", name="user_new")
-     *
-     * @param Request $request
-     * @return Response
-     */
-    public function new(Request $request) : Response
-    {
-        // TODO create user function
-        return new Response();
-    }
-
-    /**
-     * @Route({
      *     "fr": "/modifier",
      *     "en": "/edit"
      * },  methods="GET|POST", name="user_edit")
