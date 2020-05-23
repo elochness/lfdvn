@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Form\Type\ChangePasswordType;
+use App\Form\UserType;
 use App\Repository\ProductOrderRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,7 +24,7 @@ class UserController extends AbstractController
 {
 
     /**
-     * @Route(methods={"GET"}, name="user_account")
+     * @Route(methods="GET", name="user_account")
      *
      * @return Response
      */
@@ -46,8 +47,29 @@ class UserController extends AbstractController
      */
     public function edit(Request $request) : Response
     {
-        // TODO edit user function
-        return new Response();
+        // returns your User object, or null if the user is not authenticated
+        // use inline documentation to tell your editor your exact User class
+        /** @var User $user */
+        $user = $this->getUser();
+
+        // 1) build the form
+        $form = $this->createForm(UserType::class, $user);
+        $form->remove('username');
+        $form->remove('plainPassword');
+
+        // 2) handle the submit (will only happen on POST)
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash('success', 'account.updated_successfully');
+
+            return $this->redirectToRoute('user_account');
+        }
+
+        return $this->render('user/edit.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
