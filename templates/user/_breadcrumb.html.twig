@@ -1,0 +1,16 @@
+{% set route = app.request.get('_route') %}
+
+<nav class="nav-account">
+    <div class="flex">
+        <a class="menu {{ route starts with 'user_account' ? 'selected' }}" href="{{ path('user_account') }}">
+            <img class="center" src="{{ asset('build/images/svg/017-user.svg') }}" width="32"
+                 height="32" alt="{{ 'title.account.user'|trans }}"/>
+            <p class="text-menu">{{ 'title.account.user'|trans }}</p>
+        </a>
+        <a class="menu {{ route starts with 'user_purchase' ? 'selected' }}" href="{{ path('user_product_order_index') }}">
+            <img class="center" src="{{ asset('build/images/svg/002-shopping.svg') }}" width="32"
+                 height="32" alt="{{ 'title.account.product_order'|trans }}"/>
+            <p class="text-menu">{{ 'title.account.product_order'|trans }}</p>
+        </a>
+    </div>
+</nav>

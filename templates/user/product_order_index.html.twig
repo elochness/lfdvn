@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id '_index' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/css/breadcrumbs.css') }}">
+{% endblock %}
+
+{% block body_title %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{ 'title.account'|trans }}</h1>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block main %}
+
+    <article class="box article-large">
+
+        {% include 'user/_breadcrumb.html.twig' with {'currentAction': currentAction} only %}
+
+        {% if productsOrder|length > 0 %}
+
+            <div class="paragraph">
+                <table>
+                    <tr class="header">
+                        <th>N° de commande</th>
+                        <th>Date de création</th>
+                        <th>Date de réception</th>
+                        <th>Nb de produits</th>
+                        <th>Consulter</th>
+                    </tr>
+
+                    {% for productOrder in productsOrder %}
+
+                        <tr class="purchase-list">
+                            <td class="center">{{ productOrder.id }}</td>
+                            <td class="center">{{ productOrder.createdAt|date('d/m/Y') }}</td>
+                            <td class="center">{{ productOrder.deliveryDate|date('d/m/Y') }}</td>
+                            <td class="center">{{ productOrder.items|length }}</td>
+                            <td class="center">
+                                <a class="btn btn-a btn-primary"
+                                   href="{{ path('user_product_order_show', {'id': purchase.id }) }}">
+                                    <i class="fas fa-eye" aria-hidden="true"></i> {{ 'action.show'|trans }}
+                                </a>
+                            </td>
+                        </tr>
+
+                    {% endfor %}
+
+                </table>
+            </div>
+
+
+        {% else %}
+            <div>
+                <div class="flex flex-center">
+                    <div>{{ 'label.account.not_product_order'|trans }}</div>
+                    <div><img class="center" src="{{ asset('build/images/svg/009-notes.svg') }}" width="128"
+                              height="128" alt="Note"/></div>
+                </div>
+            </div>
+
+        {% endif %}
+
+    </article>
+
+{% endblock %}
+
+{% block sidebar %}
+
+    {{ parent() }}
+
+{% endblock %}

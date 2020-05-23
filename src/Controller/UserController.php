@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\ProductOrderRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -28,7 +29,8 @@ class UserController extends AbstractController
     public function index(): Response
     {
         return $this->render('user/index.html.twig', [
-            'user' => $this->getUser()
+            'user' => $this->getUser(),
+            'currentAction' => 'user'
         ]);
     }
 
@@ -87,10 +89,20 @@ class UserController extends AbstractController
      *
      * @return Response
      */
-    public function productOrderIndex()
+    public function productOrderIndex(ProductOrderRepository $productOrderRepository)
     {
-        // TODO product order user function
-        return new Response();
+        // returns your User object, or null if the user is not authenticated
+        // use inline documentation to tell your editor your exact User class
+        /** @var User $user */
+        $user = $this->getUser();
+
+        // Recuperate all product order according to the buyer
+        $productsOrder = $productOrderRepository->findByBuyer($user->getId());
+
+        return $this->render('user/product_order_index.html.twig', [
+            'productsOrder' => $productsOrder,
+            'currentAction' => 'purchase',
+        ]);
     }
 
     /**
