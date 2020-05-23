@@ -9,6 +9,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -78,13 +79,25 @@ class UserController extends AbstractController
      *     "en": "/remove"
      * },  methods="GET|POST", name="user_remove")
      *
-     * @param Request $request
      * @return Response
      */
-    public function remove(Request $request) : Response
+    public function remove() : Response
     {
-        // TODO remove user function
-        return new Response();
+        // returns your User object, or null if the user is not authenticated
+        // use inline documentation to tell your editor your exact User class
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $session = new Session();
+        $session->invalidate();
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($user);
+        $entityManager->flush();
+
+        $session->getFlashBag()->add('success', 'account.removed_successfully');
+
+        return $this->redirectToRoute('article_index');
     }
 
     /**
