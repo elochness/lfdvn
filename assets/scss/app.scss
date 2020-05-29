@@ -25,8 +25,6 @@ $web-font-path: 'data:text/css;base64,';
 $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 $lato-font-path: '~lato-font/fonts';
 
-
-
 // pick the Lato fonts individually to avoid importing the entire font family
 @import '~lato-font/scss/public-api';
 @include lato-include-font('normal');
@@ -53,7 +51,6 @@ $lato-font-path: '~lato-font/fonts';
     box-sizing: border-box;
     font-size: 1rem;
     line-height: 1;
-    font: inherit;
 }
 
 footer,
@@ -118,6 +115,12 @@ p {
 //■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀
 // IMPORT
 //■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀■▀
+
+// the ~ allows you to reference things in node_modules
+// @import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/_functions";
+@import "~bootstrap/scss/_variables";
+@import "~bootstrap/scss/_mixins";
 
 @import "sidebar";
 @import "alert";
@@ -193,21 +196,6 @@ h1 {
         font-style: italic;
     }
 
-}
-
-.navbar {
-    color: $navbar-front;
-    background-color: $navbar-background;
-    border-width: 0;
-    border: 1px solid transparent;
-    border-color: transparent;
-    z-index: 1000;
-    position: relative;
-    margin-bottom: 21px;
-}
-
-.nav > li > a, .nav > li > a {
-    color: $navbar-front;
 }
 
 .nav {

@@ -1,3 +1,19 @@
+@use "~bootstrap/scss/_navbar" as navbar;
+
+.navbar {
+  color: $navbar-front;
+  background-color: $navbar-background;
+  border: 1px solid transparent;
+  z-index: 1000;
+  position: relative;
+  margin-bottom: 21px;
+}
+
+.nav > li > a, .nav > li > a {
+  color: $navbar-front;
+}
+
+/*
 .nav-account {
 
   padding: 10px 20px;
@@ -32,4 +48,4 @@
       color: $background;
     }
   }
-}
+}*/

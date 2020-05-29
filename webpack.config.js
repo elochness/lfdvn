@@ -25,7 +25,6 @@ Encore
      */
     .addEntry('app', './assets/js/app.js')
     .addStyleEntry('breadcrumbs', './assets/css/breadcrumbs.css')
-    .addStyleEntry('nav', './assets/css/nav.min.css')
 
     .copyFiles({
         from: './assets',
