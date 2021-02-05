@@ -1,3 +1,14 @@
 .day_red {
   color: $font-color-close;
 }
+
+.list-schedule {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+  //font-size: .875em;
+
+  li {
+    margin-top: 5px;
+  }
+}
