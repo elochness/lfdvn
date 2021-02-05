@@ -416,7 +416,7 @@
             </trans-unit>
             <trans-unit id="help.email">
                 <source>help.email</source>
-                <target>L'email servira d'identifiant pour l'authentification</target>
+                <target>(L'email servira d'identifiant pour l'authentification)</target>
             </trans-unit>
             <trans-unit id="label.password">
                 <source>label.password</source>
