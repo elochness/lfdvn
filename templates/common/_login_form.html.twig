@@ -1,14 +1,13 @@
-{% if error %}
-    <div class="alert alert-danger" role="alert">
-        {{ error.messageKey|trans(error.messageData, 'security') }}
-    </div>
-{% endif %}
-
-{% set current_path = app.request.get('_route') %}
-
 <form action="{{ path('security_login') }}" method="post">
     <fieldset>
         <legend><i class="fas fa-lock" aria-hidden="true"></i> {{ 'title.login'|trans }}</legend>
+
+        {% if error %}
+            <div class="alert alert-danger" role="alert">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+
         <div class="form-group">
             <label for="username">{{ 'label.email'|trans }}</label>
             <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control"/>
