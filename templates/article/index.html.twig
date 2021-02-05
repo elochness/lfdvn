@@ -51,7 +51,7 @@
 
                     {% for i in 1..paginator.lastPage %}
                         {% if i == paginator.currentPage %}
-                            <li class="active"><span>{{ i }} <span class="sr-only">{{ 'paginator.current'|trans }}</span></span></li>
+                            <li class="active"><span>{{ i }}</span></li>
                         {% else %}
                             <li><a href="{{ path('article_index_paginated', {page: i}) }}">{{ i }}</a></li>
                         {% endif %}
