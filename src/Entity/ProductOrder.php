@@ -75,6 +75,7 @@ class ProductOrder
     {
         $this->items = new ArrayCollection();
         $this->createdAt = new DateTime();
+        $this->deliveryDate = new DateTime();
     }
 
     /**
@@ -144,7 +145,7 @@ class ProductOrder
      * Get user of the product order
      * @return User
      */
-    public function getUser(): User
+    public function getUser(): ?User
     {
         return $this->user;
     }

@@ -3,14 +3,20 @@
 {% block title %}ProductOrder index{% endblock %}
 
 {% block body %}
-    <h1>ProductOrder index</h1>
+    <h1>{{ 'action.product_order' |trans }}</h1>
+
+    <div class="btn-group">
+        <a href="#" class="btn btn-primary active" aria-current="page">Active link</a>
+        <a href="#" class="btn btn-primary">Link</a>
+        <a href="#" class="btn btn-primary">Link</a>
+    </div>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>DeliveryDate</th>
-                <th>Comment</th>
+                <th>{{ 'title.product_order.delivery_date'|trans }}</th>
+                <th>{{ 'label.remark' |trans }}</th>
                 <th>CreatedAt</th>
                 <th>actions</th>
             </tr>

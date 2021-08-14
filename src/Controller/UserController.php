@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\ProductOrder;
 use App\Form\Type\ChangePasswordType;
 use App\Form\UserType;
 use App\Repository\ProductOrderRepository;
@@ -178,9 +179,28 @@ class UserController extends AbstractController
      *
      * @return Response
      */
-    public function productOrderShow()
+    public function productOrderShow(int $id, ProductOrderRepository $productOrderRepository)
     {
-        // TODO show product order user function
-        return new Response();
+        // returns your User object, or null if the user is not authenticated
+        // use inline documentation to tell your editor your exact User class
+        /** @var User $user */
+        $user = $this->getUser();
+
+        // Recuperate the product order according to the buyer
+        /** @var ProductOrder $productOrder */
+        $productOrder = $this->getDoctrine()
+            ->getRepository(ProductOrder::class)
+            ->find($id);
+
+        if (!$productOrder || $productOrder->getUser() <> $user) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+
+        return $this->render('user/product_order_show.html.twig', [
+            'productOrder' => $productOrder,
+            'currentAction' => 'purchase',
+        ]);
     }
 }

@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id '_show' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body_title %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{ 'title.account'|trans }}</h1>
+        </div>
+    </div>
+{% endblock %}
+
+
+{% block main %}
+
+    <article class="box article-large">
+
+        {% include 'user/_breadcrumb.html.twig' with {'currentAction': currentAction} only %}
+
+
+        <ul class="list-group mb-3">
+        {% for item in productOrder.items %}
+
+            <li class="list-group-item d-flex justify-content-between lh-sm">
+                <di>
+                    <h6>{{ item.product.name }} </h6>
+                    <small class="text-muted">(qte: {{ item.quantity }})</small>
+                </di>
+                <span class="text-muted">{{ item.price }}€</span>
+            </li>
+        {% endfor %}
+        </ul>
+        <p class="center">{{ productOrder.id }}</p>
+        <p class="center">{{ productOrder.createdAt|date('d/m/Y') }}</p>
+        <p class="center">{{ productOrder.deliveryDate|date('d/m/Y') }}</p>
+        <p class="center">{{ productOrder.items|length }}</p>
+
+    </article>
+
+{% endblock %}
+
+{% block sidebar %}
+
+    {{ parent() }}
+
+{% endblock %}

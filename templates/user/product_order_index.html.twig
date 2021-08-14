@@ -4,7 +4,6 @@
 
 {% block stylesheets %}
     {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('build/css/breadcrumbs.css') }}">
 {% endblock %}
 
 {% block body_title %}
@@ -43,7 +42,7 @@
                             <td class="center">{{ productOrder.items|length }}</td>
                             <td class="center">
                                 <a class="btn btn-a btn-primary"
-                                   href="{{ path('user_product_order_show', {'id': purchase.id }) }}">
+                                   href="{{ path('user_product_order_show', {'id': productOrder.id }) }}">
                                     <i class="fas fa-eye" aria-hidden="true"></i> {{ 'action.show'|trans }}
                                 </a>
                             </td>

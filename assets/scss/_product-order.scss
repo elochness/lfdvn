@@ -1,3 +1,29 @@
+.list-group {
+  display: flex;
+  flex-direction: column;
+  padding-left: 0;
+  margin-bottom: 0;
+  border-radius: .25rem;
+}
+
+.list-group-item {
+  position: relative;
+  display: block;
+  padding: .5rem 1rem;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.125);
+}
+
+.justify-content-between {
+  justify-content: space-between!important;
+}
+
+.d-flex {
+  display: flex!important;
+}
+
+
 .product-order-list {
   border-top: 1px solid #96c03d;
   line-height: 50px;
