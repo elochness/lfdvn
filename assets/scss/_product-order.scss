@@ -45,6 +45,11 @@ table {
   }
 }
 
+.product_subcategory {
+  color: $primary;
+  border-bottom: $primary 1px solid;
+}
+
 #tr-total {
   line-height: 25px;
 }

@@ -1,0 +1,42 @@
+<nav>
+        <i class="fa fa-cart-plus" aria-hidden="true"></i>
+        <fieldset>
+                <legend><i class="fas fa-user-plus" aria-hidden="true"></i> {{ 'title.user_create'|trans }}</legend>
+                <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-plus" aria-hidden="true"></i> {{ 'action.create'|trans }}
+                </button>
+        </fieldset>
+    <ol class="cd-breadcrumb triangle custom-icons">
+
+        {% if currentStep == 1 %}
+
+            <li class="current"><em>{{ 'label.product_order.breadcrumb.step1'|trans }}</em></li>
+            <li><em>{{ 'label.product_order.breadcrumb.step2'|trans }}</em></li>
+            <li><em>{{ 'label.product_order.breadcrumb.step3'|trans }}</em></li>
+            <li><em>{{ 'label.product_order.breadcrumb.step4'|trans }}</em></li>
+
+        {% elseif currentStep == 2 %}
+
+            <li><a href="{{ path('product_order_step1') }}">{{ 'label.product_order.breadcrumb.step1'|trans }}</a></li>
+            <li class="current"><em>{{ 'label.product_order.breadcrumb.step2'|trans }}</em></li>
+            <li><em>{{ 'label.product_order.breadcrumb.step3'|trans }}</em></li>
+            <li><em>{{ 'label.product_order.breadcrumb.step4'|trans }}</em></li>
+
+        {% elseif currentStep == 3 %}
+
+            <li><a href="{{ path('product_order_step1') }}">{{ 'label.product_order.breadcrumb.step1'|trans }}</a></li>
+            <li><a href="{{ path('product_order_step2') }}">{{ 'label.product_order.breadcrumb.step2'|trans }}</a></li>
+            <li class="current"><em>{{ 'label.product_order.breadcrumb.step3'|trans }}</em></li>
+            <li><em>{{ 'label.product_order.breadcrumb.step4'|trans }}</em></li>
+
+        {% else %}
+
+            <li><a href="{{ path('product_order_step1') }}">{{ 'label.product_order.breadcrumb.step1'|trans }}</a></li>
+            <li><a href="{{ path('product_order_step2') }}">{{ 'label.product_order.breadcrumb.step2'|trans }}</a></li>
+            <li><a href="{{ path('product_order_step3') }}">{{ 'label.product_order.breadcrumb.step3'|trans }}</a></li>
+            <li class="current"><em>{{ 'label.product_order.breadcrumb.step4'|trans }}</em></li>
+
+        {% endif %}
+
+    </ol>
+</nav>

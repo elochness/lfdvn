@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id '_index' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('build/css/breadcrumbs.css') }}"/>
+{% endblock %}
+
+{% block body_title %}
+    <div class="row">
+        <div class="col-sm-12">
+            <h1>{{ 'title.purchase'|trans }}</h1>
+        </div>
+    </div>
+{% endblock %}
+
+{% block main %}
+
+    <div class="box article-large">
+
+        {% include 'product_order/_breadcrumb.html.twig' with {'currentStep': currentStep} only %}
+
+        <h2>{{ 'title.purchase.summary'|trans }}</h2>
+
+        <h3>{{ 'title.purchase.delivery_date'|trans }}</h3>
+
+        <div class="paragraph">
+            <p>{{ 'label.purchase.date_selected'|trans }} : {{ purchase.deliveryDateFormatted }}</p>
+        </div>
+
+        <div class="separator">
+            <p>ET</p>
+        </div>
+
+        <h3>{{ 'title.purchase.products_list'|trans }}</h3>
+
+        {% include 'purchase/_purchase_summary.html.twig' with {'purchase': purchase, 'total': total} only %}
+
+        <div class="separator">
+            <p>{{ 'label.and'|trans }}</p>
+        </div>
+
+        <form method="post" action="{{ path('purchase_step4') }}">
+
+            <h3>{{ 'label.purchase.remark_add'|trans }}</h3>
+            <textarea cols="70" rows="5" name="comment"></textarea>
+
+            <div class="separator">
+                <p>{{ 'label.validate'|trans }}</p>
+            </div>
+
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-cart-plus" aria-hidden="true"></i> {{ 'action.purchase'|trans }}
+            </button>
+        </form>
+
+    </div>
+
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+{% endblock %}

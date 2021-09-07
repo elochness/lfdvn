@@ -24,6 +24,7 @@ Encore
      * and one CSS file (e.g. app.scss) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
+    .addEntry('product-order', './assets/js/product-order.js')
     .addStyleEntry('breadcrumbs', './assets/css/breadcrumbs.css')
 
     .copyFiles({
