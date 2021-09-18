@@ -34,7 +34,7 @@ Encore
         // if versioning is enabled, add the file hash too
         //to: 'images/[path][name].[hash:8].[ext]',
         // only copy files matching this pattern
-        pattern: /\.(png|jpg|jpeg|svg)$/
+        pattern: /\.(png|jpg|jpeg|svg|woff)$/
     })
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')
@@ -64,6 +64,7 @@ Encore
         config.useBuiltIns = 'usage';
         config.corejs = 3;
     })
+
 
     // enables Sass/SCSS support
     .enableSassLoader()
