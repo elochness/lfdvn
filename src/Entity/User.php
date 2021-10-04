@@ -4,8 +4,8 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use Serializable;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -15,9 +15,9 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="UNIQ_email", columns={"email"})})
  * @ORM\Entity
- * @UniqueEntity(fields={"username"}, message="user.email.exist")
+ * @UniqueEntity(fields={"email"}, message="user.email.exist")
  */
-class User implements UserInterface, Serializable
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * Name of user role.
@@ -44,14 +44,14 @@ class User implements UserInterface, Serializable
     private $id;
 
     /**
-     * Username
+     * Email
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=255, nullable=false, unique=true)
      * @Assert\NotBlank(message="user.email.not_blank")
      * @Assert\Email(message = "user.email.not_email")
      */
-    private $username;
+    private $email;
 
     /**
      * Password of the user
@@ -136,22 +136,32 @@ class User implements UserInterface, Serializable
         return $this->id;
     }
 
+    public function getUserIdentifier(): string
+    {
+        return $this->email;
+    }
+
+    public function getUsername()
+    {
+        return $this->getUserIdentifier();
+    }
+
     /**
      * Get email of the user
      * @return string
      */
-    public function getUsername(): ?string
+    public function getEmail(): ?string
     {
-        return $this->username;
+        return $this->email;
     }
 
     /**
      * Set email of the user
-     * @param string $username
+     * @param string $email
      */
-    public function setUsername(string $username): void
+    public function setEmail(string $email): void
     {
-        $this->username = $username;
+        $this->email = $email;
     }
 
     /**
@@ -356,7 +366,7 @@ class User implements UserInterface, Serializable
     public function serialize(): string
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i
-        return serialize([$this->id, $this->username, $this->password]);
+        return serialize([$this->id, $this->email, $this->password]);
     }
 
     /**
@@ -365,7 +375,7 @@ class User implements UserInterface, Serializable
     public function unserialize($serialized): void
     {
         // add $this->salt too if you don't use Bcrypt or Argon2i
-        [$this->id, $this->username, $this->password] = unserialize($serialized, ['allowed_classes' => false]);
+        [$this->id, $this->email, $this->password] = unserialize($serialized, ['allowed_classes' => false]);
     }
 
     /**
@@ -377,5 +387,4 @@ class User implements UserInterface, Serializable
     {
         return $this->getLastName().' '.$this->getFirstName();
     }
-
 }
