@@ -1,0 +1,7 @@
+{% if product.image %}
+    <img class="photo" src="{{ product_prefix ~"/"~ product.image }}"
+         alt="{{ product.name }}" height="42" width="42"/>
+{% else %}
+    <img class="photo" src="{{ product_prefix ~"/empty-product.png" }}"
+         alt="{{ 'label.product.without_image'|trans }}" height="42" width="42"/>
+{% endif %}

@@ -31,7 +31,7 @@
 
             <form method="post" action="{{ path('product_order_step2') }}">
                 <table>
-                    {% set filter = app.session.get('purchase') %}
+                    {% set filter = app.session.get('productOrder') %}
                     {% set total = 0 %}
 
                     {% for category in categories %}
@@ -56,30 +56,21 @@
                                             <td class="product_subcategory" colspan="5">{{ subcategory.name }} ({{ subcategory.products | length }})</td>
                                         </tr>
                                         {% for product in subcategory.products %}
-                                            {% set purchaseName = 'qte_' ~ product.id %}
-                                            {% if purchaseName in filter|keys %}
-                                                {% set purchaseQte = filter[purchaseName] %}
-                                                {% set purchaseTotal = purchaseQte * product.price %}
-                                                {% set classTr = "purchase-list selected" %}
-                                                {% set total = total + purchaseTotal %}
+                                            {% set prodctOrderName = 'qte_' ~ product.id %}
+                                            {% if prodctOrderName in filter|keys %}
+                                                {% set prodctOrderQte = filter[prodctOrderName] %}
+                                                {% set prodctOrderTotal = prodctOrderQte * product.price %}
+                                                {% set classTr = "prodct-order-list selected" %}
+                                                {% set total = total + prodctOrderTotal %}
                                             {% else %}
-                                                {% set purchaseQte = "" %}
-                                                {% set purchaseTotal = "" %}
-                                                {% set classTr = "purchase-list" %}
+                                                {% set prodctOrderQte = "" %}
+                                                {% set prodctOrderTotal = "" %}
+                                                {% set classTr = "product-order-list" %}
                                             {% endif %}
 
                                             <tr class="{{ classTr }}">
                                                 <td>
-                                                    {% if product.image %}
-                                                        <img class="photo"
-                                                             src="{{ product_prefix ~"/"~ product.image }}"
-                                                             alt="{{ product.name }}" height="42" width="42"/>
-                                                    {% else %}
-                                                        <img class="photo"
-                                                             src="{{ product_prefix ~"/empty-product.png" }}"
-                                                             alt="{{ 'label.product.without_image'|trans }}" height="42"
-                                                             width="42"/>
-                                                    {% endif %}
+                                                    {% include 'product_order/_show_product_photo.twig' with {'product': product} only %}
                                                 </td>
 
                                                 {% if product.isCanBeOrdered %}
@@ -90,9 +81,9 @@
                                                     <td class="center"><input id="qte_{{ product.id }}"
                                                                               name="qte_{{ product.id }}"
                                                                               class="form-control" type="number" min="0"
-                                                                              max="50" value="{{ purchaseQte }}"/></td>
+                                                                              max="50" value="{{ prodctOrderQte }}"/></td>
                                                     <td class="center"><span id="total_{{ product.id }}"
-                                                                             name="total">{{ purchaseTotal }}</span>{% if purchaseTotal %} € {% endif %}
+                                                                             name="total">{{ prodctOrderTotal }}</span>{% if prodctOrderTotal %} € {% endif %}
                                                     </td>
                                                 {% else %}
                                                     <td>{{ product.name }} ({{ product.packaging }})</td>
@@ -105,28 +96,21 @@
                             {% else %}
                                 {% for product in category.products %}
 
-                                    {% set purchaseName = 'qte_' ~ product.id %}
-                                    {% if purchaseName in filter|keys %}
-                                        {% set purchaseQte = filter[purchaseName] %}
-                                        {% set purchaseTotal = purchaseQte * product.price %}
-                                        {% set classTr = "purchase-list selected" %}
-                                        {% set total = total +purchaseTotal %}
+                                    {% set prodctOrderName = 'qte_' ~ product.id %}
+                                    {% if prodctOrderName in filter|keys %}
+                                        {% set prodctOrderQte = filter[prodctOrderName] %}
+                                        {% set prodctOrderTotal = prodctOrderQte * product.price %}
+                                        {% set classTr = "product-order-list selected" %}
+                                        {% set total = total +prodctOrderTotal %}
                                     {% else %}
-                                        {% set purchaseQte = "" %}
-                                        {% set purchaseTotal = "" %}
-                                        {% set classTr = "purchase-list" %}
+                                        {% set prodctOrderQte = "" %}
+                                        {% set prodctOrderTotal = "" %}
+                                        {% set classTr = "product-order-list" %}
                                     {% endif %}
 
                                     <tr class="{{ classTr }}">
                                         <td>
-                                            {% if product.image %}
-                                                <img class="photo" src="{{ product_prefix ~"/"~ product.image }}"
-                                                     alt="{{ product.name }}" height="42" width="42"/>
-                                            {% else %}
-                                                <img class="photo" src="{{ product_prefix ~"/empty-product.png" }}"
-                                                     alt="{{ 'label.product.without_image'|trans }}" height="42"
-                                                     width="42"/>
-                                            {% endif %}
+                                            {% include 'product_order/_show_product_photo.twig' with {'product': product} only %}
                                         </td>
 
                                         {% if product.isCanBeOrdered %}
@@ -137,9 +121,9 @@
                                             <td class="center"><input id="qte_{{ product.id }}"
                                                                       name="qte_{{ product.id }}" class="form-control"
                                                                       type="number" min="0" max="50"
-                                                                      value="{{ purchaseQte }}"/></td>
+                                                                      value="{{ prodctOrderQte }}"/></td>
                                             <td class="center"><span id="total_{{ product.id }}"
-                                                                     name="total">{{ purchaseTotal }}</span>{% if purchaseTotal %} € {% endif %}
+                                                                     name="total">{{ prodctOrderTotal }}</span>{% if prodctOrderTotal %} € {% endif %}
                                             </td>
                                         {% else %}
                                             <td>{{ product.name }} ({{ product.packaging }})</td>
@@ -203,6 +187,17 @@
 
 {% block sidebar %}
 
-    {{ parent() }}
+    <div>
+        <article class="box article-large">
+            <h2>Votre commande</h2>
+            <div>
+                <div class="flex flex-center">
+                    <div>{{ 'label.product_order.not_found.description'|trans }}</div>
+                    <div><img class="center" src="{{ asset('build/images/svg/011-barricade.svg') }}" width="128"
+                              height="128" alt="Travaux"/></div>
+                </div>
+            </div>
+        </article>
+    </div>
 
 {% endblock %}

@@ -406,7 +406,7 @@ class Product
      * Get VAT rate of the product
      * @return VatRate
      */
-    public function getVatRate(): VatRate
+    public function getVatRate(): ?VatRate
     {
         return $this->vatRate;
     }

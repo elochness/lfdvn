@@ -4,3 +4,7 @@ twig:
     globals:
         product_prefix: "%app.path.product_images%"
         category_prefix: "%app.path.category_images%"
+    form_themes:
+        - '@FOSCKEditor/Form/ckeditor_widget.html.twig'
+#    paths:
+#        '%kernel.project_dir%/vendor/helios-ag/fm-tinymce-bundle/src/Resources/views': "FMTinyMCEBundle"

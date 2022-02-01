@@ -147,7 +147,6 @@ class Subcategory
     /**
      * Add product.
      * @param Product $product
-     * @return Category
      */
     public function addProduct(Product $product): void
     {

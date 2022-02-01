@@ -36,9 +36,9 @@ function changeLine(el, active) {
     var ulNode = el.parentNode.parentNode;
 
     if(active && parseInt(el.value) > 0) {
-        ulNode.className = "purchase-list selected";
+        ulNode.className = "product-order-list selected";
     } else {
-        ulNode.className = "purchase-list";
+        ulNode.className = "product-order-list";
     }
 }
 

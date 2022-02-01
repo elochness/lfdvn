@@ -10,7 +10,7 @@
 {% block body_title %}
     <div class="row">
         <div class="col-sm-12">
-            <h1>{{ 'title.purchase'|trans }}</h1>
+            <h1>{{ 'title.email.product_order_new'|trans }}</h1>
         </div>
     </div>
 {% endblock %}
@@ -22,10 +22,10 @@
 
             {% include 'product_order/_breadcrumb.html.twig' with {'currentStep': currentStep} only %}
 
-            <h2>{{ 'label.purchase.thanks'|trans }}</h2>
+            <h2>{{ 'label.product_order.thanks'|trans }}</h2>
             <div>
                 <div class="flex flex-center">
-                    <div>{{ 'label.purchase.summary_information'|trans }}
+                    <div>{{ 'label.product_order.summary_information'|trans }}
                         <br/><br/> {{ 'label.signature'|trans }}</div>
                     <div><img class="center" src="{{ asset('build/images/svg/012-cart.svg') }}" width="128" height="128"
                               alt="Caddie"/></div>

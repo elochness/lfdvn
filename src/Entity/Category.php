@@ -80,6 +80,16 @@ class Category
     }
 
     /**
+     * Get String information of category.
+     *
+     * @return string Name of category
+     */
+    public function __toString()
+    {
+        return $this->getName();
+    }
+
+    /**
      * Get category ID
      * @return int
      */

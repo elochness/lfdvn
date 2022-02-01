@@ -1,0 +1,279 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+
+
+            <group id="menu_header">
+                <trans-unit id="menu_header.products">
+                    <source>menu_header.products</source>
+                    <target>Gestion des produits</target>
+                </trans-unit>
+                <trans-unit id="menu_header.product_orders">
+                    <source>menu_header.product_orders</source>
+                    <target>Gestion des commandes</target>
+                </trans-unit>
+                <trans-unit id="menu_header.company">
+                    <source>menu_header.company</source>
+                    <target>Gestion de l'entreprise</target>
+                </trans-unit>
+                <trans-unit id="menu_header.users">
+                    <source>menu_header.users</source>
+                    <target>Gestion des utilisateurs</target>
+                </trans-unit>
+            </group>
+
+
+            <!-- Schedule -->
+            <group id="schedule">
+                <trans-unit id="Schedule">
+                    <source>Schedule</source>
+                    <target>Horaires</target>
+                </trans-unit>
+                <trans-unit id="label.schedule">
+                    <source>label.schedule</source>
+                    <target>Horaires</target>
+                </trans-unit>
+                <trans-unit id="label.monday">
+                    <source>label.monday</source>
+                    <target>Lundi</target>
+                </trans-unit>
+                <trans-unit id="label.tuesday">
+                    <source>label.tuesday</source>
+                    <target>Mardi</target>
+                </trans-unit>
+                <trans-unit id="label.wednesday">
+                    <source>label.wednesday</source>
+                    <target>Mercredi</target>
+                </trans-unit>
+                <trans-unit id="label.thursday">
+                    <source>label.thursday</source>
+                    <target>Jeudi</target>
+                </trans-unit>
+                <trans-unit id="label.friday">
+                    <source>label.friday</source>
+                    <target>Vendredi</target>
+                </trans-unit>
+                <trans-unit id="label.saturday">
+                    <source>label.saturday</source>
+                    <target>Samedi</target>
+                </trans-unit>
+                <trans-unit id="label.sunday">
+                    <source>label.sunday</source>
+                    <target>Dimanche</target>
+                </trans-unit>
+                <trans-unit id="label.alert_day">
+                    <source>label.alert_day</source>
+                    <target>Message d'annonce</target>
+                </trans-unit>
+            </group>
+
+            <!-- Product -->
+            <group id="product">
+                <trans-unit id="Poduct">
+                    <source>Product</source>
+                    <target>Produit</target>
+                </trans-unit>
+                <trans-unit id="label.product">
+                    <source>label.product</source>
+                    <target>Produit</target>
+                </trans-unit>
+                <trans-unit id="label.sub_category">
+                    <source>label.sub_category</source>
+                    <target>Sous-catégorie</target>
+                </trans-unit>
+                <trans-unit id="label.image">
+                    <source>label.image</source>
+                    <target>Image</target>
+                </trans-unit>
+                <trans-unit id="label.description">
+                    <source>label.description</source>
+                    <target>Description</target>
+                </trans-unit>
+                <trans-unit id="label.packaging">
+                    <source>label.packaging</source>
+                    <target>Conditionnement</target>
+                </trans-unit>
+                <trans-unit id="label.price">
+                    <source>label.price</source>
+                    <target>Prix</target>
+                </trans-unit>
+                <trans-unit id="label.quantity">
+                    <source>label.quantity</source>
+                    <target>Quantité</target>
+                </trans-unit>
+                <trans-unit id="label.vat_rate">
+                    <source>label.vat_rate</source>
+                    <target>TVA</target>
+                </trans-unit>
+                <trans-unit id="label.refundable">
+                    <source>label.refundable</source>
+                    <target>Consigne</target>
+                </trans-unit>
+            </group>
+
+            <!-- Category -->
+            <group id="category">
+                <trans-unit id="Category">
+                    <source>Category</source>
+                    <target>Catégorie</target>
+                </trans-unit>
+                <trans-unit id="label.nb_products">
+                    <source>label.products</source>
+                    <target>Produits</target>
+                </trans-unit>
+                <trans-unit id="label.nb_sub_category">
+                    <source>label.sub_categories</source>
+                    <target>Sous catégories</target>
+                </trans-unit>
+            </group>
+
+            <!-- Category -->
+            <group id="subcategory">
+                <trans-unit id="Subcategory">
+                    <source>Subcategory</source>
+                    <target>Sous catégorie</target>
+                </trans-unit>
+            </group>
+
+            <!-- Vat Rate -->
+            <group id="vat_rate">
+                <trans-unit id="VatRate">
+                    <source>VatRate</source>
+                    <target>Taux de TVA</target>
+                </trans-unit>
+                <trans-unit id="label.rate">
+                    <source>label.rate</source>
+                    <target>Taux</target>
+                </trans-unit>
+            </group>
+            
+            <group>
+                <trans-unit id="ProductOrder">
+                    <source>ProductOrder</source>
+                    <target>Commande</target>
+                </trans-unit>
+                <trans-unit id="label.product_order">
+                    <source>label.product_order</source>
+                    <target>Commande</target>
+                </trans-unit>
+                <trans-unit id="label.delivery_date">
+                    <source>label.delivery_date</source>
+                    <target>Date de livraison</target>
+                </trans-unit>
+                <trans-unit id="label.created_at">
+                    <source>label.created_at</source>
+                    <target>Créé le</target>
+                </trans-unit>
+                <trans-unit id="label.comment">
+                    <source>label.comment</source>
+                    <target>Commentaire</target>
+                </trans-unit>
+                <trans-unit id="label.items">
+                    <source>label.items</source>
+                    <target>Liste des produits</target>
+                </trans-unit>
+            </group>
+
+            <!-- Article -->
+            <group id="article">
+                <trans-unit id="label.article">
+                    <source>label.article</source>
+                    <target>Article</target>
+                </trans-unit>
+                <trans-unit id="Article">
+                    <source>Article</source>
+                    <target>Article</target>
+                </trans-unit>
+                <trans-unit id="label.title">
+                    <source>label.title</source>
+                    <target>Titre</target>
+                </trans-unit>
+                <trans-unit id="label.contains">
+                    <source>label.contains</source>
+                    <target>Contenu</target>
+                </trans-unit>
+                <trans-unit id="label.updated_at">
+                    <source>label.updated_at</source>
+                    <target>Mis à jour le</target>
+                </trans-unit>
+            </group>
+
+            <!-- User -->
+            <group id="user">
+                <trans-unit id="User">
+                    <source>User</source>
+                    <target>Utilisateur</target>
+                </trans-unit>
+                <trans-unit id="label.user">
+                    <source>label.user</source>
+                    <target>Utilisateur</target>
+                </trans-unit>
+                <trans-unit id="label.last_name">
+                    <source>label.last_name</source>
+                    <target>Nom</target>
+                </trans-unit>
+                <trans-unit id="label.first_name">
+                    <source>label.first_name</source>
+                    <target>Prénom</target>
+                </trans-unit>
+                <trans-unit id="label.email">
+                    <source>label.email</source>
+                    <target>Email</target>
+                </trans-unit>
+                <trans-unit id="label.enabled">
+                    <source>label.enabled</source>
+                    <target>Activé</target>
+                </trans-unit>
+                <trans-unit id="label.password">
+                    <source>label.password</source>
+                    <target>Mot de passe</target>
+                </trans-unit>
+            </group>
+
+            <!-- Company -->
+            <group id="company">
+                <trans-unit id="Company">
+                    <source>Company</source>
+                    <target>Compagnie</target>
+                </trans-unit>
+                <trans-unit id="label.ompany">
+                    <source>label.company</source>
+                    <target>Compagnie</target>
+                </trans-unit>
+                <trans-unit id="label.address">
+                    <source>label.address</source>
+                    <target>Adresse</target>
+                </trans-unit>
+                <trans-unit id="label.postcode">
+                    <source>label.postcode</source>
+                    <target>Code postal</target>
+                </trans-unit>
+                <trans-unit id="label.city">
+                    <source>label.city</source>
+                    <target>Ville</target>
+                </trans-unit>
+            </group>
+
+            <!-- Common -->
+            <group id="common">
+                <trans-unit id="label.id">
+                    <source>label.id</source>
+                    <target>ID</target>
+                </trans-unit>
+                <trans-unit id="label.name">
+                    <source>label.name</source>
+                    <target>Nom</target>
+                </trans-unit>
+                <trans-unit id="label.phone">
+                    <source>label.phone</source>
+                    <target>Téléphone</target>
+                </trans-unit>
+                <trans-unit id="label.category">
+                    <source>label.category</source>
+                    <target>Catégorie</target>
+                </trans-unit>
+            </group>
+        </body>
+    </file>
+</xliff>

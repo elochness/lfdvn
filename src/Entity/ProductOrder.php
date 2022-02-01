@@ -34,6 +34,13 @@ class ProductOrder
     private $deliveryDate;
 
     /**
+     * Delivery date formatted.
+     *
+     * @var string
+     */
+    private $deliveryDateFormatted;
+
+    /**
      * Comment of the product order
      * @var string|null
      *
@@ -67,6 +74,12 @@ class ProductOrder
      * @ORM\OneToMany(targetEntity="ProductOrderItem", mappedBy="productOrder", cascade={"persist"})
      */
     private $items;
+
+    /**
+     * Price of product's order
+     * @var int
+     */
+    private $price;
 
     /**
      * ProductOrder constructor.
@@ -103,6 +116,30 @@ class ProductOrder
     public function setDeliveryDate(DateTime $deliveryDate): void
     {
         $this->deliveryDate = $deliveryDate;
+    }
+
+    /**
+     * Get deliveryDateFormatted.
+     *
+     * @return string
+     */
+    public function getDeliveryDateFormatted(): string
+    {
+        return $this->deliveryDateFormatted;
+    }
+
+    /**
+     * Set deliveryDateFormatted.
+     *
+     * @param string $deliveryDateFormatted
+     *
+     * @return ProductOrder
+     */
+    public function setDeliveryDateFormatted(string $deliveryDateFormatted): self
+    {
+        $this->deliveryDateFormatted = $deliveryDateFormatted;
+
+        return $this;
     }
 
     /**

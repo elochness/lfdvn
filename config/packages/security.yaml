@@ -71,5 +71,7 @@ security:
         - { path: ^/user, roles: ROLE_ADMIN }
         - { path: ^/efconnect, role: ROLE_ADMIN }
         - { path: ^/elfinder, role: ROLE_ADMIN }
+        - { path: ^/efconnect, role: ROLE_ADMIN }
+        - { path: ^/elfinder, role: ROLE_ADMIN }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

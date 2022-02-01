@@ -85,4 +85,9 @@ class ArticleCategory
     {
         $this->name = $name;
     }
+
+    public function __toString(): string
+    {
+        return $this->getName();
+    }
 }

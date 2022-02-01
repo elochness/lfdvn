@@ -63,6 +63,6 @@ class VatRate
      */
     public function __toString(): string
     {
-        return $this->getRate() . ' %';
+        return ($this->getRate()*100) . '%';
     }
 }

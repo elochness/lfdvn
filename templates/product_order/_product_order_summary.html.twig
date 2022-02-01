@@ -1,0 +1,25 @@
+<table>
+    <tr class="header">
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>{{ 'label.price'|trans }}</th>
+        <th>{{ 'label.quantity'|trans }}</th>
+        <th>{{ 'label.sum'|trans }}</th>
+    </tr>
+    {% for productOrderItem in productOrder.items %}
+        <tr class="product-order-list">
+            <td>
+                {% include 'product_order/_show_product_photo.twig' with {'product': productOrderItem.product} only %}
+            </td>
+            <td>{{ productOrderItem.product.name }} ({{ productOrderItem.product.packaging }})</td>
+            <td class="center">{{ productOrderItem.product.price }} €</td>
+            <td class="center">{{ productOrderItem.quantity }}</td>
+            <td class="center">{{ productOrderItem.price|number_format(2) }} €</td>
+        </tr>
+    {% endfor %}
+    <tr id="tr-total">
+        <td colspan="3">&nbsp;</td>
+        <td class="center"><b>{{ 'label.total'|trans }}</b></td>
+        <td class="center" id="td-total">{{ total }} €</td>
+    </tr>
+</table>

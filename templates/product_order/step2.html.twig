@@ -10,7 +10,7 @@
 {% block body_title %}
     <div class="row">
         <div class="col-sm-12">
-            <h1>{{ 'title.purchase'|trans }}</h1>
+            <h1>{{ 'title.product_order'|trans }}</h1>
         </div>
     </div>
 {% endblock %}
@@ -21,7 +21,7 @@
 
         {% include 'product_order/_breadcrumb.html.twig' with {'currentStep': currentStep} only %}
 
-        <h2>{{ 'title.purchase.step2'|trans }}</h2>
+        <h2>{{ 'title.product_order.step2'|trans }}</h2>
 
         <div class="paragraph">
             {% include 'common/_login_form.html.twig' %}

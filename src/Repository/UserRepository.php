@@ -19,15 +19,13 @@ class UserRepository extends ServiceEntityRepository
         parent::__construct($registry, User::class);
     }
 
-    /**
-     * Save the user
-     * @param User $user
-     * @throws \Doctrine\ORM\ORMException
-     * @throws \Doctrine\ORM\OptimisticLockException
-     */
-    public function save(User $user)
+    public function findUser(String $id)
     {
-        $this->_em->persist($user);
-        $this->_em->flush();
+        $qb = $this->createQueryBuilder('user')
+            ->where('user.email = :id')
+            ->setParameter('id', $id);
+        ;
+
+        return $qb->getQuery()->getResult();
     }
 }

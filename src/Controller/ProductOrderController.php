@@ -2,15 +2,25 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
 use App\Entity\ProductOrder;
+use App\Entity\ProductOrderItem;
 use App\Entity\Schedule;
 use App\Form\ProductOrderType;
 use App\Repository\CategoryRepository;
+use App\Repository\ProductOrderRepository;
+use App\Repository\ProductRepository;
+use App\Repository\ScheduleRepository;
+use App\Repository\UserRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /** @Route({
  *     "fr": "/commander",
@@ -48,24 +58,25 @@ class ProductOrderController extends AbstractController
      *     "en": "/step1"
      * }, methods={"GET"}, name="product_order_step1")
      *
-     * @param CategoryRepository  $categoryRepository
-     *
+     * @param SessionInterface $session
+     * @param CategoryRepository $categoryRepository
+     * @param ScheduleRepository $scheduleRepository
      * @return Response
      */
-    public function step1(SessionInterface $session, CategoryRepository $categoryRepository): Response
+    public function step1(SessionInterface $session, CategoryRepository $categoryRepository, ScheduleRepository $scheduleRepository, TranslatorInterface $translator): Response
     {
         $categories = $categoryRepository->findActiveCategory();
 
-        $repository = $this->getDoctrine()->getRepository(Schedule::class);
         /* @var Schedule $schedule */
-        $schedule = $repository->find(1);
+        $schedule = $scheduleRepository->find(1);
 
-        $filters = $session->get('productOrder', []);
+        $session->set('productOrder', []);
+        //$filters = $session->get('productOrder', []);
 
         return $this->render('product_order/step1.html.twig', [
             'categories' => $categories,
-            'filters' => $filters,
-            'datesForDelivery' => $this->getDatesForDelivery($schedule),
+            //'filters' => $filters,
+            'datesForDelivery' => $this->getDatesForDelivery($schedule, $translator),
             'currentStep' => 1,
         ]);
     }
@@ -74,28 +85,190 @@ class ProductOrderController extends AbstractController
      * @Route({
      *     "fr": "/etape2",
      *     "en": "/step2"
-     * }, methods={"GET"}, name="product_order_step2")
+     * }, methods={"GET", "POST"}, name="product_order_step2")
      *
-     * @param CategoryRepository  $categoryRepository
+     * @param AuthenticationUtils $helper
+     * @param Request $request
+     * @param SessionInterface $session
+     * @return Response
+     */
+    public function step2(AuthenticationUtils $helper, Request $request, SessionInterface $session): Response
+    {
+        $session->set('productOrder', $this->cleanProductOrderParams($request->request));
+
+        /** @var UserInterface  $user */
+        $user = $this->getUser();
+
+        // Check if user is connected
+        if (null !== $user) {
+            // redirect in step 3 is connected
+//     		return $this->render('productOrder/step3.html.twig');
+            return  $this->forward('App\Controller\ProductOrderController::step3');
+        }
+
+        return $this->render('product_order/step2.html.twig', [
+            // last username entered by the user (if any)
+            'last_username' => $helper->getLastUsername(),
+            // last authentication error (if any)
+            'error' => $helper->getLastAuthenticationError(),
+            'currentStep' => 2,
+        ]);
+    }
+
+    /**
+     * @Route({
+     *     "fr": "/etape3",
+     *     "en": "/step3"
+     * }, methods={"GET"}, name="product_order_step3")
+     *
+     * @param SessionInterface    $session
+     * @param TranslatorInterface $translator
      *
      * @return Response
      */
-    public function step2(SessionInterface $session, CategoryRepository $categoryRepository): Response
+    public function step3(SessionInterface $session, TranslatorInterface $translator, ProductRepository $productRepository): Response
     {
-        $categories = $categoryRepository->findActiveCategory();
+        // Check if user is connected
+        if (null === $this->getUser()) {
+            // redirect in step 2 isn't connected
+            return  $this->forward('App\Controller\ProductOrderController::step2');
+        } elseif (empty($session->get('productOrder'))) {
+            // redirect in step 1 isn't productOrder object
+            return  $this->forward('App\Controller\ProductOrderController::step1');
+        }
 
-        $repository = $this->getDoctrine()->getRepository(Schedule::class);
-        /* @var Schedule $schedule */
-        $schedule = $repository->find(1);
+        $sessionProductOrder = $session->get('productOrder');
 
-        $filters = $session->get('productOrder', []);
+        if($sessionProductOrder == null) {
+            return  $this->forward('App\Controller\ProductOrderController::step1');
+        }
+        // On créé un objet productOrder
+        $productOrder = $this->constructProductOrder($sessionProductOrder, $translator, $productRepository);
+        $total = 0;
 
-        return $this->render('product_order/step1.html.twig', [
-            'categories' => $categories,
-            'filters' => $filters,
-            'datesForDelivery' => $this->getDatesForDelivery($schedule),
-            'currentStep' => 1,
+        foreach ($productOrder->getItems() as $item) {
+            $total += $item->getPrice();
+        }
+
+        return $this->render('product_order/step3.html.twig', [
+            'productOrder' => $productOrder,
+            'total' => $total,
+            'currentStep' => 3,
         ]);
+    }
+
+    /**
+     * @Route({
+     *     "fr": "/etape4",
+     *     "en": "/step4"
+     * }, methods={"GET", "POST"}, name="product_order_step4")
+     *
+     * @param Request $request
+     * @param SessionInterface $session
+     * @param TranslatorInterface $translator
+     * @param ManagerRegistry $doctrine
+     * @param ProductRepository $productRepository
+     * @return Response
+     */
+    public function step4(Request $request, SessionInterface $session, TranslatorInterface $translator, ManagerRegistry $doctrine, ProductRepository $productRepository, UserRepository $userRepository)
+    {
+        // Check if user is connected
+        if (null === $this->getUser()) {
+            // redirect in step 2 isn't connected
+            return  $this->forward('App\Controller\ProductOrderController::step2');
+        } elseif (null === $session->get('productOrder')) {
+            // redirect in step 1 isn't productOrder object
+            return  $this->forward('App\Controller\ProductOrderController::step1');
+        }
+
+        if ($request->isMethod('post')) {
+            $total = 0;
+            $productOrder = $this->constructProductOrder($session->get('productOrder'), $translator, $productRepository);
+            $productOrder->setUser($userRepository->findUser($this->getUser()));
+            $productOrder->setComment($request->request->get('comment'));
+
+            $doctrine->getManager()->persist($productOrder);
+            $doctrine->getManager()->flush();
+
+            foreach ($productOrder->getItems() as $item) {
+                $total += $item->getPrice();
+            }
+
+            // delete data session
+            $session->clear();
+
+            //$this->sendCustomerMail($productOrder, $total, $mailer);
+            //$this->sendEnterpriseMail($productOrder, $total, $mailer);
+
+            return $this->render('product_order/step4.html.twig', [
+                'currentStep' => 4,
+            ]);
+            // 		    	return $this->render('email/enterprise_product_order.html.twig', array(
+// 	    			'productOrder' => $productOrder,
+// 	    			'total' => $total
+// 	    		));
+        }
+
+        return  $this->forward('App\Controller\ProductOrderController::step3');
+    }
+
+    private function cleanProductOrderParams($params)
+    {
+        $cleanedParams = [];
+
+        foreach ($params as $key => $value) {
+            if (!empty($value)) {
+                $cleanedParams[$key] = $value;
+            }
+        }
+        return $cleanedParams;
+    }
+
+    /**
+     * @param $params
+     * @param TranslatorInterface $translator
+     *
+     * @return ProductOrder
+     */
+    private function constructProductOrder($params, TranslatorInterface $translator, ProductRepository $productRepository): ProductOrder
+    {
+        // Initi<alization
+        $productOrder = new ProductOrder();
+        $listIdProducts = [];
+
+        // Recuperate all products
+        $products = $productRepository->findAll();
+
+        // Recuperate all id products
+        /** @var Product $product */
+        foreach ($products as $product) {
+            $listIdProducts[$product->getId()] = $product;
+        }
+        foreach ($params as $key => $value) {
+            $currentlyKey = str_replace('qte_', '', $key);
+//     		echo $currentlyKey . PHP_EOL;
+//     		echo $value . PHP_EOL;
+//     		echo $listIdProducts[$currentlyKey] . PHP_EOL;
+            if (!empty($value) && is_numeric($currentlyKey) && isset($listIdProducts[$currentlyKey])) {
+                /* @var $product Product */
+                $product = $productRepository->find($currentlyKey);
+                $productOrderItem = new ProductOrderItem();
+                $productOrderItem->setQuantity($value);
+                $productOrderItem->setProduct($product);
+                $productOrderItem->setPrice($value * $product->getPrice());
+                $productOrderItem->setVatRate($product->getVatRate()->getRate());
+                $productOrderItem->setProductOrder($productOrder);
+                // Add item to list
+                $productOrder->addItem($productOrderItem);
+            } elseif ('delivery_date' === $key) {
+                // 	    		$productOrder->setDeliveryDate($value);
+                // create Date object according to the value
+                $productOrder->setDeliveryDateFormatted($this->getDateFormatted($value, $translator));
+                $productOrder->setDeliveryDate(date_create($value));
+            }
+        }
+
+        return $productOrder;
     }
 
     /**
@@ -170,7 +343,7 @@ class ProductOrderController extends AbstractController
      *
      * @return array
      */
-    private function getDatesForDelivery(Schedule $schedule)
+    private function getDatesForDelivery(Schedule $schedule, TranslatorInterface $translator)
     {
         $countDay = 0;
         $collectDays = [];
@@ -204,12 +377,12 @@ class ProductOrderController extends AbstractController
         $collectDays = [];
 
         // We take 20 opened days
-        while ($countDay <= self::NB_OPENED_DAYS) {
+        while ($countDay < self::NB_OPENED_DAYS) {
             if (in_array($collectDay, $openDays, true)) {
 //     			$collectDays[] = date('d/m/Y', strtotime($date)) ;
                 $key = date('Y-m-d', strtotime($date));
-                $value = $key;
-                //$value = $this->getDateFormatted($key);
+                //$value = $key;
+                $value = $this->getDateFormatted($key, $translator);
                 $collectDays[$key] = $value;
                 ++$countDay;
             }
@@ -228,14 +401,14 @@ class ProductOrderController extends AbstractController
      *
      * @return string
      */
- //   private function getDateFormatted(string $date, TranslatorInterface $translator)
- //   {
- //       /* @var TranslatorInterface $translator */
- //       $stringDay = Schedule::getDayFormatted($date, $translator);
- //       $day = date('d', strtotime($date));
- //       $stringMonth = Schedule::getMonthFormatted($date, $translator);
- //       $year = date('Y', strtotime($date));
- //
- //       return $stringDay.' '.$day.' '.$stringMonth.' '.$year;
- //   }
+    private function getDateFormatted(string $date, TranslatorInterface $translator)
+    {
+        $stringDay = Schedule::getDayFormatted($date, $translator);
+        $day = date('d', strtotime($date));
+        $stringMonth = Schedule::getMonthFormatted($date, $translator);
+        $year = date('Y', strtotime($date));
+
+        return $stringDay.' '.$day.' '.$stringMonth.' '.$year;
+    }
+
 }

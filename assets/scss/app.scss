@@ -30,15 +30,15 @@ $icon-font-path: "~bootstrap-sass/assets/fonts/bootstrap/";
 //@import '~lato-font/scss/public-api';
 //@include lato-include-font('normal');
 //@include lato-include-font('bold');
-@font-face {
+/*@font-face {
     font-family: 'lato-regular';
-    src: url('/build/fonts/LatoLatin-Regular.woff');
+    src: url('/public/build/fonts/LatoLatin-Regular.woff');
 }
 
 @font-face {
     font-family: 'lato-bold';
-    src: url('/build/fonts/LatoLatin-Bold.woff');
-}
+    src: url('/public/build/fonts/LatoLatin-Bold.woff');
+}*/
 
 // CSS of fontawesome
 @import '~@fortawesome/fontawesome-free/css/all.css';
@@ -160,7 +160,7 @@ p {
 img {
     max-width: 100%;
     height: auto;
-    vertical-align: sub;
+    vertical-align: middle;
 }
 
 body {

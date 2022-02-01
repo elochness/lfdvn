@@ -40,4 +40,14 @@ class ProductOrderRepository extends ServiceEntityRepository
 
         return $query->getResult();
     }
+
+    public function save (ProductOrder $productOrder)
+    {
+        $this->
+
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($productOrder);
+        $em->flush($productOrder);
+    }
 }

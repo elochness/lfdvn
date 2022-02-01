@@ -168,13 +168,13 @@ class ProductOrderItem
     }
 
     /**
-     * Get String information of purchase item.
+     * Get String information of product order item.
      * @return string
      */
     public function __toString()
     {
         if (isset($this->product)) {
-            return $this->product->getName();
+            return $this->product->getName() . ' x' . $this->getQuantity();
         }
         // TODO change string in constant
         return 'Non défini';

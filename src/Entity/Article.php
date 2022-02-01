@@ -22,7 +22,7 @@ class Article
      * Id of article
      * @var int
      *
-     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Column(name="id", type="integer", nullable="false")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
@@ -32,7 +32,7 @@ class Article
      * Title of article
      * @var string
      *
-     * @ORM\Column(name="title", type="string", length=255, nullable=false)
+     * @ORM\Column(name="title", type="string", length=255, nullable="false")
      */
     private $title;
 
@@ -40,7 +40,7 @@ class Article
      * Contains of article
      * @var string
      *
-     * @ORM\Column(name="contains", type="text", length=0, nullable=false)
+     * @ORM\Column(name="contains", type="text", length=0, nullable="false")
      */
     private $contains;
 
@@ -48,7 +48,7 @@ class Article
      * Article creation date
      * @var DateTime
      *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false, options={"default"="CURRENT_TIMESTAMP"})
+     * @ORM\Column(name="created_at", type="datetime", nullable="false", options={"default"="CURRENT_TIMESTAMP"})
      */
     private $createdAt;
 
@@ -56,7 +56,7 @@ class Article
      * Update date of article
      * @var DateTime|null
      *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     * @ORM\Column(name="updated_at", type="datetime", nullable="true")
      */
     private $updatedAt;
 
@@ -64,7 +64,7 @@ class Article
      * Indication whether the article is activated
      * @var bool
      *
-     * @ORM\Column(name="enabled", type="boolean", nullable=false)
+     * @ORM\Column(name="enabled", type="boolean", nullable="false")
      */
     private $enabled;
 
@@ -76,7 +76,7 @@ class Article
      *
      * @ORM\ManyToOne(targetEntity="ArticleCategory")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="article_category_id", referencedColumnName="id", nullable=false)
+     *   @ORM\JoinColumn(name="article_category_id", referencedColumnName="id", nullable="false")
      * })
      */
     private $articleCategory;
@@ -194,7 +194,7 @@ class Article
      * Get category of article
      * @return ArticleCategory
      */
-    public function getArticleCategory(): ArticleCategory
+    public function getArticleCategory(): ?ArticleCategory
     {
         return $this->articleCategory;
     }
@@ -203,7 +203,7 @@ class Article
      * Set category of article
      * @param ArticleCategory $articleCategory
      */
-    public function setArticleCategory(ArticleCategory $articleCategory): void
+    public function setArticleCategory(?ArticleCategory $articleCategory): void
     {
         $this->articleCategory = $articleCategory;
     }
